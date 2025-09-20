@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 3 - Тұқымды өсімдіктер</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .module-content {
+            padding: 40px;
+        }
+        
+        .module-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .module-title {
+            font-size: 2.2rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .module-subtitle {
+            color: #689f38;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f9fbf8;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            color: #558b2f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c5e1a5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: #4caf50;
+        }
+        
+        .section-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .section-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        .important-note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .important-note h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .important-note h4 i {
+            margin-right: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #c5e1a5;
+        }
+        
+        .comparison-table th {
+            background: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f1f8e9;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-btn i {
+            margin: 0 8px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .author {
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .module-content {
+                padding: 20px;
+            }
+            
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="modules.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="language-switcher">
+                <button class="language-btn" id="ru-btn">Рус</button>
+                <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+            
+            <a href="modules.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Модульдер тізімі</span>
+            </a>
+        </header>
+        
+        <div class="module-content">
+            <div class="module-header">
+                <h1 class="module-title" id="module-title">Модуль 3: Тұқымды өсімдіктер</h1>
+                <p class="module-subtitle" id="module-subtitle">Ашық тұқымдылар және жабық тұқымды өсімдіктер, олардың ерекшеліктері және құрылымы</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-tree"></i> <span id="section1-title">Ашық тұқымды өсімдіктер</span></h2>
+                <div class="section-content">
+                    <p id="section1-p1">Ашық тұқымды өсімдіктер - бұл тұқымдары жабынсыз, ашық орналасқан өсімдіктер. Оларға қылқан жапырақты ағаштар (қарағай, шырша, самырсын) жатады.</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі ерекшеліктері</span></h4>
+                        <p id="important-note1-text">Ашық тұқымдылардың тұқымдары жапырақтардың бетінде ашық орналасады, олар жемістермен қоршалмаған. Көбінесе мәңгі жасыл болады және құрлықта кең таралған.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section2-title">Жабық тұқымды өсімдіктер</span></h2>
+                <div class="section-content">
+                    <p id="section2-p1">Жабық тұқымды өсімдіктер (гүлді өсімдіктер) - бұл тұқымдары жабыншықтармен қоршалған өсімдіктер. Олар ең көп таралған және эволюциялық тұрғыдан ең жетілген өсімдіктер топтарының бірі.</p>
+                    
+                    <ul id="section2-list">
+                        <li>Тұқымдар жабыншық ішінде дамиды</li>
+                        <li>Гүлдері және жемістері бар</li>
+                        <li>Таралуы кең: суда, құрлықта, шөлдерде</li>
+                        <li>Өмірлік формалары әртүрлі: ағаштар, бұталар, шөптер</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-feather-alt"></i> <span id="section3-title">Гүлдің құрылымы</span></h2>
+                <div class="section-content">
+                    <p id="section3-p1">Гүл - жабық тұқымды өсімдіктердің көбею мүшесі. Ол негізгі бөліктерден тұрады:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table-header1">Бөлігі</th>
+                                <th id="table-header2">Сипаттамасы</th>
+                                <th id="table-header3">Функциясы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table1-cell1">Тостағанша</td>
+                                <td id="table1-cell2">Жасыл түсті жапырақшалар</td>
+                                <td id="table1-cell3">Гүлді қорғау</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-cell1">Күлте</td>
+                                <td id="table2-cell2">Түрлі-түсті, иісі бар</td>
+                                <td id="table2-cell3">Жәндіктерді тарту, тозаңдану</td>
+                            </tr>
+                            <tr>
+                                <td id="table3-cell1">Аталық</td>
+                                <td id="table3-cell2">Тозаңдықтар мен тозаң таяқшалары</td>
+                                <td id="table3-cell3">Тозаң өндіру</td>
+                            </tr>
+                            <tr>
+                                <td id="table4-cell1">Аналық</td>
+                                <td id="table4-cell2">Жеміс жапырақшалары, түйінше, түйінше мойны, түйінше асты</td>
+                                <td id="table4-cell3">Тұқым өндіру және ұрықтандыру</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Ашық тұқымдылар мен жабық тұқымдыларды салыстыру</span></h2>
+                <div class="section-content">
+                    <p id="section4-p1">Ашық тұқымдылар мен жабық тұқымдылардың негізгі айырмашылықтары:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table2-header1">Сипаттама</th>
+                                <th id="table2-header2">Ашық тұқымды өсімдіктер</th>
+                                <th id="table2-header3">Жабық тұқымды өсімдіктер</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table2-1-cell1">Тұқымдардың орналасуы</td>
+                                <td id="table2-1-cell2">Ашық (жапырақ бетінде)</td>
+                                <td id="table2-1-cell3">Жабыншық ішінде (жемісте)</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-2-cell1">Гүлдері</td>
+                                <td id="table2-2-cell2">Жоқ</td>
+                                <td id="table2-2-cell3">Бар</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-3-cell1">Тозаңдану</td>
+                                <td id="table2-3-cell2">Жел арқылы</td>
+                                <td id="table2-3-cell3">Жәндіктер, жел, су арқылы</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-4-cell1">Өкілдері</td>
+                                <td id="table2-4-cell2">Қылқан жапырақтылар (қарағай, шырша)</td>
+                                <td id="table2-4-cell3">Альфальфа, алма ағашы, бидай, т.б.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <a href="module2.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="prev-btn">Алдыңғы модуль</span>
+                </a>
+                <a href="module4.html" class="nav-btn">
+                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author">Автор</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Тексты на казахском
+        const kzTexts = {
+            logo: "Жасыл әлем",
+            back: "Модульдер тізімі",
+            title: "Модуль 3: Тұқымды өсімдіктер",
+            subtitle: "Ашық тұқымдылар және жабық тұқымды өсімдіктер, олардың ерекшеліктері және құрылымы",
+            section1: "Ашық тұқымды өсімдіктер",
+            section1p1: "Ашық тұқымды өсімдіктер - бұл тұқымдары жабынсыз, ашық орналасқан өсімдіктер. Оларға қылқан жапырақты ағаштар (қарағай, шырша, самырсын) жатады.",
+            note1: "Негізгі ерекшеліктері",
+            note1text: "Ашық тұқымдылардың тұқымдары жапырақтардың бетінде ашық орналасады, олар жемістермен қоршалмаған. Көбінесе мәңгі жасыл болады және құрлықта кең таралған.",
+            section2: "Жабық тұқымды өсімдіктер",
+            section2p1: "Жабық тұқымды өсімдіктер (гүлді өсімдіктер) - бұл тұқымдары жабыншықтармен қоршалған өсімдіктер. Олар ең көп таралған және эволюциялық тұрғыдан ең жетілген өсімдіктер топтарының бірі.",
+            section2list: [
+                "Тұқымдар жабыншық ішінде дамиды",
+                "Гүлдері және жемістері бар",
+                "Таралуы кең: суда, құрлықта, шөлдерде",
+                "Өмірлік формалары әртүрлі: ағаштар, бұталар, шөптер"
+            ],
+            section3: "Гүлдің құрылымы",
+            section3p1: "Гүл - жабық тұқымды өсімдіктердің көбею мүшесі. Ол негізгі бөліктерден тұрады:",
+            table1h1: "Бөлігі",
+            table1h2: "Сипаттамасы",
+            table1h3: "Функциясы",
+            table1: [
+                ["Тостағанша", "Жасыл түсті жапырақшалар", "Гүлді қорғау"],
+                ["Күлте", "Түрлі-түсті, иісі бар", "Жәндіктерді тарту, тозаңдану"],
+                ["Аталық", "Тозаңдықтар мен тозаң таяқшалары", "Тозаң өндіру"],
+                ["Аналық", "Жеміс жапырақшалары, түйінше, түйінше мойны, түйінше асты", "Тұқым өндіру және ұрықтандыру"]
+            ],
+            section4: "Ашық тұқымдылар мен жабық тұқымдыларды салыстыру",
+            section4p1: "Ашық тұқымдылар мен жабық тұқымдылардың негізгі айырмашылықтары:",
+            table2h1: "Сипаттама",
+            table2h2: "Ашық тұқымды өсімдіктер",
+            table2h3: "Жабық тұқымды өсімдіктер",
+            table2: [
+                ["Тұқымдардың орналасуы", "Ашық (жапырақ бетінде)", "Жабыншық ішінде (жемісте)"],
+                ["Гүлдері", "Жоқ", "Бар"],
+                ["Тозаңдану", "Жел арқылы", "Жәндіктер, жел, су арқылы"],
+                ["Өкілдері", "Қылқан жапырақтылар (қарағай, шырша)", "Жоңышқа, алма ағашы, бидай, т.б."]
+            ],
+            prevBtn: "Алдыңғы модуль",
+            nextBtn: "Келесі модуль"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            logo: "Зеленый мир",
+            back: "Список модулей",
+            title: "Модуль 3: Семенные растения",
+            subtitle: "Голосеменные и покрытосеменные растения, их особенности и строение",
+            section1: "Голосеменные растения",
+            section1p1: "Голосеменные растения - это растения с семенами, которые не покрыты, открыты. К ним относятся хвойные деревья (сосна, ель, пихта).",
+            note1: "Основные особенности",
+            note1text: "Семена голосеменных расположены открыто на поверхности листьев, они не окружены плодами. Чаще всего являются вечнозелеными и широко распространены на суше.",
+            section2: "Покрытосеменные растения",
+            section2p1: "Покрытосеменные растения (цветковые) - это растения, семена которых покрыты оболочкой. Они являются наиболее распространенной и эволюционно развитой группой растений.",
+            section2list: [
+                "Семена развиваются внутри завязи",
+                "Имеют цветки и плоды",
+                "Широкое распространение: в воде, на суше, в пустынях",
+                "Разнообразие жизненных форм: деревья, кустарники, травы"
+            ],
+            section3: "Строение цветка",
+            section3p1: "Цветок - репродуктивный орган покрытосеменных растений. Он состоит из основных частей:",
+            table1h1: "Часть",
+            table1h2: "Описание",
+            table1h3: "Функция",
+            table1: [
+                ["Чашелистики", "Зеленые листочки", "Защита цветка"],
+                ["Лепестки", "Разноцветные, ароматные", "Привлечение насекомых, опыление"],
+                ["Тычинки", "Пыльники и тычиночные нити", "Производство пыльцы"],
+                ["Пестик", "Плодолистики, завязь, столбик, рыльце", "Производство семян и оплодотворение"]
+            ],
+            section4: "Сравнение голосеменных и покрытосеменных",
+            section4p1: "Основные различия между голосеменными и покрытосеменными:",
+            table2h1: "Характеристика",
+            table2h2: "Голосеменные растения",
+            table2h3: "Покрытосеменные растения",
+            table2: [
+                ["Расположение семян", "Открытое (на поверхности листьев)", "Внутри покрова (в плоде)"],
+                ["Цветки", "Отсутствуют", "Присутствуют"],
+                ["Опыление", "С помощью ветра", "Насекомыми, ветром, водой"],
+                ["Представители", "Хвойные (сосна, ель)", "Люцерна, яблоня, пшеница и др."]
+            ],
+            prevBtn: "Предыдущий модуль",
+            nextBtn: "Следующий модуль"
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = kzTexts.logo;
+            document.getElementById('back-text').textContent = kzTexts.back;
+            document.getElementById('module-title').textContent = kzTexts.title;
+            document.getElementById('module-subtitle').textContent = kzTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = kzTexts.section1;
+            document.getElementById('section1-p1').textContent = kzTexts.section1p1;
+            document.getElementById('important-note1').textContent = kzTexts.note1;
+            document.getElementById('important-note1-text').textContent = kzTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = kzTexts.section2;
+            document.getElementById('section2-p1').textContent = kzTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            kzTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section3-title').textContent = kzTexts.section3;
+            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = kzTexts.table1h1;
+            document.getElementById('table-header2').textContent = kzTexts.table1h2;
+            document.getElementById('table-header3').textContent = kzTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3']
+            ];
+            
+            kzTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = kzTexts.section4;
+            document.getElementById('section4-p1').textContent = kzTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
+            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
+            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            kzTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
+            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = ruTexts.logo;
+            document.getElementById('back-text').textContent = ruTexts.back;
+            document.getElementById('module-title').textContent = ruTexts.title;
+            document.getElementById('module-subtitle').textContent = ruTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = ruTexts.section1;
+            document.getElementById('section1-p1').textContent = ruTexts.section1p1;
+            document.getElementById('important-note1').textContent = ruTexts.note1;
+            document.getElementById('important-note1-text').textContent = ruTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = ruTexts.section2;
+            document.getElementById('section2-p1').textContent = ruTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            ruTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section3-title').textContent = ruTexts.section3;
+            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = ruTexts.table1h1;
+            document.getElementById('table-header2').textContent = ruTexts.table1h2;
+            document.getElementById('table-header3').textContent = ruTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3']
+            ];
+            
+            ruTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = ruTexts.section4;
+            document.getElementById('section4-p1').textContent = ruTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
+            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
+            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            ruTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
+            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+        }
+        
+        // Обработчики кнопок переключения языка
+        document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+        document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+        });
+    </script>
+</body>
+</html>
