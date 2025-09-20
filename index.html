@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жасыл әлем - 7-сыныпқа арналған биология</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .leaf-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23438a5e' d='M50,10 C60,10 70,15 70,30 C70,45 50,60 50,60 C50,60 30,45 30,30 C30,15 40,10 50,10 Z'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f1f8e9;
+            border-bottom: 1px solid #c5e1a5;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #558b2f;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c5e1a5;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #558b2f;
+        }
+        
+        .language-btn.active {
+            background: #8bc34a;
+            color: white;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #33691e;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #689f38;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .gif-container {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+        
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .start-btn {
+            background: linear-gradient(to right, #7cb342, #9ccc65);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.3);
+            display: flex;
+            align-items: center;
+        }
+        
+        .start-btn i {
+            margin-left: 8px;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(124, 179, 66, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f8e9;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #689f38;
+            border-top: 1px solid #c5e1a5;
+        }
+        
+        .author {
+            font-weight: 600;
+            color: #558b2f;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .author:hover {
+            color: #33691e;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .gif-container {
+                max-width: 250px;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="leaf-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i> Жасыл әлем
+            </div>
+            <div class="language-switcher">
+                <button class="language-btn active" id="ru-btn">Русский</button>
+                <button class="language-btn" id="kz-btn">Казахский</button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <h1 id="title">Добро пожаловать в Зеленый мир!</h1>
+            <p class="tagline" id="tagline">Изучайте удивительный мир биологии вместе с нами. Интерактивные уроки для 7 класса.</p>
+            
+            <div class="gif-container">
+                <img src="8z2pahzh49v71.gif" alt="Анимированное растение" id="plant-gif">
+            </div>
+            
+            <button class="start-btn" id="start-btn" onclick="goToModules()">
+                Начать изучение <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author" onclick="openAuthorPage()">Автор</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Функция для перехода на страницу автора
+        function openAuthorPage() {
+            window.open('https://example.com/author', '_blank');
+        }
+        
+        // Функция для перехода на страницу модулей
+        function goToModules() {
+            window.location.href = 'modules.html';
+        }
+        
+        // Переключение языков
+        const ruBtn = document.getElementById('ru-btn');
+        const kzBtn = document.getElementById('kz-btn');
+        const title = document.getElementById('title');
+        const tagline = document.getElementById('tagline');
+        const startBtn = document.getElementById('start-btn');
+        
+        ruBtn.addEventListener('click', () => {
+            ruBtn.classList.add('active');
+            kzBtn.classList.remove('active');
+            title.textContent = 'Добро пожаловать в Зеленый мир!';
+            tagline.textContent = 'Изучайте удивительный мир биологии вместе с нами. Интерактивные уроки для 7 класса.';
+            startBtn.innerHTML = 'Начать изучение <i class="fas fa-arrow-right"></i>';
+        });
+        
+        kzBtn.addEventListener('click', () => {
+            kzBtn.classList.add('active');
+            ruBtn.classList.remove('active');
+            title.textContent = 'Жасыл әлемге қош келдіңіз!';
+            tagline.textContent = 'Бізбен бірге биологияның таңғажайып әлемін зерттеңіз. 7-сыныпқа арналған интерактивті сабақтар.';
+            startBtn.innerHTML = 'Зерттеуді бастау <i class="fas fa-arrow-right"></i>';
+        });
+        
+        // Загрузка гифки
+        document.addEventListener('DOMContentLoaded', function() {
+            const gifUrl = '8z2pahzh49v71.gif';
+            document.getElementById('plant-gif').src = gifUrl;
+        });
+    </script>
+</body>
+</html>
