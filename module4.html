@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 4 - Вегетативті органдар</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .module-content {
+            padding: 40px;
+        }
+        
+        .module-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .module-title {
+            font-size: 2.2rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .module-subtitle {
+            color: #689f38;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f9fbf8;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            color: #558b2f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c5e1a5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: #4caf50;
+        }
+        
+        .section-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .section-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        .important-note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .important-note h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .important-note h4 i {
+            margin-right: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #c5e1a5;
+        }
+        
+        .comparison-table th {
+            background: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f1f8e9;
+        }
+        
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .image-box {
+            text-align: center;
+            margin: 15px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .image-box img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #558b2f;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-btn i {
+            margin: 0 8px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .author {
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .module-content {
+                padding: 20px;
+            }
+            
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .image-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="modules.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="language-switcher">
+                <button class="language-btn" id="ru-btn">Рус</button>
+                <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+            
+            <a href="modules.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Модульдер тізімі</span>
+            </a>
+        </header>
+        
+        <div class="module-content">
+            <div class="module-header">
+                <h1 class="module-title" id="module-title">Модуль 4: Вегетативті органдар</h1>
+                <p class="module-subtitle" id="module-subtitle">Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ және олардың түрленуі</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-root"></i> <span id="section1-title">Тамыр жүйесі</span></h2>
+                <div class="section-content">
+                    <p id="section1-p1">Тамыр - өсімдіктің топырақта бекіп тұратын және су мен минералды тұздарды сіңіретін вегетативті органы. Тамырлар өсімдікті топыраққа бекітеді және оларға қоректік заттарды жеткізеді.</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Тамырдың түрлері</span></h4>
+                        <p id="important-note1-text">Тамырлар басты тамыр және жанама тамыр болып бөлінеді. Басты тамыр тік төмен өсіп, жанама тамырлар одан бүйірге таралады. Кейбір өсімдіктерде тамырлар тағам жинақтау, вегетативтік көбею сияқты қосымша функцияларды атқарады.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section2-title">Сабақ және жапырақ</span></h2>
+                <div class="section-content">
+                    <p id="section2-p1">Сабақ - өсімдіктің жер үсті органы, ол жапырақтарды, гүлдерді және жемістерді көтереді. Сабақтар өсімдіктің құрылымдық негізі болып табылады және қоректік заттарды тасымалдайды.</p>
+                    
+                    <ul id="section2-list">
+                        <li>Сабақ өсімдікті тік ұстап тұрады</li>
+                        <li>Жапырақтарға, гүлдерге және жемістерге тірек болады</li>
+                        <li>Қоректік заттарды тасымалдайды</li>
+                        <li>Кейбір өсімдіктерде қорек жинақтайды</li>
+                    </ul>
+                    
+                    <p id="section2-p2">Жапырақ - фотосинтез процесін жүзеге асыратын негізгі орган. Жапырақтар күн сәулесін сіңіріп, көмірқышқыл газын алады және оттегін бөледі.</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-exchange-alt"></i> <span id="section3-title">Органдардың түрленуі</span></h2>
+                <div class="section-content">
+                    <p id="section3-p1">Кейбір өсімдіктерде вегетативті органдар қосымша функциялар атқару үшін түрленген болады. Мысалы, тамырлар, сабақтар және жапырақтар қорек жинақтау, вегетативтік көбею немесе қорғану үшін өзгерістерге ұшырайды.</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table-header1">Түрленген орган</th>
+                                <th id="table-header2">Сипаттамасы</th>
+                                <th id="table-header3">Мысалдар</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table1-cell1">Тамыр түрленулері</td>
+                                <td id="table1-cell2">Тамырлардың қорек жинақтауға бейімделуі</td>
+                                <td id="table1-cell3">Сәбіз, қызылша, шалқан</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-cell1">Сабақ түрленулері</td>
+                                <td id="table2-cell2">Сабақтардың қорек жинақтау немесе көбею үшін өзгеруі</td>
+                                <td id="table2-cell3">Картоп (клубень), пияз (бадана), раушан гүлі (тікен)</td>
+                            </tr>
+                            <tr>
+                                <td id="table3-cell1">Жапырақ түрленулері</td>
+                                <td id="table3-cell2">Жапырақтардың басқа функцияларға бейімделуі</td>
+                                <td id="table3-cell3">Кактустың тікендері, асқабақтың мұртшалары</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Вегетативтік көбею</span></h2>
+                <div class="section-content">
+                    <p id="section4-p1">Көптеген өсімдіктер вегетативтік жолмен көбейе алады. Бұл жағдайда жаңа өсімдіктер аналық өсімдіктің бөліктерінен дамиды. Вегетативтік көбеюдің бірнеше түрі бар:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table2-header1">Көбею түрі</th>
+                                <th id="table2-header2">Сипаттамасы</th>
+                                <th id="table2-header3">Мысалдар</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table2-1-cell1">Тамырсабақпен</td>
+                                <td id="table2-1-cell2">Жер асты сабақтары арқылы көбею</td>
+                                <td id="table2-1-cell3">Итмұрын, қызылша</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-2-cell1">Пішәкпен</td>
+                                <td id="table2-2-cell2">Жер асты өркендері арқылы көбею</td>
+                                <td id="table2-2-cell3">Картоп, батат</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-3-cell1">Баданамен</td>
+                                <td id="table2-3-cell2">Жиналған қоректік заттары бар қысқартылған сабақ</td>
+                                <td id="table2-3-cell3">Пияз, сарымсақ</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-4-cell1">Бұтақтану</td>
+                                <td id="table2-4-cell2">Бұтақтардың түйнектенуі</td>
+                                <td id="table2-4-cell3">Агава, кактус</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <a href="module3.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="prev-btn">Алдыңғы модуль</span>
+                </a>
+                <a href="module5.html" class="nav-btn">
+                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author">Автор</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Тексты на казахском
+        const kzTexts = {
+            logo: "Жасыл әлем",
+            back: "Модульдер тізімі",
+            title: "Модуль 4: Вегетативті органдар",
+            subtitle: "Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ және олардың түрленуі",
+            section1: "Тамыр жүйесі",
+            section1p1: "Тамыр - өсімдіктің топырақта бекіп тұратын және су мен минералды тұздарды сіңіретін вегетативті органы. Тамырлар өсімдікті топыраққа бекітеді және оларға қоректік заттарды жеткізеді.",
+            note1: "Тамырдың түрлері",
+            note1text: "Тамырлар басты тамыр және жанама тамыр болып бөлінеді. Басты тамыр тік төмен өсіп, жанама тамырлар одан бүйірге таралады. Кейбір өсімдіктерде тамырлар тағам жинақтау, вегетативтік көбею сияқты қосымша функцияларды атқарады.",
+            section2: "Сабақ және жапырақ",
+            section2p1: "Сабақ - өсімдіктің жер үсті органы, ол жапырақтарды, гүлдерді және жемістерді көтереді. Сабақтар өсімдіктің құрылымдық негізі болып табылады және қоректік заттарды тасымалдайды.",
+            section2list: [
+                "Сабақ өсімдікті тік ұстап тұрады",
+                "Жапырақтарға, гүлдерге және жемістерге тірек болады",
+                "Қоректік заттарды тасымалдайды",
+                "Кейбір өсімдіктерде қорек жинақтайды"
+            ],
+            section2p2: "Жапырақ - фотосинтез процесін жүзеге асыратын негізгі орган. Жапырақтар күн сәулесін сіңіріп, көмірқышқыл газын алады және оттегін бөледі.",
+            section3: "Органдардың түрленуі",
+            section3p1: "Кейбір өсімдіклерде вегетативті органдар қосымша функциялар атқару үшін түрленген болады. Мысалы, тамырлар, сабақтар және жапырақтар қорек жинақтау, вегетативтік көбею немесе қорғану үшін өзгерістерге ұшырайды.",
+            table1h1: "Түрленген орган",
+            table1h2: "Сипаттамасы",
+            table1h3: "Мысалдар",
+            table1: [
+                ["Тамыр түрленулері", "Тамырлардың қорек жинақтауға бейімделуі", "Сәбіз, қызылша, шалқан"],
+                ["Сабақ түрленулері", "Сабақтардың қорек жинақтау немесе көбею үшін өзгеруі", "Картоп (Түйнек), пияз (бадана), раушан гүлі (тікен)"],
+                ["Жапырақ түрленулері", "Жапырақтардың басқа функцияларға бейімделуі", "Кактустың тікендері, асқабақтың мұртшалары"]
+            ],
+            section4: "Вегетативтік көбею",
+            section4p1: "Көптеген өсімдіктер вегетативтік жолмен көбейе алады. Бұл жағдайда жаңа өсімдіктер аналық өсімдіктің бөліктерінен дамиды. Вегетативтік көбеюдің бірнеше түрі бар:",
+            table2h1: "Көбею түрі",
+            table2h2: "Сипаттамасы",
+            table2h3: "Мысалдар",
+            table2: [
+                ["Тамырсабақпен", "Жер асты сабақтары арқылы көбею", "Итмұрын, қызылша"],
+                ["Пішәкпен", "Жер асты өркендері арқылы көбею", "Картоп, батат"],
+                ["Баданамен", "Жиналған қоректік заттары бар қысқартылған сабақ", "Пияз, сарымсақ"],
+                ["Бұтақтану", "Бұтақтардың түйнектенуі", "Агава, кактус"]
+            ],
+            prevBtn: "Алдыңғы модуль",
+            nextBtn: "Келесі модуль"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            logo: "Зеленый мир",
+            back: "Список модулей",
+            title: "Модуль 4: Вегетативные органы",
+            subtitle: "Вегетативные органы растений: корень, стебель, лист и их видоизменения",
+            section1: "Корневая система",
+            section1p1: "Корень - вегетативный орган растения, закрепляющий его в почве и поглощающий воду и минеральные соли. Корни закрепляют растение в почве и снабжают его питательными веществами.",
+            note1: "Типы корней",
+            note1text: "Корни делятся на главный корень и боковые корни. Главный корень растет вертикально вниз, а боковые корни ответвляются от него. У некоторых растений корни выполняют дополнительные функции, такие как накопление питательных веществ и вегетативное размножение.",
+            section2: "Стебель и лист",
+            section2p1: "Стебель - надземная часть растения, которая несет листья, цветки и плоды. Стебли являются структурной основой растения и транспортируют питательные вещества.",
+            section2list: [
+                "Стебель поддерживает растение в вертикальном положении",
+                "Служит опорой для листьев, цветков и плодов",
+                "Транспортирует питательные вещества",
+                "У некоторых растений накапливает питательные вещества"
+            ],
+            section2p2: "Лист - основной орган, осуществляющий процесс фотосинтеза. Листья поглощают солнечный свет, принимают углекислый газ и выделяют кислород.",
+            section3: "Видоизменения органов",
+            section3p1: "У некоторых растений вегетативные органы видоизменены для выполнения дополнительных функций. Например, корни, стебли и листья претерпевают изменения для накопления питательных веществ, вегетативного размножения или защиты.",
+            table1h1: "Видоизмененный орган",
+            table1h2: "Описание",
+            table1h3: "Примеры",
+            table1: [
+                ["Видоизменения корней", "Приспособление корней для накопления питательных веществ", "Морковь, свекла, редис"],
+                ["Видоизменения стеблей", "Изменение стеблей для накопления питательных веществ или размножения", "Картофель (клубень), лук (луковица), роза (шипы)"],
+                ["Видоизменения листьев", "Приспособление листьев для других функций", "Колючки кактуса, усики тыквы"]
+            ],
+            section4: "Вегетативное размножение",
+            section4p1: "Многие растения могут размножаться вегетативным способом. В этом случае новые растения развиваются из частей материнского растения. Существует несколько типов вегетативного размножения:",
+            table2h1: "Тип размножения",
+            table2h2: "Описание",
+            table2h3: "Примеры",
+            table2: [
+                ["Корневищами", "Размножение подземными стеблями", "Пырей, свекла"],
+                ["Клубнями", "Размножение подземными побегами", "Картофель, батат"],
+                ["Луковицами", "Укороченный стебель с запасом питательных веществ", "Лук, чеснок"],
+                ["Отводками", "Укоренение ветвей", "Агава, кактус"]
+            ],
+            prevBtn: "Предыдущий модуль",
+            nextBtn: "Следующий модуль"
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = kzTexts.logo;
+            document.getElementById('back-text').textContent = kzTexts.back;
+            document.getElementById('module-title').textContent = kzTexts.title;
+            document.getElementById('module-subtitle').textContent = kzTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = kzTexts.section1;
+            document.getElementById('section1-p1').textContent = kzTexts.section1p1;
+            document.getElementById('important-note1').textContent = kzTexts.note1;
+            document.getElementById('important-note1-text').textContent = kzTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = kzTexts.section2;
+            document.getElementById('section2-p1').textContent = kzTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            kzTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section2-p2').textContent = kzTexts.section2p2;
+            
+            document.getElementById('section3-title').textContent = kzTexts.section3;
+            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = kzTexts.table1h1;
+            document.getElementById('table-header2').textContent = kzTexts.table1h2;
+            document.getElementById('table-header3').textContent = kzTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3']
+            ];
+            
+            kzTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = kzTexts.section4;
+            document.getElementById('section4-p1').textContent = kzTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
+            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
+            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            kzTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
+            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = ruTexts.logo;
+            document.getElementById('back-text').textContent = ruTexts.back;
+            document.getElementById('module-title').textContent = ruTexts.title;
+            document.getElementById('module-subtitle').textContent = ruTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = ruTexts.section1;
+            document.getElementById('section1-p1').textContent = ruTexts.section1p1;
+            document.getElementById('important-note1').textContent = ruTexts.note1;
+            document.getElementById('important-note1-text').textContent = ruTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = ruTexts.section2;
+            document.getElementById('section2-p1').textContent = ruTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            ruTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section2-p2').textContent = ruTexts.section2p2;
+            
+            document.getElementById('section3-title').textContent = ruTexts.section3;
+            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = ruTexts.table1h1;
+            document.getElementById('table-header2').textContent = ruTexts.table1h2;
+            document.getElementById('table-header3').textContent = ruTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3']
+            ];
+            
+            ruTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = ruTexts.section4;
+            document.getElementById('section4-p1').textContent = ruTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
+            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
+            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            ruTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
+            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+        }
+        
+        // Обработчики кнопок переключения языка
+        document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+        document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+        });
+    </script>
+</body>
+</html>
