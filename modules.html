@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 1 - Өсімдіктер әлеміне кіріспе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .module-content {
+            padding: 40px;
+        }
+        
+        .module-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .module-title {
+            font-size: 2.2rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .module-subtitle {
+            color: #689f38;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f9fbf8;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            color: #558b2f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c5e1a5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: #4caf50;
+        }
+        
+        .section-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .section-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        .important-note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .important-note h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .important-note h4 i {
+            margin-right: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #c5e1a5;
+        }
+        
+        .comparison-table th {
+            background: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f1f8e9;
+        }
+
+        /* Стили для секции с презентацией */
+        .slide-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 60%; /* Соотношение сторон 16:9 */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+        
+        .slide-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .slide-note {
+            margin-top: 15px;
+            font-style: italic;
+            color: #689f38;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-btn i {
+            margin: 0 8px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .author {
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .module-content {
+                padding: 20px;
+            }
+            
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .slide-container {
+                padding-bottom: 70%; /* Немного больше для мобильных устройств */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="modules.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="language-switcher">
+                <button class="language-btn" id="ru-btn">Рус</button>
+                <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+            
+            <a href="modules.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Модульдер тізімі</span>
+            </a>
+        </header>
+        
+        <div class="module-content">
+            <div class="module-header">
+                <h1 class="module-title" id="module-title">Модуль 1: Өсімдіктер әлеміне кіріспе</h1>
+                <p class="module-subtitle" id="module-subtitle">Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section1-title">Өсімдіктер деген не? Табиғаттағы рөлі</span></h2>
+                <div class="section-content">
+                    <p id="section1-p1">Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі айырмашылық</span></h4>
+                        <p id="important-note1-text">Өсімдіктердің басқа организмдерден негізгі айырмашылығы - олар күн энергиясы, су және көмірқышқыл газын пайдаланып органикалық заттарды өздері жасай алады (автотрофты азықтану). Сонымен қатар, өсімдіктер әдетте бекітілген тіршілік етеді және бүкіл өмірінде өседі.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-microscope"></i> <span id="section2-title">Өсімдіктердің клеткалық құрылымы</span></h2>
+                <div class="section-content">
+                    <p id="section2-p1">Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:</p>
+                    
+                    <ul id="section2-list">
+                        <li>Клетка қабырғасы - целлюлозадан тұратын, өсімдікке қажетті қаттылық пен құрылым береді</li>
+                        <li>Хлоропласттар - фотосинтез процесін жүзеге асыратын органеллалар</li>
+                        <li>Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды</li>
+                        <li>Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Секция с презентацией -->
+            <div class="slide-section">
+                <h2 class="section-title"><i class="fas fa-desktop"></i> <span id="slide-title">Презентация</span></h2>
+                <div class="slide-container">
+                    <iframe id="slide-iframe" src="https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000" 
+                            frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+                <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-layer-group"></i> <span id="section3-title">Өсімдіктердің тіндері: түрлері мен функциялары</span></h2>
+                <div class="section-content">
+                    <p id="section3-p1">Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table-header1">Тін түрі</th>
+                                <th id="table-header2">Функциялары</th>
+                                <th id="table-header3">Орналасуы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table1-cell1">Өсу тіні (меристема)</td>
+                                <td id="table1-cell2">Өсімдіктің өсуін қамтамасыз етеді</td>
+                                <td id="table1-cell3">Сабақ ұшында, тамыр ұшында, бүршіклерде</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-cell1">Қабық тіні</td>
+                                <td id="table2-cell2">Өсімдікті сыртқы әсерлерден қорғайды</td>
+                                <td id="table2-cell3">Өсімдіктің сыртқу бетінде</td>
+                            </tr>
+                            <tr>
+                                <td id="table3-cell1">Негізгі тін</td>
+                                <td id="table3-cell2">Фотосинтез, қоректену заттарын жинақтау</td>
+                                <td id="table3-cell3">Жапырақтарда, сабақтарда, жемістерде</td>
+                            </tr>
+                            <tr>
+                                <td id="table4-cell1">Жеткізуші тін</td>
+                                <td id="table4-cell2">Су мен қоректік заттарды тасымалдау</td>
+                                <td id="table4-cell3">Сабақтарда, тамырларда, тамыржолдарында</td>
+                            </tr>
+                            <tr>
+                                <td id="table5-cell1">Механикалық тін</td>
+                                <td id="table5-cell2">Қаттылық пен тұрақтылықты қамтамасыз етеді</td>
+                                <td id="table5-cell3">Сабақтарда, тамырларда, тамыржолдарында</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Өсімдіктер мен басқа организмдерді салыстыру</span></h2>
+                <div class="section-content">
+                    <p id="section4-p1">Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table2-header1">Сипаттама</th>
+                                <th id="table2-header2">Өсімдіктер</th>
+                                <th id="table2-header3">Жануарлар</th>
+                                <th id="table2-header4">Саңырауқұлақтар</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table2-1-cell1">Азықтану түрі</td>
+                                <td id="table2-1-cell2">Автотрофты (өздігінен)</td>
+                                <td id="table2-1-cell3">Гетеротрофты (дайын)</td>
+                                <td id="table2-1-cell4">Гетеротрофты (дайын)</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-2-cell1">Қозғалғыштық</td>
+                                <td id="table2-2-cell2">Бекітілген</td>
+                                <td id="table2-2-cell3">Қозғалмалы</td>
+                                <td id="table2-2-cell4">Бекітілген</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-3-cell1">Клетка қабырғасы</td>
+                                <td id="table2-3-cell2">Целлюлозадан</td>
+                                <td id="table2-3-cell3">Жоқ</td>
+                                <td id="table2-3-cell4">Хитиннен</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-4-cell1">Энергия көзі</td>
+                                <td id="table2-4-cell2">Күн сәулесі</td>
+                                <td id="table2-4-cell3">Органикалық заттар</td>
+                                <td id="table2-4-cell4">Органикалық заттар</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <a href="modules.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="prev-btn">Модульдер тізімі</span>
+                </a>
+                <a href="modules.html" class="nav-btn">
+                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author">Автор</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Тексты на казахском
+        const kzTexts = {
+            logo: "Жасыл әлем",
+            back: "Модульдер тізімі",
+            title: "Модуль 1: Өсімдіктер әлеміне кіріспе",
+            subtitle: "Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы",
+            section1: "Өсімдіктер деген не? Табиғаттағы рөлі",
+            section1p1: "Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.",
+            note1: "Негізгі айырмашылық",
+            note1text: "Өсімдіктердің басқа организмдерден негізгі айырмашылығы - олар күн энергиясы, су және көмірқышқыл газын пайдаланып органикалық заттарды өздері жасай алады (автотрофты азықтану). Сонымен қатар, өсімдіктер әдетте бекітілген тіршілік етеді және бүкіл өмірінде өседі.",
+            section2: "Өсімдіктердің клеткалық құрылымы",
+            section2p1: "Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:",
+            section2list: [
+                "Клетка қабырғасы - целлюлозадан тұратын, өсімдікке қажетті қаттылық пен құрылым береді",
+                "Хлоропласттар - фотосинтез процесін жүзеге асыратын органеллалар",
+                "Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды",
+                "Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар"
+            ],
+            section3: "Өсімдіктердің тіндері: түрлері мен функциялары",
+            section3p1: "Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:",
+            table1h1: "Тін түрі",
+            table1h2: "Функциялары",
+            table1h3: "Орналасуы",
+            table1: [
+                ["Өсу тіні (меристема)", "Өсімдіктің өсуін қамтамасыз етеді", "Сабақ ұшында, тамыр ұшында, бүршіклерде"],
+                ["Қабық тіні", "Өсімдікті сыртқы әсерлерден қорғайды", "Өсімдіктің сыртқы бетінде"],
+                ["Негізгі тін", "Фотосинтез, қоректену заттарын жинақтау", "Жапырақтарда, сабақтарда, жемістерде"],
+                ["Жеткізуші тін", "Су мен қоректік заттарды тасымалдау", "Сабақтарда, тамырларда, тамыржолдарында"],
+                ["Механикалық тін", "Қаттылық пен тұрақтылықты қамтамасыз етеді", "Сабақтарда, тамырларда, тамыржолдарында"]
+            ],
+            section4: "Өсімдіктер мен басқа организмдерді салыстыру",
+            section4p1: "Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:",
+            table2h1: "Сипаттама",
+            table2h2: "Өсімдіктер",
+            table2h3: "Жануарлар",
+            table2h4: "Саңырауқұлақтар",
+            table2: [
+                ["Азықтану түрі", "Автотрофты (өздігінен)", "Гетеротрофты (дайын)", "Гетеротрофты (дайын)"],
+                ["Қозғалғыштық", "Бекітілген", "Қозғалмалы", "Бекітілген"],
+                ["Клетка қабырғасы", "Целлюлозадан", "Жоқ", "Хитиннен"],
+                ["Энергия көзі", "Күн сәулесі", "Органикалық заттар", "Органикалық заттар"]
+            ],
+            slideTitle: "Презентация",
+            slideNote: "Презентацияны толық экран режимінде қарау үшін оны ашыңыз",
+            slideUrl: "https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000",
+            prevBtn: "Модульдер тізімі",
+            nextBtn: "Келесі модуль"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            logo: "Зеленый мир",
+            back: "Список модулей",
+            title: "Модуль 1: Введение в мир растений",
+            subtitle: "Классификация, строение и значение растений в природе",
+            section1: "Что такое растения? Их роль в природе",
+            section1p1: "Растения — это многоклеточные организмы (за исключением некоторых одноклеточных водорослей), способные с помощью фотосинтеза производить органические вещества и кислород, который служит основой жизни на Земле. Они являются начальным звеном пищевой цепи и служат пищей, а также средой обитания для многих животных, грибов и микроорганизмов.",
+            note1: "Основное отличие",
+            note1text: "Главное отличие растений от других организмов заключается в том, что они сами создают органические вещества с помощью солнечной энергии, воды и углекислого газа (автотрофное питание). Кроме того, растения обычно ведут прикреплённый образ жизни и растут в течение всей жизни.",
+            section2: "Клеточное строение растений",
+            section2p1: "Клетки растений имеют ряд особых органелл, которые придают растениям уникальные свойства:",
+            section2list: [
+                "Клеточная стенка - состоит из целлюлозы, придает растению необходимую жесткость и структуру",
+                "Хлоропласты - органеллы, осуществляющие процесс фотосинтеза",
+                "Вакуоль - большая полость, заполненная клеточным соком, поддерживает тургорное давление клетки",
+                "Пластиды - органеллы для накопления и хранения пиgментов"
+            ],
+            section3: "Ткани растений: виды и функции",
+            section3p1: "У растений есть несколько основных типов тканей, каждый из которых выполняет свои функции:",
+            table1h1: "Тип ткани",
+            table1h2: "Функции",
+            table1h3: "Расположение",
+            table1: [
+                ["Образовательная ткань (меристема)", "Обеспечивает рост растения", "На кончиках стеблей, корней, в почках"],
+                ["Покровная ткань", "Защищает растение от внешних воздействий", "На внешней поверхности растения"],
+                ["Основная ткань", "Фотосинтез, накопление питательных веществ", "В листьях, стеблях, плодах"],
+                ["Проводящая ткань", "Транспорт воды и питательных веществ", "В стеблях, корнях, жилках"],
+                ["Механическая ткань", "Обеспечивает прочность и устойчивость", "В стеблях, корнях, жилках"]
+            ],
+            section4: "Сравнение растений с другими организмами",
+            section4p1: "Основные особенности, отличающие растений от животных и грибов:",
+            table2h1: "Характеристика",
+            table2h2: "Растения",
+            table2h3: "Животные",
+            table2h4: "Грибы",
+            table2: [
+                ["Тип питания", "Автотрофный (самостоятельный)", "Гетеротрофный (готовый)", "Гетеротрофный (готовый)"],
+                ["Подвижность", "Прикреплённый", "Подвижный", "Прикреплённый"],
+                ["Клеточная стенка", "Из целлюлозы", "Отсутствует", "Из хитина"],
+                ["Источник энергии", "Солнечный свет", "Органические вещества", "Органические вещества"]
+            ],
+            slideTitle: "Презентация",
+            slideNote: "Откройте презентацию в полноэкранном режиме для лучшего просмотра",
+            slideUrl: "https://docs.google.com/presentation/d/1J8Kif_nFNHQkj75cQjLCjUWEy6vKQbLStsYOt21Oy28/embed?start=false&loop=false&delayms=3000",
+            prevBtn: "Список модулей",
+            nextBtn: "Следующий модуль"
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = kzTexts.logo;
+            document.getElementById('back-text').textContent = kzTexts.back;
+            document.getElementById('module-title').textContent = kzTexts.title;
+            document.getElementById('module-subtitle').textContent = kzTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = kzTexts.section1;
+            document.getElementById('section1-p1').textContent = kzTexts.section1p1;
+            document.getElementById('important-note1').textContent = kzTexts.note1;
+            document.getElementById('important-note1-text').textContent = kzTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = kzTexts.section2;
+            document.getElementById('section2-p1').textContent = kzTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            kzTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section3-title').textContent = kzTexts.section3;
+            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = kzTexts.table1h1;
+            document.getElementById('table-header2').textContent = kzTexts.table1h2;
+            document.getElementById('table-header3').textContent = kzTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3'],
+                ['table5-cell1', 'table5-cell2', 'table5-cell3']
+            ];
+            
+            kzTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = kzTexts.section4;
+            document.getElementById('section4-p1').textContent = kzTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
+            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
+            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
+            document.getElementById('table2-header4').textContent = kzTexts.table2h4;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3', 'table2-1-cell4'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3', 'table2-2-cell4'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3', 'table2-3-cell4'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3', 'table2-4-cell4']
+            ];
+            
+            kzTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            // Обновление презентации
+            document.getElementById('slide-title').textContent = kzTexts.slideTitle;
+            document.getElementById('slide-note').textContent = kzTexts.slideNote;
+            document.getElementById('slide-iframe').src = kzTexts.slideUrl;
+            
+            document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
+            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = ruTexts.logo;
+            document.getElementById('back-text').textContent = ruTexts.back;
+            document.getElementById('module-title').textContent = ruTexts.title;
+            document.getElementById('module-subtitle').textContent = ruTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = ruTexts.section1;
+            document.getElementById('section1-p1').textContent = ruTexts.section1p1;
+            document.getElementById('important-note1').textContent = ruTexts.note1;
+            document.getElementById('important-note1-text').textContent = ruTexts.note1text;
+            
+            document.getElementById('section2-title').textContent = ruTexts.section2;
+            document.getElementById('section2-p1').textContent = ruTexts.section2p1;
+            
+            const listItems = document.querySelectorAll('#section2-list li');
+            ruTexts.section2list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('section3-title').textContent = ruTexts.section3;
+            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            
+            document.getElementById('table-header1').textContent = ruTexts.table1h1;
+            document.getElementById('table-header2').textContent = ruTexts.table1h2;
+            document.getElementById('table-header3').textContent = ruTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3'],
+                ['table5-cell1', 'table5-cell2', 'table5-cell3']
+            ];
+            
+            ruTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section4-title').textContent = ruTexts.section4;
+            document.getElementById('section4-p1').textContent = ruTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
+            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
+            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
+            document.getElementById('table2-header4').textContent = ruTexts.table2h4;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3', 'table2-1-cell4'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3', 'table2-2-cell4'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3', 'table2-3-cell4'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3', 'table2-4-cell4']
+            ];
+            
+            ruTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            // Обновление презентации
+            document.getElementById('slide-title').textContent = ruTexts.slideTitle;
+            document.getElementById('slide-note').textContent = ruTexts.slideNote;
+            document.getElementById('slide-iframe').src = ruTexts.slideUrl;
+            
+            document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
+            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+        }
+        
+        // Обработчики кнопок переключения языка
+        document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+        document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+        });
+    </script>
+</body>
+</html>
