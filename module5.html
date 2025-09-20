@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 5 - Өсімдіктердің өмірлік үдерістері</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .module-content {
+            padding: 40px;
+        }
+        
+        .module-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .module-title {
+            font-size: 2.2rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .module-subtitle {
+            color: #689f38;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f9fbf8;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            color: #558b2f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c5e1a5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 12px;
+            color: #4caf50;
+        }
+        
+        .section-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .section-content p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        
+        .important-note {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .important-note h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .important-note h4 i {
+            margin-right: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #c5e1a5;
+        }
+        
+        .comparison-table th {
+            background: #4caf50;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f1f8e9;
+        }
+        
+        .process-diagram {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .process-diagram h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .process-step {
+            text-align: center;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #4caf50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+        }
+        
+        .step-description {
+            font-size: 0.9rem;
+            color: #558b2f;
+        }
+        
+        .step-arrow {
+            font-size: 1.5rem;
+            color: #4caf50;
+            margin: 0 10px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-btn i {
+            margin: 0 8px;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .author {
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .module-content {
+                padding: 20px;
+            }
+            
+            .module-title {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="modules.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="language-switcher">
+                <button class="language-btn" id="ru-btn">Рус</button>
+                <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+            
+            <a href="modules.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Модульдер тізімі</span>
+            </a>
+        </header>
+        
+        <div class="module-content">
+            <div class="module-header">
+                <h1 class="module-title" id="module-title">Модуль 5: Өсімдіктердің өмірлік үдерістері</h1>
+                <p class="module-subtitle" id="module-subtitle">Фотосинтез, тыныс алу, зат алмасу және транспирация процестері</p>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-sun"></i> <span id="section1-title">Фотосинтез</span></h2>
+                <div class="section-content">
+                    <p id="section1-p1">Фотосинтез - бұл жасыл өсімдіктердің күн сәулесінің энергиясын пайдаланып, көмірқышқыл газы мен судан органикалық заттар түзу процесі. Бұл процесс Жердегі өмір үшін негізгі маңыздылыққа ие.</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Фотосинтез теңдеуі</span></h4>
+                        <p id="important-note1-text">6CO₂ + 6H₂O + күн энергиясы → C₆H₁₂O₆ + 6O₂</p>
+                        <p id="important-note1-text2">Көмірқышқыл газы + Су + Күн энергиясы → Глюкоза + Оттегі</p>
+                    </div>
+                    
+                    <div class="process-diagram">
+                        <h4 id="process-title1">Фотосинтез процесі</h4>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-description" id="step1-desc">Күн сәулесін сіңіру</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-description" id="step2-desc">Көмірқышқыл газын сіңіру</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-description" id="step3-desc">Су тасымалдау</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-description" id="step4-desc">Глюкоза түзу</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-wind"></i> <span id="section2-title">Тыныс алу</span></h2>
+                <div class="section-content">
+                    <p id="section2-p1">Тыныс алу - бұл өсімдіктердің органикалық заттарды ыдыратып, энергия алу процесі. Бұл процесс тәулік бойы жүреді және фотосинтезден айырмашылығы, оттегі тұтынып, көмірқышқыл газы бөледі.</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note2">Тыныс алу теңдеуі</span></h4>
+                        <p id="important-note2-text">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + энергия</p>
+                        <p id="important-note2-text2">Глюкоза + Оттегі → Көмірқышқыл газы + Су + Энергия</p>
+                    </div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table-header1">Сипаттама</th>
+                                <th id="table-header2">Фотосинтез</th>
+                                <th id="table-header3">Тыныс алу</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table1-cell1">Энергия</td>
+                                <td id="table1-cell2">Сіңіреді (күн сәулесі)</td>
+                                <td id="table1-cell3">Бөледі</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-cell1">Газ алмасуы</td>
+                                <td id="table2-cell2">CO₂ сіңіреді, O₂ бөледі</td>
+                                <td id="table2-cell3">O₂ сіңіреді, CO₂ бөледі</td>
+                            </tr>
+                            <tr>
+                                <td id="table3-cell1">Уақыты</td>
+                                <td id="table3-cell2">Күндіз (жарықта)</td>
+                                <td id="table3-cell3">Тәулік бойы</td>
+                            </tr>
+                            <tr>
+                                <td id="table4-cell1">Нәтижесі</td>
+                                <td id="table4-cell2">Органикалық заттар түзіледі</td>
+                                <td id="table4-cell3">Органикалық заттар ыдырайды</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-tint"></i> <span id="section3-title">Транспирация</span></h2>
+                <div class="section-content">
+                    <p id="section3-p1">Транспирация - бұл өсімдіктердің буланту арқылы су жоғалту процесі. Бұл процесс негізінен жапырақтардағы стомалар арқылы жүреді жәң өсімдікке су мен минералды тұздарды жоғары көтеруге көмектеседі.</p>
+                    
+                    <ul id="section3-list">
+                        <li>Су тамырлар арқылы сіңіріледі</li>
+                        <li>Сабақ арқылы жапырақтарға жеткізіледі</li>
+                        <li>Жапырақтардағы стомалар арқылы буланады</li>
+                        <li>Булану салдарынан судың жоғары көтерілуіне әсер етеді</li>
+                    </ul>
+                    
+                    <div class="process-diagram">
+                        <h4 id="process-title2">Су айналымы өсімдікте</h4>
+                        <div class="process-steps">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-description" id="step5-desc">Тамырмен сіңіру</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-description" id="step6-desc">Сабақ арқылы тасымалдау</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-description" id="step7-desc">Жапыраққа жеткізу</div>
+                            </div>
+                            <div class="step-arrow">→</div>
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-description" id="step8-desc">Булану (транспирация)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title"><i class="fas fa-exchange-alt"></i> <span id="section4-title">Зат алмасу</span></h2>
+                <div class="section-content">
+                    <p id="section4-p1">Зат алмасу - бұл өсімдіктердің өмірлік әрекеттерін жүргізу үшін қажетті барлық биохимиялық процестердің жиынтығы. Оған фотосинтез, тыныс алу, транспирация және басқа да үдерістер жатады.</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th id="table2-header1">Процес</th>
+                                <th id="table2-header2">Маңызы</th>
+                                <th id="table2-header3">Нәтижесі</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="table2-1-cell1">Фотосинтез</td>
+                                <td id="table2-1-cell2">Органикалық заттар түзу</td>
+                                <td id="table2-1-cell3">Глюкоза, оттегі</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-2-cell1">Тыныс алу</td>
+                                <td id="table2-2-cell2">Энергия бөлу</td>
+                                <td id="table2-2-cell3">Өсімдік өсуі үшін энергия</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-3-cell1">Транспирация</td>
+                                <td id="table2-3-cell2">Су айналымы</td>
+                                <td id="table2-3-cell3">Минералдарды тасымалдау, температураны реттеу</td>
+                            </tr>
+                            <tr>
+                                <td id="table2-4-cell1">Минералды сіңіру</td>
+                                <td id="table2-4-cell2">Қоректену</td>
+                                <td id="table2-4-cell3">Өсімдік құрылымы үшін қажетті элементтер</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <a href="module4.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="prev-btn">Алдыңғы модуль</span>
+                </a>
+                <a href="module6.html" class="nav-btn">
+                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author">Автор</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Тексты на казахском
+        const kzTexts = {
+            logo: "Жасыл әлем",
+            back: "Модульдер тізімі",
+            title: "Модуль 5: Өсімдіктердің өмірлік үдерістері",
+            subtitle: "Фотосинтез, тыныс алу, зат алмасу және транспирация процестері",
+            section1: "Фотосинтез",
+            section1p1: "Фотосинтез - бұл жасыл өсімдіктердің күн сәулесінің энергиясын пайдаланып, көмірқышқыл газы мен судан органикалық заттар түзу процесі. Бұл процесс Жердегі өмір үшін негізгі маңыздылыққа ие.",
+            note1: "Фотосинтез теңдеуі",
+            note1text: "6CO₂ + 6H₂O + күн энергиясы → C₆H₁₂O₆ + 6O₂",
+            note1text2: "Көмірқышқыл газы + Су + Күн энергиясы → Глюкоза + Оттегі",
+            processTitle1: "Фотосинтез процесі",
+            step1: "Күн сәулесін сіңіру",
+            step2: "Көмірқышқыл газын сіңіру",
+            step3: "Су тасымалдау",
+            step4: "Глюкоза түзу",
+            section2: "Тыныс алу",
+            section2p1: "Тыныс алу - бұл өсімдіктердің органикалық заттарды ыдыратып, энергия алу процесі. Бұл процесс тәулік бойы жүреді және фотосинтезден айырмашылығы, оттегі тұтынып, көмірқышқыл газы бөледі.",
+            note2: "Тыныс алу теңдеуі",
+            note2text: "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + энергия",
+            note2text2: "Глюкоза + Оттегі → Көмірқышқыл газы + Су + Энергия",
+            table1h1: "Сипаттама",
+            table1h2: "Фотосинтез",
+            table1h3: "Тыныс алу",
+            table1: [
+                ["Энергия", "Сіңіреді (күн сәулесі)", "Бөледі"],
+                ["Газ алмасуы", "CO₂ сіңіреді, O₂ бөледі", "O₂ сіңіреді, CO₂ бөледі"],
+                ["Уақыты", "Күндіз (жарықта)", "Тәулік бойы"],
+                ["Нәтижесі", "Органикалық заттар түзіледі", "Органикалық заттар ыдырайды"]
+            ],
+            section3: "Транспирация",
+            section3p1: "Транспирация - бұл өсімдіктердің буланту арқылы су жоғалту процесі. Бұл процесс негізінен жапырақтардағы стомалар арқылы жүреді жәң өсімдікке су мен минералды тұздарды жоғары көтеруге көмектеседі.",
+            section3list: [
+                "Су тамырлар арқылы сіңіріледі",
+                "Сабақ арқылы жапырақтарға жеткізіледі",
+                "Жапырақтардағы стомалар арқылы буланады",
+                "Булану салдарынан судың жоғары көтерілуіне әсер етеді"
+            ],
+            processTitle2: "Су айналымы өсімдікте",
+            step5: "Тамырмен сіңіру",
+            step6: "Сабақ арқылы тасымалдау",
+            step7: "Жапыраққа жеткізу",
+            step8: "Булану (транспирация)",
+            section4: "Зат алмасу",
+            section4p1: "Зат алмасу - бұл өсімдіктердің өмірлік әрекеттерін жүргізу үшін қажетті барлық биохимиялық процестердің жиынтығы. Оған фотосинтез, тыныс алу, транспирация және басқа да үдерістер жатады.",
+            table2h1: "Процес",
+            table2h2: "Маңызы",
+            table2h3: "Нәтижесі",
+            table2: [
+                ["Фотосинтез", "Органикалық заттар түзу", "Глюкоза, оттегі"],
+                ["Тыныс алу", "Энергия бөлу", "Өсімдік өсуі үшін энергия"],
+                ["Транспирация", "Су айналымы", "Минералдарды тасымалдау, температураны реттеу"],
+                ["Минералды сіңіру", "Қоректену", "Өсімдік құрылымы үшін қажетті элементтер"]
+            ],
+            prevBtn: "Алдыңғы модуль",
+            nextBtn: "Келесі модуль"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            logo: "Зеленый мир",
+            back: "Список модулей",
+            title: "Модуль 5: Процессы жизнедеятельности растений",
+            subtitle: "Фотосинтез, дыхание, обмен веществ и транспирация",
+            section1: "Фотосинтез",
+            section1p1: "Фотосинтез - это процесс образования зелеными растениями органических веществ из углекислого газа и воды с использованием энергии солнечного света. Этот процесс имеет фундаментальное значение для жизни на Земле.",
+            note1: "Уравнение фотосинтеза",
+            note1text: "6CO₂ + 6H₂O + солнечная энергия → C₆H₁₂O₆ + 6O₂",
+            note1text2: "Углекислый газ + Вода + Солнечная энергия → Глюкоза + Кислород",
+            processTitle1: "Процесс фотосинтеза",
+            step1: "Поглощение солнечного света",
+            step2: "Поглощение углекислого газа",
+            step3: "Транспорт воды",
+            step4: "Образование глюкозы",
+            section2: "Дыхание",
+            section2p1: "Дыхание - это процесс расщепления органических веществ растениями для получения энергии. Этот процесс происходит круглосуточно и, в отличие от фотосинтеза, потребляет кислород и выделяет углекислый газ.",
+            note2: "Уравнение дыхания",
+            note2text: "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + энергия",
+            note2text2: "Глюкоза + Кислород → Углекислый газ + Вода + Энергия",
+            table1h1: "Характеристика",
+            table1h2: "Фотосинтез",
+            table1h3: "Дыхание",
+            table1: [
+                ["Энергия", "Поглощает (солнечный свет)", "Выделяет"],
+                ["Газообмен", "Поглощает CO₂, выделяет O₂", "Поглощает O₂, выделяет CO₂"],
+                ["Время", "Днем (на свету)", "Круглосуточно"],
+                ["Результат", "Образуются органические вещества", "Расщепляются органические вещества"]
+            ],
+            section3: "Транспирация",
+            section3p1: "Транспирация - это процесс потери воды растениями через испарение. Этот процесс происходит главным образом через устьица на листьях и помогает растению поднимать воду и минеральные соли.",
+            section3list: [
+                "Вода поглощается корнями",
+                "Транспортируется через стебель к листьям",
+                "Испаряется через устьица на листьях",
+                "Испарение способствует поднятию воды вверх"
+            ],
+            processTitle2: "Круговорот воды в растении",
+            step5: "Поглощение корнями",
+            step6: "Транспорт через стебель",
+            step7: "Доставка к листьям",
+            step8: "Испарение (транспирация)",
+            section4: "Обмен веществ",
+            section4p1: "Обмен веществ - это совокупность всех биохимических процессов, необходимых растениям для осуществления жизнедеятельности. К ним относятся фотосинтез, дыхание, транспирация и другие процессы.",
+            table2h1: "Процесс",
+            table2h2: "Значение",
+            table2h3: "Результат",
+            table2: [
+                ["Фотосинтез", "Образование органических веществ", "Глюкоза, кислород"],
+                ["Дыхание", "Выделение энергии", "Энергия для роста растений"],
+                ["Транспирация", "Круговорот воды", "Транспорт минералов, регуляция температуры"],
+                ["Поглощение минералов", "Питание", "Необходимые элементы для строения растения"]
+            ],
+            prevBtn: "Предыдущий модуль",
+            nextBtn: "Следующий модуль"
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = kzTexts.logo;
+            document.getElementById('back-text').textContent = kzTexts.back;
+            document.getElementById('module-title').textContent = kzTexts.title;
+            document.getElementById('module-subtitle').textContent = kzTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = kzTexts.section1;
+            document.getElementById('section1-p1').textContent = kzTexts.section1p1;
+            document.getElementById('important-note1').textContent = kzTexts.note1;
+            document.getElementById('important-note1-text').textContent = kzTexts.note1text;
+            document.getElementById('important-note1-text2').textContent = kzTexts.note1text2;
+            
+            document.getElementById('process-title1').textContent = kzTexts.processTitle1;
+            document.getElementById('step1-desc').textContent = kzTexts.step1;
+            document.getElementById('step2-desc').textContent = kzTexts.step2;
+            document.getElementById('step3-desc').textContent = kzTexts.step3;
+            document.getElementById('step4-desc').textContent = kzTexts.step4;
+            
+            document.getElementById('section2-title').textContent = kzTexts.section2;
+            document.getElementById('section2-p1').textContent = kzTexts.section2p1;
+            document.getElementById('important-note2').textContent = kzTexts.note2;
+            document.getElementById('important-note2-text').textContent = kzTexts.note2text;
+            document.getElementById('important-note2-text2').textContent = kzTexts.note2text2;
+            
+            document.getElementById('table-header1').textContent = kzTexts.table1h1;
+            document.getElementById('table-header2').textContent = kzTexts.table1h2;
+            document.getElementById('table-header3').textContent = kzTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3']
+            ];
+            
+            kzTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section3-title').textContent = kzTexts.section3;
+            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            
+            const listItems = document.querySelectorAll('#section3-list li');
+            kzTexts.section3list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('process-title2').textContent = kzTexts.processTitle2;
+            document.getElementById('step5-desc').textContent = kzTexts.step5;
+            document.getElementById('step6-desc').textContent = kzTexts.step6;
+            document.getElementById('step7-desc').textContent = kzTexts.step7;
+            document.getElementById('step8-desc').textContent = kzTexts.step8;
+            
+            document.getElementById('section4-title').textContent = kzTexts.section4;
+            document.getElementById('section4-p1').textContent = kzTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
+            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
+            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            kzTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
+            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('logo-text').textContent = ruTexts.logo;
+            document.getElementById('back-text').textContent = ruTexts.back;
+            document.getElementById('module-title').textContent = ruTexts.title;
+            document.getElementById('module-subtitle').textContent = ruTexts.subtitle;
+            
+            document.getElementById('section1-title').textContent = ruTexts.section1;
+            document.getElementById('section1-p1').textContent = ruTexts.section1p1;
+            document.getElementById('important-note1').textContent = ruTexts.note1;
+            document.getElementById('important-note1-text').textContent = ruTexts.note1text;
+            document.getElementById('important-note1-text2').textContent = ruTexts.note1text2;
+            
+            document.getElementById('process-title1').textContent = ruTexts.processTitle1;
+            document.getElementById('step1-desc').textContent = ruTexts.step1;
+            document.getElementById('step2-desc').textContent = ruTexts.step2;
+            document.getElementById('step3-desc').textContent = ruTexts.step3;
+            document.getElementById('step4-desc').textContent = ruTexts.step4;
+            
+            document.getElementById('section2-title').textContent = ruTexts.section2;
+            document.getElementById('section2-p1').textContent = ruTexts.section2p1;
+            document.getElementById('important-note2').textContent = ruTexts.note2;
+            document.getElementById('important-note2-text').textContent = ruTexts.note2text;
+            document.getElementById('important-note2-text2').textContent = ruTexts.note2text2;
+            
+            document.getElementById('table-header1').textContent = ruTexts.table1h1;
+            document.getElementById('table-header2').textContent = ruTexts.table1h2;
+            document.getElementById('table-header3').textContent = ruTexts.table1h3;
+            
+            const table1Cells = [
+                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
+                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
+                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
+                ['table4-cell1', 'table4-cell2', 'table4-cell3']
+            ];
+            
+            ruTexts.table1.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('section3-title').textContent = ruTexts.section3;
+            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            
+            const listItems = document.querySelectorAll('#section3-list li');
+            ruTexts.section3list.forEach((text, index) => {
+                if (listItems[index]) {
+                    listItems[index].textContent = text;
+                }
+            });
+            
+            document.getElementById('process-title2').textContent = ruTexts.processTitle2;
+            document.getElementById('step5-desc').textContent = ruTexts.step5;
+            document.getElementById('step6-desc').textContent = ruTexts.step6;
+            document.getElementById('step7-desc').textContent = ruTexts.step7;
+            document.getElementById('step8-desc').textContent = ruTexts.step8;
+            
+            document.getElementById('section4-title').textContent = ruTexts.section4;
+            document.getElementById('section4-p1').textContent = ruTexts.section4p1;
+            
+            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
+            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
+            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
+            
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            ruTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
+            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+        }
+        
+        // Обработчики кнопок переключения языка
+        document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+        document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+        });
+    </script>
+</body>
+</html>
