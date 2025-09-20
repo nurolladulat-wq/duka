@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оқу модульдері - Жасыл әлем</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили остаются без изменений */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(232, 245, 233, 0.9), rgba(200, 230, 201, 0.9)), 
+                        url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2e7d32;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .language-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .language-btn {
+            padding: 6px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .modules-content {
+            padding: 40px;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            color: #689f38;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4caf50;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .module-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #4caf50;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .module-title {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .module-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+        
+        .start-module-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .start-module-btn i {
+            margin-left: 8px;
+        }
+        
+        .start-module-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .progress-section {
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .progress-text {
+            font-size: 1.1rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .author {
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .modules-content {
+                padding: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="language-switcher">
+                <button class="language-btn" id="ru-btn">Рус</button>
+                <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+            
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Басты бетке</span>
+            </a>
+        </header>
+        
+        <div class="modules-content">
+            <h1 class="page-title" id="page-title">Оқу модульдері</h1>
+            <p class="page-subtitle" id="page-subtitle">7-сынып биологиясы бойынша толық курс</p>
+            
+            <div class="progress-section">
+                <div class="progress-text" id="progress-text">Жалпы прогресс: <span>0%</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="modules-grid">
+                <!-- Модуль 1 -->
+                <div class="module-card">
+                    <div class="module-number">1</div>
+                    <h3 class="module-title" id="module1-title">Өсімдіктер әлеміне кіріспе</h3>
+                    <p class="module-description" id="module1-desc">Өсімдіктер дүниесін зерттеудің негіздері, өсімдіктердің жіктелуі және олардың биологиялық маңызы.</p>
+                    <button class="start-module-btn" onclick="startModule(1)">
+                        <span id="module1-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 2 -->
+                <div class="module-card">
+                    <div class="module-number">2</div>
+                    <h3 class="module-title" id="module2-title">Төменгі және жоғары сатыдағы өсімдіктер</h3>
+                    <p class="module-description" id="module2-desc">Өсімдіктердің эволюциялық дамуы, төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері.</p>
+                    <button class="start-module-btn" onclick="startModule(2)">
+                        <span id="module2-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 3 -->
+                <div class="module-card">
+                    <div class="module-number">3</div>
+                    <h3 class="module-title" id="module3-title">Тұқымды өсімдіктер</h3>
+                    <p class="module-description" id="module3-desc">Тұқымды өсімдіктердің құрылысы, түрлері және олардың таралу ерекшеліктері.</p>
+                    <button class="start-module-btn" onclick="startModule(3)">
+                        <span id="module3-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 4 -->
+                <div class="module-card">
+                    <div class="module-number">4</div>
+                    <h3 class="module-title" id="module4-title">Вегетативті органдар</h3>
+                    <p class="module-description" id="module4-desc">Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ құрылысы мен функциялары.</p>
+                    <button class="start-module-btn" onclick="startModule(4)">
+                        <span id="module4-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 5 -->
+                <div class="module-card">
+                    <div class="module-number">5</div>
+                    <h3 class="module-title" id="module5-title">Өмірлік процестер</h3>
+                    <p class="module-description" id="module5-desc">Өсімдіктердің негізгі өмірлік процестері: фотосинтез, тыныс алу, тамырмен сіңіру.</p>
+                    <button class="start-module-btn" onclick="startModule(5)">
+                        <span id="module5-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 6 -->
+                <div class="module-card">
+                    <div class="module-number">6</div>
+                    <h3 class="module-title" id="module6-title">Өсімдіктердің көбеюі</h3>
+                    <p class="module-description" id="module6-desc">Өсімдіктердің жыныстық және жыныссыз көбею түрлері, вегетативтік көбею әдістері.</p>
+                    <button class="start-module-btn" onclick="startModule(6)">
+                        <span id="module6-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 7 -->
+                <div class="module-card">
+                    <div class="module-number">7</div>
+                    <h3 class="module-title" id="module7-title">Өсімдіктер және экология</h3>
+                    <p class="module-description" id="module7-desc">Өсімдіктердің экожүйедегі рөлі, табиғатты қорғаудағы маңызы және экологиялық мәселелер.</p>
+                    <button class="start-module-btn" onclick="startModule(7)">
+                        <span id="module7-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | 
+               <span class="author" onclick="openAuthorPage()">Автор</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Функция для перехода на страницу автора
+        function openAuthorPage() {
+            window.open('https://example.com/author', '_blank');
+        }
+        
+        // Функция для начала изучения модуля
+        function startModule(moduleNumber) {
+            // Переход на соответствующую страницу модуля
+            switch(moduleNumber) {
+                case 1:
+                    window.location.href = 'module1.html';
+                    break;
+                case 2:
+                    window.location.href = 'module2.html';
+                    break;
+                case 3:
+                    window.location.href = 'module3.html';
+                    break;
+                case 4:
+                    window.location.href = 'module4.html';
+                    break;
+                case 5:
+                    window.location.href = 'module5.html';
+                    break;
+                case 6:
+                    window.location.href = 'module6.html';
+                    break;
+                case 7:
+                    window.location.href = 'module7.html';
+                    break;
+                default:
+                    alert('Модуль табылмады');
+            }
+        }
+        
+        // Обновление прогресса
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.querySelector('.progress-text span');
+            const progress = 0; // Начальный прогресс
+            
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `${progress}%`;
+        }
+        
+        // Переключение языков
+        const ruBtn = document.getElementById('ru-btn');
+        const kzBtn = document.getElementById('kz-btn');
+        
+        // Тексты на казахском
+        const kzTexts = {
+            logo: "Жасыл әлем",
+            back: "Басты бетке",
+            title: "Оқу модульдері",
+            subtitle: "7-сынып биологиясы бойынша толық курс",
+            progress: "Жалпы прогресс: ",
+            modules: [
+                {
+                    title: "Өсімдіктер әлеміне кіріспе",
+                    desc: "Өсімдіктер дүниесін зерттеудің негіздері, өсімдіктердің жіктелуі және олардың биологиялық маңызы.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Төменгі және жоғары сатыдағы өсімдіктер",
+                    desc: "Өсімдіктердің эволюциялық дамуы, төменгі және жоғары сатыдағы өсімдіклердің ерекшеліктері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Тұқымды өсімдіктер",
+                    desc: "Тұқымды өсімдіктердің құрылысы, түрлері және олардың таралу ерекшеліктері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Вегетативті органдар",
+                    desc: "Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ құрылысы мен функциялары.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өмірлік процестер",
+                    desc: "Өсімдіктердің негізгі өмірлік процестері: фотосинтез, тыныс алу, тамырмен сіңіру.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өсімдіктердің көбеюі",
+                    desc: "Өсімдіктердің жыныстық және жыныссыз көбею түрлері, вегетативтік көбею әдістері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өсімдіктер және экология",
+                    desc: "Өсімдіктердің экожүйедегі рөлі, табиғатты қорғаудағы маңызы және экологиялық мәселелер.",
+                    btn: "Оқуды бастау"
+                }
+            ]
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            logo: "Зеленый мир",
+            back: "На главную",
+            title: "Учебные модули",
+            subtitle: "Полный курс по биологии для 7 класса",
+            progress: "Общий прогресс: ",
+            modules: [
+                {
+                    title: "Введение в мир растений",
+                    desc: "Основы изучения растительного мира, классификация растений и их биологическое значение.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Низшие и высшие растения",
+                    desc: "Эволюционное развитие растений, особенности низших и высших растений.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Семенные растения",
+                    desc: "Строение семенных растений, их виды и особенности распространения.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Вегетативные органы",
+                    desc: "Вегетативные органы растений: строение и функции корня, стебля, листа.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Процессы жизнедеятельности",
+                    desc: "Основные жизненные процессы растений: фотосинтез, дыхание, корневое питание.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Размножение растений",
+                    desc: "Половое и бесполое размножение растений, методы вегетативного размножения.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Растения и экология",
+                    desc: "Роль растений в экосистеме, их значение в охране природы и экологические проблемы.",
+                    btn: "Начать изучение"
+                }
+            ]
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            ruBtn.classList.remove('active');
+            kzBtn.classList.add('active');
+            
+            document.getElementById('logo-text').textContent = kzTexts.logo;
+            document.getElementById('back-text').textContent = kzTexts.back;
+            document.getElementById('page-title').textContent = kzTexts.title;
+            document.getElementById('page-subtitle').textContent = kzTexts.subtitle;
+            document.getElementById('progress-text').innerHTML = kzTexts.progress + '<span>0%</span>';
+            
+            for (let i = 0; i < 7; i++) {
+                document.getElementById(`module${i+1}-title`).textContent = kzTexts.modules[i].title;
+                document.getElementById(`module${i+1}-desc`).textContent = kzTexts.modules[i].desc;
+                document.getElementById(`module${i+1}-btn`).textContent = kzTexts.modules[i].btn;
+            }
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            kzBtn.classList.remove('active');
+            ruBtn.classList.add('active');
+            
+            document.getElementById('logo-text').textContent = ruTexts.logo;
+            document.getElementById('back-text').textContent = ruTexts.back;
+            document.getElementById('page-title').textContent = ruTexts.title;
+            document.getElementById('page-subtitle').textContent = ruTexts.subtitle;
+            document.getElementById('progress-text').innerHTML = ruTexts.progress + '<span>0%</span>';
+            
+            for (let i = 0; i < 7; i++) {
+                document.getElementById(`module${i+1}-title`).textContent = ruTexts.modules[i].title;
+                document.getElementById(`module${i+1}-desc`).textContent = ruTexts.modules[i].desc;
+                document.getElementById(`module${i+1}-btn`).textContent = ruTexts.modules[i].btn;
+            }
+        }
+        
+        // Обработчики кнопок переключения языка
+        ruBtn.addEventListener('click', setRussianLanguage);
+        kzBtn.addEventListener('click', setKazakhLanguage);
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
