@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жасыл әлем - 7-сыныпқа арналған биология</title>
+    <title>Жасыл әлем - Өсімдіктер биологиясы</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,259 +14,636 @@
         }
         
         body {
-            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             color: #33691e;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        .leaf-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.15;
-            z-index: -1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23438a5e' d='M50,10 C60,10 70,15 70,30 C70,45 50,60 50,60 C50,60 30,45 30,30 C30,15 40,10 50,10 Z'/%3E%3C/svg%3E");
-            background-size: 200px;
         }
         
         .container {
+            max-width: 400px;
             width: 100%;
-            max-width: 1000px;
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            position: relative;
         }
         
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: #f1f8e9;
-            border-bottom: 1px solid #c5e1a5;
+        .header {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #558b2f;
-            display: flex;
-            align-items: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
         
-        .logo i {
-            margin-right: 10px;
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .auth-container {
+            padding: 30px;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .btn-secondary:hover {
+            background: #eeeeee;
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .switch-link {
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+            text-align: center;
+        }
+        
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: none;
+            text-align: center;
+        }
+        
+        .user-info {
+            text-align: center;
+            padding: 20px;
+            background: #f9fbf8;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+        }
+        
+        .logout-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .logout-btn:hover {
+            background: #d32f2f;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .language-switcher {
-            display: flex;
-            background: white;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
-            padding: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid #c5e1a5;
+            padding: 5px;
+            display: flex;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         
         .language-btn {
-            padding: 6px 16px;
+            padding: 5px 15px;
             border: none;
             background: none;
-            border-radius: 16px;
+            border-radius: 15px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
-            color: #558b2f;
         }
         
         .language-btn.active {
-            background: #8bc34a;
+            background: #4caf50;
             color: white;
         }
         
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            color: #33691e;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            color: #689f38;
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-        
-        .gif-container {
-            margin: 30px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-        }
-        
-        .gif-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .start-btn {
-            background: linear-gradient(to right, #7cb342, #9ccc65);
-            color: white;
-            border: none;
-            padding: 14px 36px;
-            font-size: 1.1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            margin: 30px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.3);
-            display: flex;
-            align-items: center;
-        }
-        
-        .start-btn i {
-            margin-left: 8px;
-        }
-        
-        .start-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(124, 179, 66, 0.4);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #f1f8e9;
-            width: 100%;
-            font-size: 0.9rem;
-            color: #689f38;
-            border-top: 1px solid #c5e1a5;
-        }
-        
-        .author {
-            font-weight: 600;
-            color: #558b2f;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-        
-        .author:hover {
-            color: #33691e;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
             }
             
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .gif-container {
-                max-width: 250px;
-            }
-            
-            header {
-                flex-direction: column;
-                gap: 15px;
+            .auth-container {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="leaf-bg"></div>
+    <div class="language-switcher">
+        <button class="language-btn active" id="kz-btn">Қаз</button>
+        <button class="language-btn" id="ru-btn">Рус</button>
+    </div>
     
     <div class="container">
-        <header>
+        <div class="header">
             <div class="logo">
-                <i class="fas fa-leaf"></i> Жасыл әлем
+                <i class="fas fa-leaf"></i>
             </div>
-            <div class="language-switcher">
-                <button class="language-btn active" id="ru-btn">Русский</button>
-                <button class="language-btn" id="kz-btn">Казахский</button>
-            </div>
-        </header>
-        
-        <div class="main-content">
-            <h1 id="title">Добро пожаловать в Зеленый мир!</h1>
-            <p class="tagline" id="tagline">Изучайте удивительный мир биологии вместе с нами. Интерактивные уроки для 7 класса.</p>
-            
-            <div class="gif-container">
-                <img src="8z2pahzh49v71.gif" alt="Анимированное растение" id="plant-gif">
-            </div>
-            
-            <button class="start-btn" id="start-btn" onclick="goToModules()">
-                Начать изучение <i class="fas fa-arrow-right"></i>
-            </button>
+            <h1 class="title" id="title">Жасыл әлем</h1>
+            <p class="subtitle" id="subtitle">Өсімдіктер биологиясы</p>
         </div>
         
-        <footer>
-            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author" onclick="openAuthorPage()">Автор</span></p>
-        </footer>
+        <div class="auth-container">
+            <div class="error-message" id="error-message"></div>
+            <div class="success-message" id="success-message"></div>
+            
+            <div class="user-info" id="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 id="welcome-text">Қош келдіңіз, <span id="user-name"></span>!</h3>
+                <p id="user-email"></p>
+                <a href="modules.html" class="btn btn-primary">
+                    <i class="fas fa-play"></i> <span id="start-learning">Оқуды бастау</span>
+                </a>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> <span id="logout-text">Шығу</span>
+                </button>
+            </div>
+            
+            <div class="auth-form active" id="login-form">
+                <h2 id="login-title">Кіру</h2>
+                <div class="form-group">
+                    <label class="form-label" for="login-email">Электрондық пошта</label>
+                    <input type="email" class="form-input" id="login-email" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="login-password">Құпия сөз</label>
+                    <input type="password" class="form-input" id="login-password" placeholder="Құпия сөзіңіз">
+                </div>
+                <button class="btn btn-primary" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> <span id="login-btn-text">Кіру</span>
+                </button>
+                <div class="auth-switch">
+                    <span id="no-account">Аккаунтыңыз жоқ па?</span>
+                    <a class="switch-link" id="switch-to-register">Тіркелу</a>
+                </div>
+            </div>
+            
+            <div class="auth-form" id="register-form">
+                <h2 id="register-title">Тіркелу</h2>
+                <div class="form-group">
+                    <label class="form-label" for="register-name">Аты-жөні</label>
+                    <input type="text" class="form-input" id="register-name" placeholder="Атыңыз">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-email">Электрондық пошта</label>
+                    <input type="email" class="form-input" id="register-email" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-password">Құпия сөз</label>
+                    <input type="password" class="form-input" id="register-password" placeholder="Құпия сөз (кемінде 6 символ)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-confirm">Құпия сөзді қайталаңыз</label>
+                    <input type="password" class="form-input" id="register-confirm" placeholder="Құпия сөзді қайта енгізіңіз">
+                </div>
+                <button class="btn btn-primary" id="register-btn">
+                    <i class="fas fa-user-plus"></i> <span id="register-btn-text">Тіркелу</span>
+                </button>
+                <div class="auth-switch">
+                    <span id="have-account">Аккаунтыңыз бар ма?</span>
+                    <a class="switch-link" id="switch-to-login">Кіру</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Функция для перехода на страницу автора
-        function openAuthorPage() {
-            window.open('https://example.com/author', '_blank');
+        // Тексты на казахском
+        const kzTexts = {
+            title: "Жасыл әлем",
+            subtitle: "Өсімдіктер биологиясы",
+            loginTitle: "Кіру",
+            registerTitle: "Тіркелу",
+            loginBtn: "Кіру",
+            registerBtn: "Тіркелу",
+            noAccount: "Аккаунтыңыз жоқ па?",
+            haveAccount: "Аккаунтыңыз бар ма?",
+            switchToRegister: "Тіркелу",
+            switchToLogin: "Кіру",
+            welcome: "Қош келдіңіз,",
+            startLearning: "Оқуды бастау",
+            logout: "Шығу",
+            namePlaceholder: "Атыңыз",
+            emailPlaceholder: "email@example.com",
+            passwordPlaceholder: "Құпия сөзіңіз",
+            confirmPlaceholder: "Құпия сөзді қайта енгізіңіз",
+            passwordLength: "Құпия сөз (кемінде 6 символ)",
+            loginSuccess: "Сәтті кірдіңіз!",
+            registerSuccess: "Тіркелу сәтті аяқталды!",
+            logoutSuccess: "Сіз жүйеден шықтыңыз",
+            fillFields: "Барлық өрістерді толтырыңыз",
+            passwordMismatch: "Құпия сөздер сәйкес келмейді",
+            passwordShort: "Құпия сөз кемінде 6 символ болуы керек",
+            userExists: "Бұл электрондық пошта бойынша пайдаланушы тіркелген",
+            invalidCredentials: "Электрондық пошта немесе құпия сөз қате"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            title: "Зеленый мир",
+            subtitle: "Биология растений",
+            loginTitle: "Вход",
+            registerTitle: "Регистрация",
+            loginBtn: "Войти",
+            registerBtn: "Зарегистрироваться",
+            noAccount: "Нет аккаунта?",
+            haveAccount: "Уже есть аккаунт?",
+            switchToRegister: "Регистрация",
+            switchToLogin: "Вход",
+            welcome: "Добро пожаловать,",
+            startLearning: "Начать обучение",
+            logout: "Выйти",
+            namePlaceholder: "Ваше имя",
+            emailPlaceholder: "email@example.com",
+            passwordPlaceholder: "Ваш пароль",
+            confirmPlaceholder: "Повторите пароль",
+            passwordLength: "Пароль (минимум 6 символов)",
+            loginSuccess: "Успешный вход!",
+            registerSuccess: "Регистрация завершена успешно!",
+            logoutSuccess: "Вы вышли из системы",
+            fillFields: "Заполните все поля",
+            passwordMismatch: "Пароли не совпадают",
+            passwordShort: "Пароль должен быть не менее 6 символов",
+            userExists: "Пользователь с таким email уже зарегистрирован",
+            invalidCredentials: "Неверный email или пароль"
+        };
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('title').textContent = kzTexts.title;
+            document.getElementById('subtitle').textContent = kzTexts.subtitle;
+            document.getElementById('login-title').textContent = kzTexts.loginTitle;
+            document.getElementById('register-title').textContent = kzTexts.registerTitle;
+            document.getElementById('login-btn-text').textContent = kzTexts.loginBtn;
+            document.getElementById('register-btn-text').textContent = kzTexts.registerBtn;
+            document.getElementById('no-account').textContent = kzTexts.noAccount;
+            document.getElementById('have-account').textContent = kzTexts.haveAccount;
+            document.getElementById('switch-to-register').textContent = kzTexts.switchToRegister;
+            document.getElementById('switch-to-login').textContent = kzTexts.switchToLogin;
+            document.getElementById('start-learning').textContent = kzTexts.startLearning;
+            document.getElementById('logout-text').textContent = kzTexts.logout;
+            
+            document.getElementById('register-name').placeholder = kzTexts.namePlaceholder;
+            document.getElementById('login-email').placeholder = kzTexts.emailPlaceholder;
+            document.getElementById('register-email').placeholder = kzTexts.emailPlaceholder;
+            document.getElementById('login-password').placeholder = kzTexts.passwordPlaceholder;
+            document.getElementById('register-password').placeholder = kzTexts.passwordLength;
+            document.getElementById('register-confirm').placeholder = kzTexts.confirmPlaceholder;
         }
         
-        // Функция для перехода на страницу модулей
-        function goToModules() {
-            window.location.href = 'modules.html';
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('title').textContent = ruTexts.title;
+            document.getElementById('subtitle').textContent = ruTexts.subtitle;
+            document.getElementById('login-title').textContent = ruTexts.loginTitle;
+            document.getElementById('register-title').textContent = ruTexts.registerTitle;
+            document.getElementById('login-btn-text').textContent = ruTexts.loginBtn;
+            document.getElementById('register-btn-text').textContent = ruTexts.registerBtn;
+            document.getElementById('no-account').textContent = ruTexts.noAccount;
+            document.getElementById('have-account').textContent = ruTexts.haveAccount;
+            document.getElementById('switch-to-register').textContent = ruTexts.switchToRegister;
+            document.getElementById('switch-to-login').textContent = ruTexts.switchToLogin;
+            document.getElementById('start-learning').textContent = ruTexts.startLearning;
+            document.getElementById('logout-text').textContent = ruTexts.logout;
+            
+            document.getElementById('register-name').placeholder = ruTexts.namePlaceholder;
+            document.getElementById('login-email').placeholder = ruTexts.emailPlaceholder;
+            document.getElementById('register-email').placeholder = ruTexts.emailPlaceholder;
+            document.getElementById('login-password').placeholder = ruTexts.passwordPlaceholder;
+            document.getElementById('register-password').placeholder = ruTexts.passwordLength;
+            document.getElementById('register-confirm').placeholder = ruTexts.confirmPlaceholder;
         }
         
-        // Переключение языков
-        const ruBtn = document.getElementById('ru-btn');
-        const kzBtn = document.getElementById('kz-btn');
-        const title = document.getElementById('title');
-        const tagline = document.getElementById('tagline');
-        const startBtn = document.getElementById('start-btn');
+        // Функции для работы с пользователями
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+        }
         
-        ruBtn.addEventListener('click', () => {
-            ruBtn.classList.add('active');
-            kzBtn.classList.remove('active');
-            title.textContent = 'Добро пожаловать в Зеленый мир!';
-            tagline.textContent = 'Изучайте удивительный мир биологии вместе с нами. Интерактивные уроки для 7 класса.';
-            startBtn.innerHTML = 'Начать изучение <i class="fas fa-arrow-right"></i>';
-        });
+        function saveUsers(users) {
+            localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+        }
         
-        kzBtn.addEventListener('click', () => {
-            kzBtn.classList.add('active');
-            ruBtn.classList.remove('active');
-            title.textContent = 'Жасыл әлемге қош келдіңіз!';
-            tagline.textContent = 'Бізбен бірге биологияның таңғажайып әлемін зерттеңіз. 7-сыныпқа арналған интерактивті сабақтар.';
-            startBtn.innerHTML = 'Зерттеуді бастау <i class="fas fa-arrow-right"></i>';
-        });
+        function getCurrentUser() {
+            return JSON.parse(localStorage.getItem('currentUser'));
+        }
         
-        // Загрузка гифки
+        function setCurrentUser(user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        
+        function clearCurrentUser() {
+            localStorage.removeItem('currentUser');
+        }
+        
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            
+            // Скрыть через 5 секунд
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        function showSuccess(message) {
+            const successElement = document.getElementById('success-message');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            
+            // Скрыть через 3 секунд
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+        
+        function switchToRegister() {
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.add('active');
+        }
+        
+        function switchToLogin() {
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('login-form').classList.add('active');
+        }
+        
+        function registerUser() {
+            const name = document.getElementById('register-name').value.trim();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+            
+            // Проверка заполнения полей
+            if (!name || !email || !password || !confirmPassword) {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.fillFields : ruTexts.fillFields);
+                return;
+            }
+            
+            // Проверка длины пароля
+            if (password.length < 6) {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.passwordShort : ruTexts.passwordShort);
+                return;
+            }
+            
+            // Проверка совпадения паролей
+            if (password !== confirmPassword) {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.passwordMismatch : ruTexts.passwordMismatch);
+                return;
+            }
+            
+            // Проверка существования пользователя
+            const users = getUsers();
+            const existingUser = users.find(user => user.email === email);
+            if (existingUser) {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.userExists : ruTexts.userExists);
+                return;
+            }
+            
+            // Создание нового пользователя
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                password: password, // В реальном приложении пароль должен быть хеширован!
+                progress: {},
+                registrationDate: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            saveUsers(users);
+            
+            // Автоматический вход после регистрации
+            setCurrentUser(newUser);
+            showUserInfo(newUser);
+            
+            const lang = document.documentElement.lang;
+            showSuccess(lang === 'kk' ? kzTexts.registerSuccess : ruTexts.registerSuccess);
+        }
+        
+        function loginUser() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            // Проверка заполнения полей
+            if (!email || !password) {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.fillFields : ruTexts.fillFields);
+                return;
+            }
+            
+            // Поиск пользователя
+            const users = getUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                setCurrentUser(user);
+                showUserInfo(user);
+                
+                const lang = document.documentElement.lang;
+                showSuccess(lang === 'kk' ? kzTexts.loginSuccess : ruTexts.loginSuccess);
+            } else {
+                const lang = document.documentElement.lang;
+                showError(lang === 'kk' ? kzTexts.invalidCredentials : ruTexts.invalidCredentials);
+            }
+        }
+        
+        function logoutUser() {
+            clearCurrentUser();
+            hideUserInfo();
+            
+            const lang = document.documentElement.lang;
+            showSuccess(lang === 'kk' ? kzTexts.logoutSuccess : ruTexts.logoutSuccess);
+        }
+        
+        function showUserInfo(user) {
+            document.getElementById('user-name').textContent = user.name;
+            document.getElementById('user-email').textContent = user.email;
+            
+            const lang = document.documentElement.lang;
+            document.getElementById('welcome-text').innerHTML = 
+                (lang === 'kk' ? kzTexts.welcome : ruTexts.welcome) + ` <span id="user-name">${user.name}</span>!`;
+            
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+        }
+        
+        function hideUserInfo() {
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('login-form').classList.add('active');
+            
+            // Очистка полей форм
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            document.getElementById('register-name').value = '';
+            document.getElementById('register-email').value = '';
+            document.getElementById('register-password').value = '';
+            document.getElementById('register-confirm').value = '';
+        }
+        
+        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
-            const gifUrl = '8z2pahzh49v71.gif';
-            document.getElementById('plant-gif').src = gifUrl;
+            setKazakhLanguage();
+            
+            // Проверка авторизованного пользователя
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                showUserInfo(currentUser);
+            }
+            
+            // Обработчики событий
+            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+            document.getElementById('switch-to-register').addEventListener('click', switchToRegister);
+            document.getElementById('switch-to-login').addEventListener('click', switchToLogin);
+            document.getElementById('register-btn').addEventListener('click', registerUser);
+            document.getElementById('login-btn').addEventListener('click', loginUser);
+            document.getElementById('logout-btn').addEventListener('click', logoutUser);
+            
+            // Ввод по Enter
+            document.getElementById('register-form').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    registerUser();
+                }
+            });
+            
+            document.getElementById('login-form').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    loginUser();
+                }
+            });
         });
     </script>
 </body>
