@@ -182,6 +182,12 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .content-section.active {
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            border-left: 5px solid #4caf50;
         }
         
         .section-completion {
@@ -191,6 +197,12 @@
             color: #4caf50;
             font-size: 1.2rem;
             display: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .section-completion:hover {
+            transform: scale(1.1);
         }
         
         .section-title {
@@ -201,17 +213,31 @@
             border-bottom: 2px solid #c5e1a5;
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
         
         .section-title i {
             margin-right: 12px;
             color: #4caf50;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-title.collapsed i {
+            transform: rotate(-90deg);
         }
         
         .section-content {
             line-height: 1.8;
             font-size: 1.1rem;
             color: #333;
+            transition: all 0.3s ease;
+            max-height: 1000px;
+            overflow: hidden;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0;
+            opacity: 0;
         }
         
         .section-content p {
@@ -261,6 +287,70 @@
         
         .comparison-table tr:nth-child(even) {
             background: #f1f8e9;
+        }
+
+        /* Новые стили для интерактивных элементов */
+        .interactive-element {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #4caf50;
+        }
+        
+        .interactive-title {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+        
+        .interactive-title i {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .interactive-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .interactive-element.active .interactive-content {
+            max-height: 500px;
+        }
+        
+        .interactive-element.active .interactive-title i {
+            transform: rotate(90deg);
+        }
+        
+        .bookmark-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #757575;
+            transition: all 0.3s ease;
+        }
+        
+        .bookmark-btn.active {
+            color: #ff9800;
+        }
+        
+        .bookmark-btn:hover {
+            background: white;
+            transform: scale(1.1);
         }
 
         /* Стили для секции с презентацией */
@@ -381,6 +471,51 @@
             text-decoration: underline;
         }
         
+        /* Стили для заметок пользователя */
+        .notes-section {
+            margin: 30px 0;
+            background: #fffde7;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #ffd54f;
+        }
+        
+        .notes-title {
+            color: #f57f17;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notes-title i {
+            margin-right: 10px;
+        }
+        
+        .notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 1px solid #ffe082;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        .save-notes-btn {
+            background: #ffb300;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .save-notes-btn:hover {
+            background: #ff8f00;
+        }
+        
         @media (max-width: 768px) {
             .module-content {
                 padding: 20px;
@@ -457,27 +592,57 @@
                 </div>
             </div>
             
+            <!-- Секция заметок пользователя -->
+            <div class="notes-section">
+                <h3 class="notes-title"><i class="fas fa-sticky-note"></i> <span id="notes-title">Жеке жазбалар</span></h3>
+                <textarea class="notes-textarea" id="user-notes" placeholder="Модуль бойынша жазбаларыңызды осы жерге жазыңыз..."></textarea>
+                <button class="save-notes-btn" id="save-notes-btn">
+                    <i class="fas fa-save"></i> <span id="save-notes-text">Сақтау</span>
+                </button>
+            </div>
+            
             <div class="content-section" id="section1">
+                <button class="bookmark-btn" id="bookmark1" data-section="section1">
+                    <i class="far fa-bookmark"></i>
+                </button>
                 <div class="section-completion" id="section1-completion">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section1-title">Өсімдіктер деген не? Табиғаттағы рөлі</span></h2>
-                <div class="section-content">
+                <h2 class="section-title" id="section1-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="section1-title">Өсімдіктер деген не? Табиғаттағы рөлі</span>
+                </h2>
+                <div class="section-content" id="section1-content">
                     <p id="section1-p1">Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.</p>
                     
                     <div class="important-note">
                         <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі айырмашылық</span></h4>
                         <p id="important-note1-text">Өсімдіктердің басқа организмдерден негізгі айырмашылығы - олар күн энергиясы, су және көмірқышқыл газын пайдаланып органикалық заттарды өздері жасай алады (автотрофты азықтану). Сонымен қатар, өсімдіктер әдетте бекітілген тіршілік етеді және бүкіл өмірінде өседі.</p>
                     </div>
+                    
+                    <!-- Интерактивный элемент -->
+                    <div class="interactive-element" id="interactive1">
+                        <div class="interactive-title">
+                            <i class="fas fa-chevron-right"></i>
+                            <span id="interactive1-title">Фотосинтез туралы қосымша ақпарат</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p id="interactive1-text">Фотосинтез - бұл өсімдіктердің күн энергиясын химиялық энергияға айналдыру процесі. Бұл процесс кезінде көмірқышқыл газы мен су қант пен оттегіге айналады. Фотосинтез теңдеуі: 6CO₂ + 6H₂O + жарық энергиясы → C₆H₁₂O₆ + 6O₂</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="content-section" id="section2">
+                <button class="bookmark-btn" id="bookmark2" data-section="section2">
+                    <i class="far fa-bookmark"></i>
+                </button>
                 <div class="section-completion" id="section2-completion">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2 class="section-title"><i class="fas fa-microscope"></i> <span id="section2-title">Өсімдіктердің клеткалық құрылымы</span></h2>
-                <div class="section-content">
+                <h2 class="section-title" id="section2-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="section2-title">Өсімдіктердің клеткалық құрылымы</span>
+                </h2>
+                <div class="section-content" id="section2-content">
                     <p id="section2-p1">Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:</p>
                     
                     <ul id="section2-list">
@@ -486,28 +651,51 @@
                         <li>Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды</li>
                         <li>Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар</li>
                     </ul>
+                    
+                    <!-- Интерактивный элемент -->
+                    <div class="interactive-element" id="interactive2">
+                        <div class="interactive-title">
+                            <i class="fas fa-chevron-right"></i>
+                            <span id="interactive2-title">Клетка құрылымының қызықты фактілері</span>
+                        </div>
+                        <div class="interactive-content">
+                            <p id="interactive2-text">Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <!-- Секция с презентацией -->
             <div class="slide-section" id="section3">
+                <button class="bookmark-btn" id="bookmark3" data-section="section3">
+                    <i class="far fa-bookmark"></i>
+                </button>
                 <div class="section-completion" id="section3-completion">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2 class="section-title"><i class="fas fa-desktop"></i> <span id="slide-title">Презентация</span></h2>
-                <div class="slide-container">
-                    <iframe id="slide-iframe" src="https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000" 
-                            frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                <h2 class="section-title" id="section3-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="slide-title">Презентация</span>
+                </h2>
+                <div class="section-content" id="section3-content">
+                    <div class="slide-container">
+                        <iframe id="slide-iframe" src="https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000" 
+                                frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                    <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
                 </div>
-                <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
             </div>
             
             <div class="content-section" id="section4">
+                <button class="bookmark-btn" id="bookmark4" data-section="section4">
+                    <i class="far fa-bookmark"></i>
+                </button>
                 <div class="section-completion" id="section4-completion">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2 class="section-title"><i class="fas fa-layer-group"></i> <span id="section3-title">Өсімдіктердің тіндері: түрлері мен функциялары</span></h2>
-                <div class="section-content">
+                <h2 class="section-title" id="section4-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="section3-title">Өсімдіктердің тіндері: түрлері мен функциялары</span>
+                </h2>
+                <div class="section-content" id="section4-content">
                     <p id="section3-p1">Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:</p>
                     
                     <table class="comparison-table">
@@ -550,11 +738,16 @@
             </div>
             
             <div class="content-section" id="section5">
+                <button class="bookmark-btn" id="bookmark5" data-section="section5">
+                    <i class="far fa-bookmark"></i>
+                </button>
                 <div class="section-completion" id="section5-completion">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Өсімдіктер мен басқа организмдерді салыстыру</span></h2>
-                <div class="section-content">
+                <h2 class="section-title" id="section5-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="section4-title">Өсімдіктер мен басқа организмдерді салыстыру</span>
+                </h2>
+                <div class="section-content" id="section5-content">
                     <p id="section4-p1">Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:</p>
                     
                     <table class="comparison-table">
@@ -754,6 +947,175 @@
             setTimeout(checkSections, 1000);
         }
         
+        // ==================== НОВЫЕ ФУНКЦИИ ====================
+        
+        // Система закладок
+        function setupBookmarks() {
+            const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+            
+            bookmarkButtons.forEach(btn => {
+                // Загрузить сохраненные закладки
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user && user.bookmarks && user.bookmarks.module1) {
+                    const sectionId = btn.getAttribute('data-section');
+                    if (user.bookmarks.module1.includes(sectionId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    }
+                }
+                
+                // Обработчик клика на закладку
+                btn.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const user = JSON.parse(localStorage.getItem('currentUser'));
+                    
+                    if (user) {
+                        if (!user.bookmarks) user.bookmarks = {};
+                        if (!user.bookmarks.module1) user.bookmarks.module1 = [];
+                        
+                        const index = user.bookmarks.module1.indexOf(sectionId);
+                        
+                        if (index === -1) {
+                            // Добавить закладку
+                            user.bookmarks.module1.push(sectionId);
+                            this.classList.add('active');
+                            this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                            
+                            // Показать уведомление
+                            showNotification('Бетбелгі қосылды!', 'success');
+                        } else {
+                            // Удалить закладку
+                            user.bookmarks.module1.splice(index, 1);
+                            this.classList.remove('active');
+                            this.innerHTML = '<i class="far fa-bookmark"></i>';
+                            
+                            // Показать уведомление
+                            showNotification('Бетбелгі жойылды!', 'info');
+                        }
+                        
+                        // Сохранить изменения
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                        
+                        // Обновить данные в общем списке пользователей
+                        const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+                        const userIndex = users.findIndex(u => u.id === user.id);
+                        if (userIndex !== -1) {
+                            users[userIndex] = user;
+                            localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Система сворачивания/разворачивания секций
+        function setupCollapsibleSections() {
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            sectionTitles.forEach(title => {
+                title.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    this.classList.toggle('collapsed');
+                    content.classList.toggle('collapsed');
+                    
+                    // Прокрутить к секции, если она сворачивается
+                    if (!content.classList.contains('collapsed')) {
+                        this.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        }
+        
+        // Интерактивные элементы (аккордеоны)
+        function setupInteractiveElements() {
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            
+            interactiveElements.forEach(element => {
+                const title = element.querySelector('.interactive-title');
+                
+                title.addEventListener('click', function() {
+                    element.classList.toggle('active');
+                });
+            });
+        }
+        
+        // Система заметок
+        function setupNotesSystem() {
+            const notesTextarea = document.getElementById('user-notes');
+            const saveNotesBtn = document.getElementById('save-notes-btn');
+            
+            // Загрузить сохраненные заметки
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.notes && user.notes.module1) {
+                notesTextarea.value = user.notes.module1;
+            }
+            
+            // Обработчик сохранения заметок
+            saveNotesBtn.addEventListener('click', function() {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    if (!user.notes) user.notes = {};
+                    user.notes.module1 = notesTextarea.value;
+                    
+                    // Сохранить изменения
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    // Обновить данные в общем списке пользователей
+                    const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+                    const userIndex = users.findIndex(u => u.id === user.id);
+                    if (userIndex !== -1) {
+                        users[userIndex] = user;
+                        localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                    }
+                    
+                    // Показать уведомление
+                    showNotification('Жазбалар сақталды!', 'success');
+                }
+            });
+            
+            // Автосохранение каждые 30 секунд
+            setInterval(() => {
+                if (notesTextarea.value !== '') {
+                    saveNotesBtn.click();
+                }
+            }, 30000);
+        }
+        
+        // Функция показа уведомлений
+        function showNotification(message, type = 'info') {
+            // Создать элемент уведомления
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.color = 'white';
+            notification.style.zIndex = '1000';
+            notification.style.transition = 'all 0.3s ease';
+            
+            // Установить цвет в зависимости от типа
+            if (type === 'success') {
+                notification.style.background = '#4caf50';
+            } else if (type === 'error') {
+                notification.style.background = '#f44336';
+            } else {
+                notification.style.background = '#2196f3';
+            }
+            
+            // Добавить уведомление на страницу
+            document.body.appendChild(notification);
+            
+            // Удалить уведомление через 3 секунды
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
         // ==================== СИСТЕМА ПЕРЕВОДА ====================
         
         // Тексты на казахском
@@ -808,7 +1170,13 @@
             testBtnText: "Модуль бойынша тестті тапсыру",
             prevBtn: "Модульдер тізімі",
             nextBtn: "Келесі модуль",
-            logoutText: "Шығу"
+            logoutText: "Шығу",
+            notesTitle: "Жеке жазбалар",
+            saveNotesText: "Сақтау",
+            interactive1Title: "Фотосинтез туралы қосымша ақпарат",
+            interactive1Text: "Фотосинтез - бұл өсімдіктердің күн энергиясын химиялық энергияға айналдыру процесі. Бұл процесс кезінде көмірқышқыл газы мен су қант пен оттегіге айналады. Фотосинтез теңдеуі: 6CO₂ + 6H₂O + жарық энергиясы → C₆H₁₂O₆ + 6O₂",
+            interactive2Title: "Клетка құрылымының қызықты фактілері",
+            interactive2Text: "Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді."
         };
         
         // Тексты на русском
@@ -827,7 +1195,7 @@
                 "Клеточная стенка - состоит из целлюлозы, придает растению необходимую жесткость и структуру",
                 "Хлоропласты - органеллы, осуществляющие процесс фотосинтеза",
                 "Вакуоль - большая полость, заполненная клеточным соком, поддерживает тургорное давление клетки",
-                "Пластиды - органеллы для накопления и хранения пиgментов"
+                "Пластиды - органеллы для накопления и хранения пигментов"
             ],
             section3: "Ткани растений: виды и функции",
             section3p1: "У растений есть несколько основных типов тканей, каждый из которых выполняет свои функции:",
@@ -863,7 +1231,13 @@
             testBtnText: "Пройти тест по модулю",
             prevBtn: "Список модулей",
             nextBtn: "Следующий модуль",
-            logoutText: "Выйти"
+            logoutText: "Выйти",
+            notesTitle: "Личные заметки",
+            saveNotesText: "Сохранить",
+            interactive1Title: "Дополнительная информация о фотосинтезе",
+            interactive1Text: "Фотосинтез - это процесс преобразования растениями солнечной энергии в химическую. В ходе этого процесса углекислый газ и вода превращаются в сахар и кислород. Уравнение фотосинтеза: 6CO₂ + 6H₂O + световая энергия → C₆H₁₂O₆ + 6O₂",
+            interactive2Title: "Интересные факты о строении клетки",
+            interactive2Text: "Вакуоли растительных клеток иногда могут занимать до 90% объема клетки. В хлоропластах содержится зеленый пигмент хлорофилл, который поглощает солнечный свет."
         };
         
         // Установка казахского языка по умолчанию
@@ -948,6 +1322,14 @@
             document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
             document.getElementById('next-btn').textContent = kzTexts.nextBtn;
             document.getElementById('logout-text').textContent = kzTexts.logoutText;
+            
+            // Обновление новых элементов
+            document.getElementById('notes-title').textContent = kzTexts.notesTitle;
+            document.getElementById('save-notes-text').textContent = kzTexts.saveNotesText;
+            document.getElementById('interactive1-title').textContent = kzTexts.interactive1Title;
+            document.getElementById('interactive1-text').textContent = kzTexts.interactive1Text;
+            document.getElementById('interactive2-title').textContent = kzTexts.interactive2Title;
+            document.getElementById('interactive2-text').textContent = kzTexts.interactive2Text;
         }
         
         // Установка русского языка
@@ -1032,6 +1414,14 @@
             document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
             document.getElementById('next-btn').textContent = ruTexts.nextBtn;
             document.getElementById('logout-text').textContent = ruTexts.logoutText;
+            
+            // Обновление новых элементов
+            document.getElementById('notes-title').textContent = ruTexts.notesTitle;
+            document.getElementById('save-notes-text').textContent = ruTexts.saveNotesText;
+            document.getElementById('interactive1-title').textContent = ruTexts.interactive1Title;
+            document.getElementById('interactive1-text').textContent = ruTexts.interactive1Text;
+            document.getElementById('interactive2-title').textContent = ruTexts.interactive2Title;
+            document.getElementById('interactive2-text').textContent = ruTexts.interactive2Text;
         }
         
         // ==================== ИНИЦИАЛИЗАЦИЯ ====================
@@ -1047,6 +1437,12 @@
                 
                 // Обновление отображения прогресса
                 updateProgressDisplay(user);
+                
+                // Настройка новых функций
+                setupBookmarks();
+                setupCollapsibleSections();
+                setupInteractiveElements();
+                setupNotesSystem();
             }
             
             // Установка языка
