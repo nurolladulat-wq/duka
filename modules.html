@@ -99,6 +99,29 @@
             background: white;
             color: #2e7d32;
         }
+
+        /* Новые стили для меню пользователя */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
         
         .modules-content {
             padding: 40px;
@@ -257,10 +280,45 @@
                 gap: 15px;
                 text-align: center;
             }
+
+            .user-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Скрипт проверки авторизации -->
+    <script>
+        // Проверка авторизации
+        function getCurrentUser() {
+            return JSON.parse(localStorage.getItem('currentUser'));
+        }
+        
+        function checkAuth() {
+            const user = getCurrentUser();
+            if (!user) {
+                alert('Бұл бетке кіру үшін тіркелу қажет!');
+                window.location.href = 'index.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // Проверяем авторизацию при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!checkAuth()) return;
+            
+            // Показываем информацию о пользователе
+            const user = getCurrentUser();
+            if (user) {
+                // Можно добавить приветствие пользователя на странице
+                console.log('Добро пожаловать, ' + user.name);
+            }
+        });
+    </script>
+
     <div class="container">
         <header>
             <a href="index.html" class="logo">
@@ -270,6 +328,14 @@
             <div class="language-switcher">
                 <button class="language-btn" id="ru-btn">Рус</button>
                 <button class="language-btn active" id="kz-btn">Қаз</button>
+            </div>
+
+            <!-- Меню пользователя -->
+            <div class="user-menu">
+                <span id="user-greeting">Қош келдіңіз, <span id="user-display-name"></span>!</span>
+                <button class="logout-btn" id="modules-logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Шығу
+                </button>
             </div>
             
             <a href="index.html" class="back-btn">
@@ -425,6 +491,7 @@
             title: "Оқу модульдері",
             subtitle: "7-сынып биологиясы бойынша толық курс",
             progress: "Жалпы прогресс: ",
+            greeting: "Қош келдіңіз, ",
             modules: [
                 {
                     title: "Өсімдіктер әлеміне кіріспе",
@@ -471,6 +538,7 @@
             title: "Учебные модули",
             subtitle: "Полный курс по биологии для 7 класса",
             progress: "Общий прогресс: ",
+            greeting: "Добро пожаловать, ",
             modules: [
                 {
                     title: "Введение в мир растений",
@@ -521,6 +589,7 @@
             document.getElementById('page-title').textContent = kzTexts.title;
             document.getElementById('page-subtitle').textContent = kzTexts.subtitle;
             document.getElementById('progress-text').innerHTML = kzTexts.progress + '<span>0%</span>';
+            document.getElementById('user-greeting').textContent = kzTexts.greeting;
             
             for (let i = 0; i < 7; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = kzTexts.modules[i].title;
@@ -540,6 +609,7 @@
             document.getElementById('page-title').textContent = ruTexts.title;
             document.getElementById('page-subtitle').textContent = ruTexts.subtitle;
             document.getElementById('progress-text').innerHTML = ruTexts.progress + '<span>0%</span>';
+            document.getElementById('user-greeting').textContent = ruTexts.greeting;
             
             for (let i = 0; i < 7; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = ruTexts.modules[i].title;
@@ -552,6 +622,19 @@
         ruBtn.addEventListener('click', setRussianLanguage);
         kzBtn.addEventListener('click', setKazakhLanguage);
         
+        // Показ информации пользователя и выход
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = getCurrentUser();
+            if (user) {
+                document.getElementById('user-display-name').textContent = user.name;
+            }
+            
+            document.getElementById('modules-logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+        });
+
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
