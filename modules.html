@@ -6,7 +6,7 @@
     <title>Оқу модульдері - Жасыл әлем</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Стили остаются без изменений */
+        /* Существующие стили остаются без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -100,7 +100,6 @@
             color: #2e7d32;
         }
 
-        /* Новые стили для меню пользователя */
         .user-menu {
             display: flex;
             align-items: center;
@@ -248,6 +247,43 @@
             transition: width 1s ease;
         }
         
+        /* Новые стили для секретного модуля */
+        .secret-module {
+            display: none;
+            border-left: 5px solid #ff9800;
+            background: linear-gradient(135deg, #fff8e1, #fff);
+        }
+        
+        .secret-module .module-number {
+            background: #ff9800;
+        }
+        
+        .secret-title {
+            color: #ff9800;
+        }
+        
+        .secret-btn {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+        
+        .secret-btn:hover {
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+        
+        .achievement-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(-15deg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
         footer {
             text-align: center;
             padding: 25px;
@@ -313,7 +349,6 @@
             // Показываем информацию о пользователе
             const user = getCurrentUser();
             if (user) {
-                // Можно добавить приветствие пользователя на странице
                 console.log('Добро пожаловать, ' + user.name);
             }
         });
@@ -351,6 +386,11 @@
                 <div class="progress-text" id="progress-text">Жалпы прогресс: <span>0%</span></div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button id="simulate-progress" class="start-module-btn" style="width: auto; padding: 8px 16px;">
+                        <span id="simulate-text">Прогресті тестілеу (100% жасау)</span>
+                    </button>
                 </div>
             </div>
             
@@ -424,6 +464,19 @@
                         <span id="module7-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
+                
+                <!-- Секретный модуль 8 -->
+                <div class="module-card secret-module" id="secret-module">
+                    <div class="achievement-badge">
+                        <i class="fas fa-trophy"></i> <span id="achievement-text">Жетістік</span>
+                    </div>
+                    <div class="module-number">8</div>
+                    <h3 class="module-title secret-title" id="module8-title">Сырлы модуль</h3>
+                    <p class="module-description" id="module8-desc">Құттықтаймыз! Сіз барлық модульдерді бітірдіңіз. Бұл сізге арналған арнайы модуль.</p>
+                    <button class="start-module-btn secret-btn" onclick="startModule(8)">
+                        <span id="module8-btn">Сырды ашу</span> <i class="fas fa-key"></i>
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -465,19 +518,42 @@
                 case 7:
                     window.location.href = 'module7.html';
                     break;
+                case 8:
+                    // Специальная страница для секретного модуля
+                    alert('Құттықтаймыз! Сіз сырлы модульді аштыңыз! Бұл үлкен жетістік!');
+                    // window.location.href = 'secret-module.html';
+                    break;
                 default:
                     alert('Модуль табылмады');
             }
         }
         
-        // Обновление прогресса
+        // Обновление прогресса и проверка секретного модуля
         function updateProgress() {
             const progressFill = document.getElementById('progress-fill');
             const progressText = document.querySelector('.progress-text span');
-            const progress = 0; // Начальный прогресс
+            const secretModule = document.getElementById('secret-module');
+            
+            // Получаем прогресс из localStorage или устанавливаем 0
+            let progress = localStorage.getItem('userProgress') || 0;
+            progress = parseInt(progress);
             
             progressFill.style.width = `${progress}%`;
             progressText.textContent = `${progress}%`;
+            
+            // Показываем секретный модуль, если прогресс 100%
+            if (progress >= 100) {
+                secretModule.style.display = 'block';
+                // Сохраняем достижение
+                localStorage.setItem('secretUnlocked', 'true');
+            }
+        }
+        
+        // Функция для симуляции прогресса (для тестирования)
+        function simulateProgress() {
+            localStorage.setItem('userProgress', 100);
+            updateProgress();
+            alert('Құттықтаймыз! Сіз барлық модульдерді аяқтадыңыз және сырлы модуль ашылды!');
         }
         
         // Переключение языков
@@ -492,6 +568,8 @@
             subtitle: "7-сынып биологиясы бойынша толық курс",
             progress: "Жалпы прогресс: ",
             greeting: "Қош келдіңіз, ",
+            simulate: "Прогресті тестілеу (100% жасау)",
+            achievement: "Жетістік",
             modules: [
                 {
                     title: "Өсімдіктер әлеміне кіріспе",
@@ -527,6 +605,11 @@
                     title: "Өсімдіктер және экология",
                     desc: "Өсімдіктердің экожүйедегі рөлі, табиғатты қорғаудағы маңызы және экологиялық мәселелер.",
                     btn: "Оқуды бастау"
+                },
+                {
+                    title: "Сырлы модуль",
+                    desc: "Құттықтаймыз! Сіз барлық модульдерді бітірдіңіз. Бұл сізге арналған арнайы модуль.",
+                    btn: "Сырды ашу"
                 }
             ]
         };
@@ -539,6 +622,8 @@
             subtitle: "Полный курс по биологии для 7 класса",
             progress: "Общий прогресс: ",
             greeting: "Добро пожаловать, ",
+            simulate: "Протестировать прогресс (сделать 100%)",
+            achievement: "Достижение",
             modules: [
                 {
                     title: "Введение в мир растений",
@@ -574,6 +659,11 @@
                     title: "Растения и экология",
                     desc: "Роль растений в экосистеме, их значение в охране природы и экологические проблемы.",
                     btn: "Начать изучение"
+                },
+                {
+                    title: "Секретный модуль",
+                    desc: "Поздравляем! Вы завершили все модули. Это специальный модуль для вас.",
+                    btn: "Открыть секрет"
                 }
             ]
         };
@@ -590,11 +680,15 @@
             document.getElementById('page-subtitle').textContent = kzTexts.subtitle;
             document.getElementById('progress-text').innerHTML = kzTexts.progress + '<span>0%</span>';
             document.getElementById('user-greeting').textContent = kzTexts.greeting;
+            document.getElementById('simulate-text').textContent = kzTexts.simulate;
+            document.getElementById('achievement-text').textContent = kzTexts.achievement;
             
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 8; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = kzTexts.modules[i].title;
                 document.getElementById(`module${i+1}-desc`).textContent = kzTexts.modules[i].desc;
-                document.getElementById(`module${i+1}-btn`).textContent = kzTexts.modules[i].btn;
+                if (document.getElementById(`module${i+1}-btn`)) {
+                    document.getElementById(`module${i+1}-btn`).textContent = kzTexts.modules[i].btn;
+                }
             }
         }
         
@@ -610,11 +704,15 @@
             document.getElementById('page-subtitle').textContent = ruTexts.subtitle;
             document.getElementById('progress-text').innerHTML = ruTexts.progress + '<span>0%</span>';
             document.getElementById('user-greeting').textContent = ruTexts.greeting;
+            document.getElementById('simulate-text').textContent = ruTexts.simulate;
+            document.getElementById('achievement-text').textContent = ruTexts.achievement;
             
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 8; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = ruTexts.modules[i].title;
                 document.getElementById(`module${i+1}-desc`).textContent = ruTexts.modules[i].desc;
-                document.getElementById(`module${i+1}-btn`).textContent = ruTexts.modules[i].btn;
+                if (document.getElementById(`module${i+1}-btn`)) {
+                    document.getElementById(`module${i+1}-btn`).textContent = ruTexts.modules[i].btn;
+                }
             }
         }
         
@@ -633,6 +731,9 @@
                 localStorage.removeItem('currentUser');
                 window.location.href = 'index.html';
             });
+            
+            // Кнопка для тестирования прогресса
+            document.getElementById('simulate-progress').addEventListener('click', simulateProgress);
         });
 
         // Инициализация при загрузке
