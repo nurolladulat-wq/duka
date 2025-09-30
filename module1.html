@@ -51,6 +51,38 @@
             margin-right: 10px;
         }
         
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
         .language-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.2);
@@ -103,6 +135,19 @@
         .module-header {
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .completion-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: none;
         }
         
         .module-title {
@@ -119,12 +164,33 @@
             line-height: 1.6;
         }
         
+        .progress-indicator {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .progress-text {
+            color: #558b2f;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
         .content-section {
             margin-bottom: 40px;
             padding: 25px;
             background: #f9fbf8;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .section-completion {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #4caf50;
+            font-size: 1.2rem;
+            display: none;
         }
         
         .section-title {
@@ -229,6 +295,21 @@
             color: #689f38;
         }
         
+        .completion-message {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+        }
+        
+        .completion-message h3 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -256,6 +337,34 @@
         .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .test-btn {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 20px auto;
+            font-size: 1.2rem;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
         }
         
         footer {
@@ -287,6 +396,11 @@
                 text-align: center;
             }
             
+            .user-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
             .navigation-buttons {
                 flex-direction: column;
                 gap: 15px;
@@ -310,6 +424,16 @@
                 <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
             </a>
             
+            <div class="user-info" id="user-info" style="display: none;">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span id="user-name">Пайдаланушы</span>
+                <button class="logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> <span id="logout-text">Шығу</span>
+                </button>
+            </div>
+            
             <div class="language-switcher">
                 <button class="language-btn" id="ru-btn">Рус</button>
                 <button class="language-btn active" id="kz-btn">Қаз</button>
@@ -322,11 +446,21 @@
         
         <div class="module-content">
             <div class="module-header">
+                <div class="completion-badge" id="completion-badge">
+                    <i class="fas fa-check-circle"></i> <span id="completed-text">Аяқталды</span>
+                </div>
                 <h1 class="module-title" id="module-title">Модуль 1: Өсімдіктер әлеміне кіріспе</h1>
                 <p class="module-subtitle" id="module-subtitle">Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы</p>
+                
+                <div class="progress-indicator">
+                    <div class="progress-text" id="progress-text">Оқу процесі: <span id="progress-percent">0%</span></div>
+                </div>
             </div>
             
-            <div class="content-section">
+            <div class="content-section" id="section1">
+                <div class="section-completion" id="section1-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section1-title">Өсімдіктер деген не? Табиғаттағы рөлі</span></h2>
                 <div class="section-content">
                     <p id="section1-p1">Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.</p>
@@ -338,7 +472,10 @@
                 </div>
             </div>
             
-            <div class="content-section">
+            <div class="content-section" id="section2">
+                <div class="section-completion" id="section2-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <h2 class="section-title"><i class="fas fa-microscope"></i> <span id="section2-title">Өсімдіктердің клеткалық құрылымы</span></h2>
                 <div class="section-content">
                     <p id="section2-p1">Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:</p>
@@ -353,7 +490,10 @@
             </div>
             
             <!-- Секция с презентацией -->
-            <div class="slide-section">
+            <div class="slide-section" id="section3">
+                <div class="section-completion" id="section3-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <h2 class="section-title"><i class="fas fa-desktop"></i> <span id="slide-title">Презентация</span></h2>
                 <div class="slide-container">
                     <iframe id="slide-iframe" src="https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000" 
@@ -362,7 +502,10 @@
                 <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
             </div>
             
-            <div class="content-section">
+            <div class="content-section" id="section4">
+                <div class="section-completion" id="section4-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <h2 class="section-title"><i class="fas fa-layer-group"></i> <span id="section3-title">Өсімдіктердің тіндері: түрлері мен функциялары</span></h2>
                 <div class="section-content">
                     <p id="section3-p1">Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:</p>
@@ -406,7 +549,10 @@
                 </div>
             </div>
             
-            <div class="content-section">
+            <div class="content-section" id="section5">
+                <div class="section-completion" id="section5-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
                 <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Өсімдіктер мен басқа организмдерді салыстыру</span></h2>
                 <div class="section-content">
                     <p id="section4-p1">Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:</p>
@@ -450,11 +596,22 @@
                 </div>
             </div>
             
+            <div class="completion-message" id="completion-message">
+                <h3><i class="fas fa-trophy"></i> <span id="congrats-text">Құттықтаймыз!</span></h3>
+                <p id="completion-desc">Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="test1.html" class="test-btn" id="test-btn">
+                    <i class="fas fa-graduation-cap"></i> <span id="test-btn-text">Модуль бойынша тестті тапсыру</span>
+                </a>
+            </div>
+            
             <div class="navigation-buttons">
                 <a href="modules.html" class="nav-btn">
                     <i class="fas fa-arrow-left"></i> <span id="prev-btn">Модульдер тізімі</span>
                 </a>
-                <a href="modules.html" class="nav-btn">
+                <a href="module2.html" class="nav-btn" id="next-module-btn">
                     <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -466,6 +623,139 @@
     </div>
 
     <script>
+        // ==================== СИСТЕМА АВТОРИЗАЦИИ ====================
+        
+        // Проверка авторизации
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) {
+                alert('Бұл модульді көру үшін жүйеге кіру қажет!');
+                window.location.href = 'index.html';
+                return false;
+            }
+            return user;
+        }
+        
+        // Показать информацию пользователя
+        function showUserInfo(user) {
+            document.getElementById('user-info').style.display = 'flex';
+            document.getElementById('user-name').textContent = user.name;
+        }
+        
+        // Выход из системы
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+        
+        // ==================== СИСТЕМА ПРОГРЕССА ====================
+        
+        // Сохранение прогресса
+        function saveProgress(sectionId) {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (!user) return;
+            
+            const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+            const userIndex = users.findIndex(u => u.id === user.id);
+            
+            if (userIndex !== -1) {
+                if (!users[userIndex].progress) {
+                    users[userIndex].progress = {};
+                }
+                if (!users[userIndex].progress.module1) {
+                    users[userIndex].progress.module1 = {};
+                }
+                
+                users[userIndex].progress.module1[sectionId] = true;
+                localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                
+                // Обновить текущего пользователя
+                const updatedUser = users[userIndex];
+                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+                
+                updateProgressDisplay(updatedUser);
+            }
+        }
+        
+        // Обновление отображения прогресса
+        function updateProgressDisplay(user) {
+            if (!user || !user.progress || !user.progress.module1) return;
+            
+            const progress = user.progress.module1;
+            const totalSections = 5;
+            let completedSections = 0;
+            
+            // Проверить каждую секцию
+            for (let i = 1; i <= totalSections; i++) {
+                const sectionId = `section${i}`;
+                if (progress[sectionId]) {
+                    completedSections++;
+                    document.getElementById(`${sectionId}-completion`).style.display = 'block';
+                }
+            }
+            
+            // Рассчитать процент прогресса
+            const progressPercent = Math.round((completedSections / totalSections) * 100);
+            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
+            
+            // Если модуль завершен
+            if (completedSections === totalSections) {
+                document.getElementById('completion-badge').style.display = 'block';
+                document.getElementById('completion-message').style.display = 'block';
+                document.getElementById('next-module-btn').style.pointerEvents = 'auto';
+                document.getElementById('next-module-btn').style.opacity = '1';
+                
+                // Отметить модуль как завершенный в общем прогрессе
+                if (!user.progress.completedModules) {
+                    user.progress.completedModules = [];
+                }
+                if (!user.progress.completedModules.includes('module1')) {
+                    user.progress.completedModules.push('module1');
+                    
+                    // Обновить данные пользователя
+                    const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+                    const userIndex = users.findIndex(u => u.id === user.id);
+                    if (userIndex !== -1) {
+                        users[userIndex] = user;
+                        localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                    }
+                }
+            }
+        }
+        
+        // Отслеживание прокрутки для отметки секций как прочитанных
+        function setupScrollTracking() {
+            const sections = [
+                { id: 'section1', element: document.getElementById('section1') },
+                { id: 'section2', element: document.getElementById('section2') },
+                { id: 'section3', element: document.getElementById('section3') },
+                { id: 'section4', element: document.getElementById('section4') },
+                { id: 'section5', element: document.getElementById('section5') }
+            ];
+            
+            function checkSections() {
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                
+                sections.forEach(section => {
+                    const sectionTop = section.element.offsetTop;
+                    const sectionHeight = section.element.offsetHeight;
+                    
+                    // Если секция видна на 70%
+                    if (scrollPosition > sectionTop + (sectionHeight * 0.7)) {
+                        saveProgress(section.id);
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkSections);
+            // Проверить сразу при загрузке (на случай, если пользователь уже прокрутил)
+            setTimeout(checkSections, 1000);
+        }
+        
+        // ==================== СИСТЕМА ПЕРЕВОДА ====================
+        
         // Тексты на казахском
         const kzTexts = {
             logo: "Жасыл әлем",
@@ -511,8 +801,14 @@
             slideTitle: "Презентация",
             slideNote: "Презентацияны толық экран режимінде қарау үшін оны ашыңыз",
             slideUrl: "https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000",
+            completedText: "Аяқталды",
+            progressText: "Оқу процесі:",
+            congratsText: "Құттықтаймыз!",
+            completionDesc: "Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!",
+            testBtnText: "Модуль бойынша тестті тапсыру",
             prevBtn: "Модульдер тізімі",
-            nextBtn: "Келесі модуль"
+            nextBtn: "Келесі модуль",
+            logoutText: "Шығу"
         };
         
         // Тексты на русском
@@ -543,7 +839,7 @@
                 ["Покровная ткань", "Защищает растение от внешних воздействий", "На внешней поверхности растения"],
                 ["Основная ткань", "Фотосинтез, накопление питательных веществ", "В листьях, стеблях, плодах"],
                 ["Проводящая ткань", "Транспорт воды и питательных веществ", "В стеблях, корнях, жилках"],
-                ["Механическая ткань", "Обеспечивает прочность и устойчивость", "В стеблях, корнях, жилках"]
+                ["Механическая ткани", "Обеспечивает прочность и устойчивость", "В стеблях, корнях, жилках"]
             ],
             section4: "Сравнение растений с другими организмами",
             section4p1: "Основные особенности, отличающие растений от животных и грибов:",
@@ -560,8 +856,14 @@
             slideTitle: "Презентация",
             slideNote: "Откройте презентацию в полноэкранном режиме для лучшего просмотра",
             slideUrl: "https://docs.google.com/presentation/d/1J8Kif_nFNHQkj75cQjLCjUWEy6vKQbLStsYOt21Oy28/embed?start=false&loop=false&delayms=3000",
+            completedText: "Завершено",
+            progressText: "Процесс обучения:",
+            congratsText: "Поздравляем!",
+            completionDesc: "Вы успешно завершили этот модуль. Готовы перейти к следующему!",
+            testBtnText: "Пройти тест по модулю",
             prevBtn: "Список модулей",
-            nextBtn: "Следующий модуль"
+            nextBtn: "Следующий модуль",
+            logoutText: "Выйти"
         };
         
         // Установка казахского языка по умолчанию
@@ -637,8 +939,15 @@
             document.getElementById('slide-note').textContent = kzTexts.slideNote;
             document.getElementById('slide-iframe').src = kzTexts.slideUrl;
             
+            // Обновление прогресса
+            document.getElementById('completed-text').textContent = kzTexts.completedText;
+            document.getElementById('progress-text').textContent = kzTexts.progressText;
+            document.getElementById('congrats-text').textContent = kzTexts.congratsText;
+            document.getElementById('completion-desc').textContent = kzTexts.completionDesc;
+            document.getElementById('test-btn-text').textContent = kzTexts.testBtnText;
             document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
             document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+            document.getElementById('logout-text').textContent = kzTexts.logoutText;
         }
         
         // Установка русского языка
@@ -714,17 +1023,43 @@
             document.getElementById('slide-note').textContent = ruTexts.slideNote;
             document.getElementById('slide-iframe').src = ruTexts.slideUrl;
             
+            // Обновление прогресса
+            document.getElementById('completed-text').textContent = ruTexts.completedText;
+            document.getElementById('progress-text').textContent = ruTexts.progressText;
+            document.getElementById('congrats-text').textContent = ruTexts.congratsText;
+            document.getElementById('completion-desc').textContent = ruTexts.completionDesc;
+            document.getElementById('test-btn-text').textContent = ruTexts.testBtnText;
             document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
             document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+            document.getElementById('logout-text').textContent = ruTexts.logoutText;
         }
         
-        // Обработчики кнопок переключения языка
-        document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
-        document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
         
-        // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
+            // Проверка авторизации
+            const user = checkAuth();
+            if (user) {
+                showUserInfo(user);
+                
+                // Настройка отслеживания прогресса
+                setupScrollTracking();
+                
+                // Обновление отображения прогресса
+                updateProgressDisplay(user);
+            }
+            
+            // Установка языка
             setKazakhLanguage();
+            
+            // Обработчики событий
+            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+            document.getElementById('logout-btn').addEventListener('click', logout);
+            
+            // Изначально заблокировать кнопку следующего модуля
+            document.getElementById('next-module-btn').style.pointerEvents = 'none';
+            document.getElementById('next-module-btn').style.opacity = '0.5';
         });
     </script>
 </body>
