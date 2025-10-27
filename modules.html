@@ -6,7 +6,6 @@
     <title>Оқу модульдері - Жасыл әлем</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Существующие стили остаются без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -53,6 +52,38 @@
         
         .logo i {
             margin-right: 10px;
+        }
+        
+        .settings-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .device-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .device-btn {
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .device-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .device-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .language-switcher {
@@ -284,6 +315,37 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         
+        /* Стили для мобильного вида */
+        body.mobile-view .container {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        body.mobile-view .modules-content {
+            padding: 20px;
+        }
+        
+        body.mobile-view .page-title {
+            font-size: 2rem;
+        }
+        
+        body.mobile-view .module-card {
+            padding: 20px;
+        }
+        
+        body.mobile-view .module-title {
+            font-size: 1.2rem;
+        }
+        
+        body.mobile-view .module-description {
+            font-size: 0.95rem;
+            min-height: 70px;
+        }
+        
+        body.mobile-view .modules-grid {
+            gap: 15px;
+        }
+        
         footer {
             text-align: center;
             padding: 25px;
@@ -320,6 +382,30 @@
             .user-menu {
                 flex-direction: column;
                 gap: 10px;
+            }
+            
+            .settings-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* Для очень маленьких экранов */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .modules-content {
+                padding: 15px;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .module-card {
+                padding: 15px;
             }
         }
     </style>
@@ -360,9 +446,20 @@
                 <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
             </a>
             
-            <div class="language-switcher">
-                <button class="language-btn" id="ru-btn">Рус</button>
-                <button class="language-btn active" id="kz-btn">Қаз</button>
+            <div class="settings-container">
+                <div class="device-switcher">
+                    <button class="device-btn" id="desktop-btn" title="Desktop view">
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button class="device-btn active" id="mobile-btn" title="Mobile view">
+                        <i class="fas fa-mobile-alt"></i>
+                    </button>
+                </div>
+                
+                <div class="language-switcher">
+                    <button class="language-btn" id="ru-btn">Рус</button>
+                    <button class="language-btn active" id="kz-btn">Қаз</button>
+                </div>
             </div>
 
             <!-- Меню пользователя -->
@@ -556,6 +653,43 @@
             alert('Құттықтаймыз! Сіз барлық модульдерді аяқтадыңыз және сырлы модуль ашылды!');
         }
         
+        // Система переключения между desktop/mobile view
+        function setupDeviceSwitcher() {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            
+            // Загрузить сохраненные настройки
+            const savedView = localStorage.getItem('preferredView') || 'auto';
+            setView(savedView);
+            
+            // Обработчики событий
+            desktopBtn.addEventListener('click', () => setView('desktop'));
+            mobileBtn.addEventListener('click', () => setView('mobile'));
+        }
+        
+        function setView(viewType) {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            const body = document.body;
+            
+            // Сбросить активные классы
+            desktopBtn.classList.remove('active');
+            mobileBtn.classList.remove('active');
+            body.classList.remove('desktop-view', 'mobile-view');
+            
+            // Установить выбранный вид
+            if (viewType === 'mobile') {
+                mobileBtn.classList.add('active');
+                body.classList.add('mobile-view');
+            } else if (viewType === 'desktop') {
+                desktopBtn.classList.add('active');
+                body.classList.add('desktop-view');
+            }
+            
+            // Сохранить настройки
+            localStorage.setItem('preferredView', viewType);
+        }
+        
         // Переключение языков
         const ruBtn = document.getElementById('ru-btn');
         const kzBtn = document.getElementById('kz-btn');
@@ -570,6 +704,8 @@
             greeting: "Қош келдіңіз, ",
             simulate: "Прогресті тестілеу (100% жасау)",
             achievement: "Жетістік",
+            desktopView: "Компьютер көрінісі",
+            mobileView: "Телефон көрінісі",
             modules: [
                 {
                     title: "Өсімдіктер әлеміне кіріспе",
@@ -624,6 +760,8 @@
             greeting: "Добро пожаловать, ",
             simulate: "Протестировать прогресс (сделать 100%)",
             achievement: "Достижение",
+            desktopView: "Вид для компьютера",
+            mobileView: "Вид для телефона",
             modules: [
                 {
                     title: "Введение в мир растений",
@@ -683,6 +821,10 @@
             document.getElementById('simulate-text').textContent = kzTexts.simulate;
             document.getElementById('achievement-text').textContent = kzTexts.achievement;
             
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = kzTexts.desktopView;
+            document.getElementById('mobile-btn').title = kzTexts.mobileView;
+            
             for (let i = 0; i < 8; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = kzTexts.modules[i].title;
                 document.getElementById(`module${i+1}-desc`).textContent = kzTexts.modules[i].desc;
@@ -706,6 +848,10 @@
             document.getElementById('user-greeting').textContent = ruTexts.greeting;
             document.getElementById('simulate-text').textContent = ruTexts.simulate;
             document.getElementById('achievement-text').textContent = ruTexts.achievement;
+            
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = ruTexts.desktopView;
+            document.getElementById('mobile-btn').title = ruTexts.mobileView;
             
             for (let i = 0; i < 8; i++) {
                 document.getElementById(`module${i+1}-title`).textContent = ruTexts.modules[i].title;
@@ -734,6 +880,9 @@
             
             // Кнопка для тестирования прогресса
             document.getElementById('simulate-progress').addEventListener('click', simulateProgress);
+            
+            // Настройка переключателя устройств
+            setupDeviceSwitcher();
         });
 
         // Инициализация при загрузке
