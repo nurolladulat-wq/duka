@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Модуль 1 - Өсімдіктер әлеміне кіріспе</title>
+    <title>Оқу модульдері - Жасыл әлем</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,8 +14,11 @@
         }
         
         body {
-            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
-            color: #33691e;
+            background: linear-gradient(rgba(232, 245, 233, 0.9), rgba(200, 230, 201, 0.9)), 
+                        url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #2e7d32;
             min-height: 100vh;
             padding: 20px;
         }
@@ -24,8 +27,8 @@
             max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
         }
         
@@ -51,36 +54,36 @@
             margin-right: 10px;
         }
         
-        .user-info {
+        .settings-container {
             display: flex;
             align-items: center;
             gap: 15px;
-            color: white;
         }
         
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
+        .device-switcher {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
         }
         
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+        .device-btn {
+            padding: 8px 12px;
             border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: none;
+            border-radius: 16px;
             cursor: pointer;
+            color: white;
             transition: all 0.3s ease;
         }
         
-        .logout-btn:hover {
+        .device-btn.active {
             background: white;
             color: #2e7d32;
+        }
+        
+        .device-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .language-switcher {
@@ -127,250 +130,75 @@
             background: white;
             color: #2e7d32;
         }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
         
-        .module-content {
+        .modules-content {
             padding: 40px;
         }
         
-        .module-header {
+        .page-title {
             text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        .completion-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #4caf50;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: none;
-        }
-        
-        .module-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: #2e7d32;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
-        .module-subtitle {
+        .page-subtitle {
+            text-align: center;
             color: #689f38;
+            margin-bottom: 40px;
             font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
         }
         
-        .progress-indicator {
-            margin: 20px 0;
+        /* Стили для видео секции */
+        .video-section {
+            margin-bottom: 40px;
             text-align: center;
         }
         
-        .progress-text {
-            color: #558b2f;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .content-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background: #f9fbf8;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .content-section.active {
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
-            border-left: 5px solid #4caf50;
-        }
-        
-        .section-completion {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: #4caf50;
-            font-size: 1.2rem;
-            display: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .section-completion:hover {
-            transform: scale(1.1);
-        }
-        
-        .section-title {
+        .video-title {
             font-size: 1.6rem;
-            color: #558b2f;
+            color: #2e7d32;
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #c5e1a5;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .section-title i {
-            margin-right: 12px;
-            color: #4caf50;
-            transition: transform 0.3s ease;
-        }
-        
-        .section-title.collapsed i {
-            transform: rotate(-90deg);
-        }
-        
-        .section-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #333;
-            transition: all 0.3s ease;
-            max-height: 1000px;
-            overflow: hidden;
-        }
-        
-        .section-content.collapsed {
-            max-height: 0;
-            opacity: 0;
-        }
-        
-        .section-content p {
-            margin-bottom: 18px;
-            text-align: justify;
-        }
-        
-        .important-note {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 5px solid #4caf50;
-        }
-        
-        .important-note h4 {
-            color: #2e7d32;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .important-note h4 i {
-            margin-right: 10px;
-        }
-        
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .comparison-table th, .comparison-table td {
-            padding: 15px;
-            text-align: left;
-            border: 1px solid #c5e1a5;
-        }
-        
-        .comparison-table th {
-            background: #4caf50;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .comparison-table tr:nth-child(even) {
-            background: #f1f8e9;
-        }
-
-        /* Новые стили для интерактивных элементов */
-        .interactive-element {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #4caf50;
-        }
-        
-        .interactive-title {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #2e7d32;
-        }
-        
-        .interactive-title i {
-            margin-right: 10px;
-            transition: transform 0.3s ease;
-        }
-        
-        .interactive-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .interactive-element.active .interactive-content {
-            max-height: 500px;
-        }
-        
-        .interactive-element.active .interactive-title i {
-            transform: rotate(90deg);
-        }
-        
-        .bookmark-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            color: #757575;
-            transition: all 0.3s ease;
+            gap: 10px;
         }
         
-        .bookmark-btn.active {
-            color: #ff9800;
-        }
-        
-        .bookmark-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        /* Стили для секции с презентацией */
-        .slide-section {
-            margin: 40px 0;
-            text-align: center;
-        }
-        
-        .slide-container {
+        .video-container {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 60%; /* Соотношение сторон 16:9 */
+            padding-bottom: 56.25%; /* Соотношение 16:9 */
+            border-radius: 15px;
             overflow: hidden;
-            border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
+            margin-bottom: 15px;
         }
         
-        .slide-container iframe {
+        .video-iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -379,34 +207,66 @@
             border: none;
         }
         
-        .slide-note {
-            margin-top: 15px;
+        .video-note {
             font-style: italic;
             color: #689f38;
+            font-size: 0.9rem;
         }
         
-        .completion-message {
-            background: #e8f5e9;
-            border: 2px solid #4caf50;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0;
-            display: none;
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
         
-        .completion-message h3 {
-            color: #2e7d32;
-            margin-bottom: 10px;
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4caf50;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .navigation-buttons {
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .module-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #4caf50;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
-        .nav-btn {
+        .module-title {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .module-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+        
+        .start-module-btn {
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
             border: none;
@@ -416,45 +276,120 @@
             font-weight: 600;
             display: flex;
             align-items: center;
+            justify-content: center;
+            width: 100%;
             transition: all 0.3s ease;
-            text-decoration: none;
         }
         
-        .nav-btn i {
-            margin: 0 8px;
+        .start-module-btn i {
+            margin-left: 8px;
         }
         
-        .nav-btn:hover {
+        .start-module-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
         }
         
-        .nav-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+        .progress-section {
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
         }
         
-        .test-btn {
+        .progress-text {
+            font-size: 1.1rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        /* Новые стили для секретного модуля */
+        .secret-module {
+            display: none;
+            border-left: 5px solid #ff9800;
+            background: linear-gradient(135deg, #fff8e1, #fff);
+        }
+        
+        .secret-module .module-number {
+            background: #ff9800;
+        }
+        
+        .secret-title {
+            color: #ff9800;
+        }
+        
+        .secret-btn {
             background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+        
+        .secret-btn:hover {
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+        
+        .achievement-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ff9800;
             color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 20px auto;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(-15deg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Стили для мобильного вида */
+        body.mobile-view .container {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        body.mobile-view .modules-content {
+            padding: 20px;
+        }
+        
+        body.mobile-view .page-title {
+            font-size: 2rem;
+        }
+        
+        body.mobile-view .video-title {
+            font-size: 1.3rem;
+        }
+        
+        body.mobile-view .module-card {
+            padding: 20px;
+        }
+        
+        body.mobile-view .module-title {
             font-size: 1.2rem;
         }
         
-        .test-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        body.mobile-view .module-description {
+            font-size: 0.95rem;
+            min-height: 70px;
+        }
+        
+        body.mobile-view .modules-grid {
+            gap: 15px;
         }
         
         footer {
@@ -471,58 +406,17 @@
             text-decoration: underline;
         }
         
-        /* Стили для заметок пользователя */
-        .notes-section {
-            margin: 30px 0;
-            background: #fffde7;
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #ffd54f;
-        }
-        
-        .notes-title {
-            color: #f57f17;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .notes-title i {
-            margin-right: 10px;
-        }
-        
-        .notes-textarea {
-            width: 100%;
-            min-height: 100px;
-            border: 1px solid #ffe082;
-            border-radius: 5px;
-            padding: 10px;
-            font-family: inherit;
-            resize: vertical;
-        }
-        
-        .save-notes-btn {
-            background: #ffb300;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .save-notes-btn:hover {
-            background: #ff8f00;
-        }
-        
         @media (max-width: 768px) {
-            .module-content {
+            .modules-content {
                 padding: 20px;
             }
             
-            .module-title {
-                font-size: 1.8rem;
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .modules-grid {
+                grid-template-columns: 1fr;
             }
             
             header {
@@ -530,932 +424,546 @@
                 gap: 15px;
                 text-align: center;
             }
-            
-            .user-info {
+
+            .user-menu {
                 flex-direction: column;
                 gap: 10px;
             }
             
-            .navigation-buttons {
+            .settings-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
+            }
+        }
+        
+        /* Для очень маленьких экранов */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
             }
             
-            .nav-btn {
-                width: 100%;
-                justify-content: center;
+            .modules-content {
+                padding: 15px;
             }
-
-            .slide-container {
-                padding-bottom: 70%; /* Немного больше для мобильных устройств */
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .module-card {
+                padding: 15px;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Скрипт проверки авторизации -->
+    <script>
+        // Проверка авторизации
+        function getCurrentUser() {
+            return JSON.parse(localStorage.getItem('currentUser'));
+        }
+        
+        function checkAuth() {
+            const user = getCurrentUser();
+            if (!user) {
+                alert('Бұл бетке кіру үшін тіркелу қажет!');
+                window.location.href = 'index.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // Проверяем авторизацию при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!checkAuth()) return;
+            
+            // Показываем информацию о пользователе
+            const user = getCurrentUser();
+            if (user) {
+                console.log('Добро пожаловать, ' + user.name);
+            }
+        });
+    </script>
+
     <div class="container">
         <header>
-            <a href="modules.html" class="logo">
+            <a href="index.html" class="logo">
                 <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
             </a>
             
-            <div class="user-info" id="user-info" style="display: none;">
-                <div class="user-avatar">
-                    <i class="fas fa-user"></i>
+            <div class="settings-container">
+                <div class="device-switcher">
+                    <button class="device-btn" id="desktop-btn" title="Desktop view">
+                        <i class="fas fa-desktop"></i>
+                    </button>
+                    <button class="device-btn active" id="mobile-btn" title="Mobile view">
+                        <i class="fas fa-mobile-alt"></i>
+                    </button>
                 </div>
-                <span id="user-name">Пайдаланушы</span>
-                <button class="logout-btn" id="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i> <span id="logout-text">Шығу</span>
+                
+                <div class="language-switcher">
+                    <button class="language-btn" id="ru-btn">Рус</button>
+                    <button class="language-btn active" id="kz-btn">Қаз</button>
+                </div>
+            </div>
+
+            <!-- Меню пользователя -->
+            <div class="user-menu">
+                <span id="user-greeting">Қош келдіңіз, <span id="user-display-name"></span>!</span>
+                <button class="logout-btn" id="modules-logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Шығу
                 </button>
             </div>
             
-            <div class="language-switcher">
-                <button class="language-btn" id="ru-btn">Рус</button>
-                <button class="language-btn active" id="kz-btn">Қаз</button>
-            </div>
-            
-            <a href="modules.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> <span id="back-text">Модульдер тізімі</span>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Басты бетке</span>
             </a>
         </header>
         
-        <div class="module-content">
-            <div class="module-header">
-                <div class="completion-badge" id="completion-badge">
-                    <i class="fas fa-check-circle"></i> <span id="completed-text">Аяқталды</span>
+        <div class="modules-content">
+            <h1 class="page-title" id="page-title">Оқу модульдері</h1>
+            <p class="page-subtitle" id="page-subtitle">7-сынып биологиясы бойынша толық курс</p>
+            
+            <!-- Секция с видео -->
+            <div class="video-section">
+                <h2 class="video-title">
+                    <i class="fas fa-play-circle"></i> <span id="video-title">Курс жайлы бейне</span>
+                </h2>
+                <div class="video-container">
+                    <iframe class="video-iframe" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=y8NlboUalEj_D7sA" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
                 </div>
-                <h1 class="module-title" id="module-title">Модуль 1: Өсімдіктер әлеміне кіріспе</h1>
-                <p class="module-subtitle" id="module-subtitle">Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы</p>
+                <p class="video-note" id="video-note">Бейнені толық экран режимінде қарау үшін оны ашыңыз</p>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-text" id="progress-text">Жалпы прогресс: <span>0%</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button id="simulate-progress" class="start-module-btn" style="width: auto; padding: 8px 16px;">
+                        <span id="simulate-text">Прогресті тестілеу (100% жасау)</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="modules-grid">
+                <!-- Модуль 1 -->
+                <div class="module-card">
+                    <div class="module-number">1</div>
+                    <h3 class="module-title" id="module1-title">Өсімдіктер әлеміне кіріспе</h3>
+                    <p class="module-description" id="module1-desc">Өсімдіктер дүниесін зерттеудің негіздері, өсімдіктердің жіктелуі және олардың биологиялық маңызы.</p>
+                    <button class="start-module-btn" onclick="startModule(1)">
+                        <span id="module1-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
                 
-                <div class="progress-indicator">
-                    <div class="progress-text" id="progress-text">Оқу процесі: <span id="progress-percent">0%</span></div>
+                <!-- Модуль 2 -->
+                <div class="module-card">
+                    <div class="module-number">2</div>
+                    <h3 class="module-title" id="module2-title">Төменгі және жоғары сатыдағы өсімдіктер</h3>
+                    <p class="module-description" id="module2-desc">Өсімдіктердің эволюциялық дамуы, төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері.</p>
+                    <button class="start-module-btn" onclick="startModule(2)">
+                        <span id="module2-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
-            </div>
-            
-            <!-- Секция заметок пользователя -->
-            <div class="notes-section">
-                <h3 class="notes-title"><i class="fas fa-sticky-note"></i> <span id="notes-title">Жеке жазбалар</span></h3>
-                <textarea class="notes-textarea" id="user-notes" placeholder="Модуль бойынша жазбаларыңызды осы жерге жазыңыз..."></textarea>
-                <button class="save-notes-btn" id="save-notes-btn">
-                    <i class="fas fa-save"></i> <span id="save-notes-text">Сақтау</span>
-                </button>
-            </div>
-            
-            <div class="content-section" id="section1">
-                <button class="bookmark-btn" id="bookmark1" data-section="section1">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <div class="section-completion" id="section1-completion">
-                    <i class="fas fa-check-circle"></i>
+                
+                <!-- Модуль 3 -->
+                <div class="module-card">
+                    <div class="module-number">3</div>
+                    <h3 class="module-title" id="module3-title">Тұқымды өсімдіктер</h3>
+                    <p class="module-description" id="module3-desc">Тұқымды өсімдіктердің құрылысы, түрлері және олардың таралу ерекшеліктері.</p>
+                    <button class="start-module-btn" onclick="startModule(3)">
+                        <span id="module3-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
-                <h2 class="section-title" id="section1-title-toggle">
-                    <i class="fas fa-chevron-down"></i> <span id="section1-title">Өсімдіктер деген не? Табиғаттағы рөлі</span>
-                </h2>
-                <div class="section-content" id="section1-content">
-                    <p id="section1-p1">Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.</p>
-                    
-                    <div class="important-note">
-                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі айырмашылық</span></h4>
-                        <p id="important-note1-text">Өсімдіктердің басқа организмдерден негізгі айырмашылығы - олар күн энергиясы, су және көмірқышқыл газын пайдаланып органикалық заттарды өздері жасай алады (автотрофты азықтану). Сонымен қатар, өсімдіктер әдетте бекітілген тіршілік етеді және бүкіл өмірінде өседі.</p>
+                
+                <!-- Модуль 4 -->
+                <div class="module-card">
+                    <div class="module-number">4</div>
+                    <h3 class="module-title" id="module4-title">Вегетативті органдар</h3>
+                    <p class="module-description" id="module4-desc">Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ құрылысы мен функциялары.</p>
+                    <button class="start-module-btn" onclick="startModule(4)">
+                        <span id="module4-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 5 -->
+                <div class="module-card">
+                    <div class="module-number">5</div>
+                    <h3 class="module-title" id="module5-title">Өмірлік процестер</h3>
+                    <p class="module-description" id="module5-desc">Өсімдіктердің негізгі өмірлік процестері: фотосинтез, тыныс алу, тамырмен сіңіру.</p>
+                    <button class="start-module-btn" onclick="startModule(5)">
+                        <span id="module5-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 6 -->
+                <div class="module-card">
+                    <div class="module-number">6</div>
+                    <h3 class="module-title" id="module6-title">Өсімдіктердің көбеюі</h3>
+                    <p class="module-description" id="module6-desc">Өсімдіктердің жыныстық және жыныссыз көбею түрлері, вегетативтік көбею әдістері.</p>
+                    <button class="start-module-btn" onclick="startModule(6)">
+                        <span id="module6-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Модуль 7 -->
+                <div class="module-card">
+                    <div class="module-number">7</div>
+                    <h3 class="module-title" id="module7-title">Өсімдіктер және экология</h3>
+                    <p class="module-description" id="module7-desc">Өсімдіктердің экожүйедегі рөлі, табиғатты қорғаудағы маңызы және экологиялық мәселелер.</p>
+                    <button class="start-module-btn" onclick="startModule(7)">
+                        <span id="module7-btn">Оқуды бастау</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Секретный модуль 8 -->
+                <div class="module-card secret-module" id="secret-module">
+                    <div class="achievement-badge">
+                        <i class="fas fa-trophy"></i> <span id="achievement-text">Жетістік</span>
                     </div>
-                    
-                    <!-- Интерактивный элемент -->
-                    <div class="interactive-element" id="interactive1">
-                        <div class="interactive-title">
-                            <i class="fas fa-chevron-right"></i>
-                            <span id="interactive1-title">Фотосинтез туралы қосымша ақпарат</span>
-                        </div>
-                        <div class="interactive-content">
-                            <p id="interactive1-text">Фотосинтез - бұл өсімдіктердің күн энергиясын химиялық энергияға айналдыру процесі. Бұл процесс кезінде көмірқышқыл газы мен су қант пен оттегіге айналады. Фотосинтез теңдеуі: 6CO₂ + 6H₂O + жарық энергиясы → C₆H₁₂O₆ + 6O₂</p>
-                        </div>
-                    </div>
+                    <div class="module-number">8</div>
+                    <h3 class="module-title secret-title" id="module8-title">Сырлы модуль</h3>
+                    <p class="module-description" id="module8-desc">Құттықтаймыз! Сіз барлық модульдерді бітірдіңіз. Бұл сізге арналған арнайы модуль.</p>
+                    <button class="start-module-btn secret-btn" onclick="startModule(8)">
+                        <span id="module8-btn">Сырды ашу</span> <i class="fas fa-key"></i>
+                    </button>
                 </div>
-            </div>
-            
-            <div class="content-section" id="section2">
-                <button class="bookmark-btn" id="bookmark2" data-section="section2">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <div class="section-completion" id="section2-completion">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="section-title" id="section2-title-toggle">
-                    <i class="fas fa-chevron-down"></i> <span id="section2-title">Өсімдіктердің клеткалық құрылымы</span>
-                </h2>
-                <div class="section-content" id="section2-content">
-                    <p id="section2-p1">Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:</p>
-                    
-                    <ul id="section2-list">
-                        <li>Клетка қабырғасы - целлюлозадан тұратын, өсімдікке қажетті қаттылық пен құрылым береді</li>
-                        <li>Хлоропласттар - фотосинтез процесін жүзеге асыратын органеллалар</li>
-                        <li>Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды</li>
-                        <li>Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар</li>
-                    </ul>
-                    
-                    <!-- Интерактивный элемент -->
-                    <div class="interactive-element" id="interactive2">
-                        <div class="interactive-title">
-                            <i class="fas fa-chevron-right"></i>
-                            <span id="interactive2-title">Клетка құрылымының қызықты фактілері</span>
-                        </div>
-                        <div class="interactive-content">
-                            <p id="interactive2-text">Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Секция с презентацией -->
-            <div class="slide-section" id="section3">
-                <button class="bookmark-btn" id="bookmark3" data-section="section3">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <div class="section-completion" id="section3-completion">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="section-title" id="section3-title-toggle">
-                    <i class="fas fa-chevron-down"></i> <span id="slide-title">Презентация</span>
-                </h2>
-                <div class="section-content" id="section3-content">
-                    <div class="slide-container">
-                        <iframe id="slide-iframe" src="https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000" 
-                                frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                    </div>
-                    <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
-                </div>
-            </div>
-            
-            <div class="content-section" id="section4">
-                <button class="bookmark-btn" id="bookmark4" data-section="section4">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <div class="section-completion" id="section4-completion">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="section-title" id="section4-title-toggle">
-                    <i class="fas fa-chevron-down"></i> <span id="section3-title">Өсімдіктердің тіндері: түрлері мен функциялары</span>
-                </h2>
-                <div class="section-content" id="section4-content">
-                    <p id="section3-p1">Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:</p>
-                    
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th id="table-header1">Тін түрі</th>
-                                <th id="table-header2">Функциялары</th>
-                                <th id="table-header3">Орналасуы</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="table1-cell1">Өсу тіні (меристема)</td>
-                                <td id="table1-cell2">Өсімдіктің өсуін қамтамасыз етеді</td>
-                                <td id="table1-cell3">Сабақ ұшында, тамыр ұшында, бүршіклерде</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-cell1">Қабық тіні</td>
-                                <td id="table2-cell2">Өсімдікті сыртқы әсерлерден қорғайды</td>
-                                <td id="table2-cell3">Өсімдіктің сыртқу бетінде</td>
-                            </tr>
-                            <tr>
-                                <td id="table3-cell1">Негізгі тін</td>
-                                <td id="table3-cell2">Фотосинтез, қоректену заттарын жинақтау</td>
-                                <td id="table3-cell3">Жапырақтарда, сабақтарда, жемістерде</td>
-                            </tr>
-                            <tr>
-                                <td id="table4-cell1">Жеткізуші тін</td>
-                                <td id="table4-cell2">Су мен қоректік заттарды тасымалдау</td>
-                                <td id="table4-cell3">Сабақтарда, тамырларда, тамыржолдарында</td>
-                            </tr>
-                            <tr>
-                                <td id="table5-cell1">Механикалық тін</td>
-                                <td id="table5-cell2">Қаттылық пен тұрақтылықты қамтамасыз етеді</td>
-                                <td id="table5-cell3">Сабақтарда, тамырларда, тамыржолдарында</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="content-section" id="section5">
-                <button class="bookmark-btn" id="bookmark5" data-section="section5">
-                    <i class="far fa-bookmark"></i>
-                </button>
-                <div class="section-completion" id="section5-completion">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="section-title" id="section5-title-toggle">
-                    <i class="fas fa-chevron-down"></i> <span id="section4-title">Өсімдіктер мен басқа организмдерді салыстыру</span>
-                </h2>
-                <div class="section-content" id="section5-content">
-                    <p id="section4-p1">Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:</p>
-                    
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th id="table2-header1">Сипаттама</th>
-                                <th id="table2-header2">Өсімдіктер</th>
-                                <th id="table2-header3">Жануарлар</th>
-                                <th id="table2-header4">Саңырауқұлақтар</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="table2-1-cell1">Азықтану түрі</td>
-                                <td id="table2-1-cell2">Автотрофты (өздігінен)</td>
-                                <td id="table2-1-cell3">Гетеротрофты (дайын)</td>
-                                <td id="table2-1-cell4">Гетеротрофты (дайын)</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-2-cell1">Қозғалғыштық</td>
-                                <td id="table2-2-cell2">Бекітілген</td>
-                                <td id="table2-2-cell3">Қозғалмалы</td>
-                                <td id="table2-2-cell4">Бекітілген</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-3-cell1">Клетка қабырғасы</td>
-                                <td id="table2-3-cell2">Целлюлозадан</td>
-                                <td id="table2-3-cell3">Жоқ</td>
-                                <td id="table2-3-cell4">Хитиннен</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-4-cell1">Энергия көзі</td>
-                                <td id="table2-4-cell2">Күн сәулесі</td>
-                                <td id="table2-4-cell3">Органикалық заттар</td>
-                                <td id="table2-4-cell4">Органикалық заттар</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="completion-message" id="completion-message">
-                <h3><i class="fas fa-trophy"></i> <span id="congrats-text">Құттықтаймыз!</span></h3>
-                <p id="completion-desc">Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!</p>
-            </div>
-            
-            <div style="text-align: center; margin: 30px 0;">
-                <a href="test1.html" class="test-btn" id="test-btn">
-                    <i class="fas fa-graduation-cap"></i> <span id="test-btn-text">Модуль бойынша тестті тапсыру</span>
-                </a>
-            </div>
-            
-            <div class="navigation-buttons">
-                <a href="modules.html" class="nav-btn">
-                    <i class="fas fa-arrow-left"></i> <span id="prev-btn">Модульдер тізімі</span>
-                </a>
-                <a href="module2.html" class="nav-btn" id="next-module-btn">
-                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
-                </a>
             </div>
         </div>
         
         <footer>
-            <p>7-сыныпқа арналған биологияны оқыту платформасы | <span class="author">Автор</span></p>
+            <p>7-сыныпқа арналған биологияны оқыту платформасы | 
+               <span class="author" onclick="openAuthorPage()">Автор</span>
+            </p>
         </footer>
     </div>
 
     <script>
-        // ==================== СИСТЕМА АВТОРИЗАЦИИ ====================
-        
-        // Проверка авторизации
-        function checkAuth() {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            if (!user) {
-                alert('Бұл модульді көру үшін жүйеге кіру қажет!');
-                window.location.href = 'index.html';
-                return false;
-            }
-            return user;
+        // Функция для перехода на страницу автора
+        function openAuthorPage() {
+            window.open('https://example.com/author', '_blank');
         }
         
-        // Показать информацию пользователя
-        function showUserInfo(user) {
-            document.getElementById('user-info').style.display = 'flex';
-            document.getElementById('user-name').textContent = user.name;
-        }
-        
-        // Выход из системы
-        function logout() {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'index.html';
-        }
-        
-        // ==================== СИСТЕМА ПРОГРЕССА ====================
-        
-        // Сохранение прогресса
-        function saveProgress(sectionId) {
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            if (!user) return;
-            
-            const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
-            const userIndex = users.findIndex(u => u.id === user.id);
-            
-            if (userIndex !== -1) {
-                if (!users[userIndex].progress) {
-                    users[userIndex].progress = {};
-                }
-                if (!users[userIndex].progress.module1) {
-                    users[userIndex].progress.module1 = {};
-                }
-                
-                users[userIndex].progress.module1[sectionId] = true;
-                localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
-                
-                // Обновить текущего пользователя
-                const updatedUser = users[userIndex];
-                localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-                
-                updateProgressDisplay(updatedUser);
+        // Функция для начала изучения модуля
+        function startModule(moduleNumber) {
+            // Переход на соответствующую страницу модуля
+            switch(moduleNumber) {
+                case 1:
+                    window.location.href = 'module1.html';
+                    break;
+                case 2:
+                    window.location.href = 'module2.html';
+                    break;
+                case 3:
+                    window.location.href = 'module3.html';
+                    break;
+                case 4:
+                    window.location.href = 'module4.html';
+                    break;
+                case 5:
+                    window.location.href = 'module5.html';
+                    break;
+                case 6:
+                    window.location.href = 'module6.html';
+                    break;
+                case 7:
+                    window.location.href = 'module7.html';
+                    break;
+                case 8:
+                    // Специальная страница для секретного модуля
+                    alert('Құттықтаймыз! Сіз сырлы модульді аштыңыз! Бұл үлкен жетістік!');
+                    // window.location.href = 'secret-module.html';
+                    break;
+                default:
+                    alert('Модуль табылмады');
             }
         }
         
-        // Обновление отображения прогресса
-        function updateProgressDisplay(user) {
-            if (!user || !user.progress || !user.progress.module1) return;
+        // Обновление прогресса и проверка секретного модуля
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.querySelector('.progress-text span');
+            const secretModule = document.getElementById('secret-module');
             
-            const progress = user.progress.module1;
-            const totalSections = 5;
-            let completedSections = 0;
+            // Получаем прогресс из localStorage или устанавливаем 0
+            let progress = localStorage.getItem('userProgress') || 0;
+            progress = parseInt(progress);
             
-            // Проверить каждую секцию
-            for (let i = 1; i <= totalSections; i++) {
-                const sectionId = `section${i}`;
-                if (progress[sectionId]) {
-                    completedSections++;
-                    document.getElementById(`${sectionId}-completion`).style.display = 'block';
-                }
-            }
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `${progress}%`;
             
-            // Рассчитать процент прогресса
-            const progressPercent = Math.round((completedSections / totalSections) * 100);
-            document.getElementById('progress-percent').textContent = `${progressPercent}%`;
-            
-            // Если модуль завершен
-            if (completedSections === totalSections) {
-                document.getElementById('completion-badge').style.display = 'block';
-                document.getElementById('completion-message').style.display = 'block';
-                document.getElementById('next-module-btn').style.pointerEvents = 'auto';
-                document.getElementById('next-module-btn').style.opacity = '1';
-                
-                // Отметить модуль как завершенный в общем прогрессе
-                if (!user.progress.completedModules) {
-                    user.progress.completedModules = [];
-                }
-                if (!user.progress.completedModules.includes('module1')) {
-                    user.progress.completedModules.push('module1');
-                    
-                    // Обновить данные пользователя
-                    const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
-                    const userIndex = users.findIndex(u => u.id === user.id);
-                    if (userIndex !== -1) {
-                        users[userIndex] = user;
-                        localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                    }
-                }
+            // Показываем секретный модуль, если прогресс 100%
+            if (progress >= 100) {
+                secretModule.style.display = 'block';
+                // Сохраняем достижение
+                localStorage.setItem('secretUnlocked', 'true');
             }
         }
         
-        // Отслеживание прокрутки для отметки секций как прочитанных
-        function setupScrollTracking() {
-            const sections = [
-                { id: 'section1', element: document.getElementById('section1') },
-                { id: 'section2', element: document.getElementById('section2') },
-                { id: 'section3', element: document.getElementById('section3') },
-                { id: 'section4', element: document.getElementById('section4') },
-                { id: 'section5', element: document.getElementById('section5') }
-            ];
+        // Функция для симуляции прогресса (для тестирования)
+        function simulateProgress() {
+            localStorage.setItem('userProgress', 100);
+            updateProgress();
+            alert('Құттықтаймыз! Сіз барлық модульдерді аяқтадыңыз және сырлы модуль ашылды!');
+        }
+        
+        // Система переключения между desktop/mobile view
+        function setupDeviceSwitcher() {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
             
-            function checkSections() {
-                const scrollPosition = window.scrollY + window.innerHeight;
-                const user = JSON.parse(localStorage.getItem('currentUser'));
-                
-                sections.forEach(section => {
-                    const sectionTop = section.element.offsetTop;
-                    const sectionHeight = section.element.offsetHeight;
-                    
-                    // Если секция видна на 70%
-                    if (scrollPosition > sectionTop + (sectionHeight * 0.7)) {
-                        saveProgress(section.id);
-                    }
-                });
+            // Загрузить сохраненные настройки
+            const savedView = localStorage.getItem('preferredView') || 'auto';
+            setView(savedView);
+            
+            // Обработчики событий
+            desktopBtn.addEventListener('click', () => setView('desktop'));
+            mobileBtn.addEventListener('click', () => setView('mobile'));
+        }
+        
+        function setView(viewType) {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            const body = document.body;
+            
+            // Сбросить активные классы
+            desktopBtn.classList.remove('active');
+            mobileBtn.classList.remove('active');
+            body.classList.remove('desktop-view', 'mobile-view');
+            
+            // Установить выбранный вид
+            if (viewType === 'mobile') {
+                mobileBtn.classList.add('active');
+                body.classList.add('mobile-view');
+            } else if (viewType === 'desktop') {
+                desktopBtn.classList.add('active');
+                body.classList.add('desktop-view');
             }
             
-            window.addEventListener('scroll', checkSections);
-            // Проверить сразу при загрузке (на случай, если пользователь уже прокрутил)
-            setTimeout(checkSections, 1000);
+            // Сохранить настройки
+            localStorage.setItem('preferredView', viewType);
         }
         
-        // ==================== НОВЫЕ ФУНКЦИИ ====================
-        
-        // Система закладок
-        function setupBookmarks() {
-            const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
-            
-            bookmarkButtons.forEach(btn => {
-                // Загрузить сохраненные закладки
-                const user = JSON.parse(localStorage.getItem('currentUser'));
-                if (user && user.bookmarks && user.bookmarks.module1) {
-                    const sectionId = btn.getAttribute('data-section');
-                    if (user.bookmarks.module1.includes(sectionId)) {
-                        btn.classList.add('active');
-                        btn.innerHTML = '<i class="fas fa-bookmark"></i>';
-                    }
-                }
-                
-                // Обработчик клика на закладку
-                btn.addEventListener('click', function() {
-                    const sectionId = this.getAttribute('data-section');
-                    const user = JSON.parse(localStorage.getItem('currentUser'));
-                    
-                    if (user) {
-                        if (!user.bookmarks) user.bookmarks = {};
-                        if (!user.bookmarks.module1) user.bookmarks.module1 = [];
-                        
-                        const index = user.bookmarks.module1.indexOf(sectionId);
-                        
-                        if (index === -1) {
-                            // Добавить закладку
-                            user.bookmarks.module1.push(sectionId);
-                            this.classList.add('active');
-                            this.innerHTML = '<i class="fas fa-bookmark"></i>';
-                            
-                            // Показать уведомление
-                            showNotification('Бетбелгі қосылды!', 'success');
-                        } else {
-                            // Удалить закладку
-                            user.bookmarks.module1.splice(index, 1);
-                            this.classList.remove('active');
-                            this.innerHTML = '<i class="far fa-bookmark"></i>';
-                            
-                            // Показать уведомление
-                            showNotification('Бетбелгі жойылды!', 'info');
-                        }
-                        
-                        // Сохранить изменения
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                        
-                        // Обновить данные в общем списке пользователей
-                        const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
-                        const userIndex = users.findIndex(u => u.id === user.id);
-                        if (userIndex !== -1) {
-                            users[userIndex] = user;
-                            localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
-                        }
-                    }
-                });
-            });
-        }
-        
-        // Система сворачивания/разворачивания секций
-        function setupCollapsibleSections() {
-            const sectionTitles = document.querySelectorAll('.section-title');
-            
-            sectionTitles.forEach(title => {
-                title.addEventListener('click', function() {
-                    const content = this.nextElementSibling;
-                    this.classList.toggle('collapsed');
-                    content.classList.toggle('collapsed');
-                    
-                    // Прокрутить к секции, если она сворачивается
-                    if (!content.classList.contains('collapsed')) {
-                        this.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            });
-        }
-        
-        // Интерактивные элементы (аккордеоны)
-        function setupInteractiveElements() {
-            const interactiveElements = document.querySelectorAll('.interactive-element');
-            
-            interactiveElements.forEach(element => {
-                const title = element.querySelector('.interactive-title');
-                
-                title.addEventListener('click', function() {
-                    element.classList.toggle('active');
-                });
-            });
-        }
-        
-        // Система заметок
-        function setupNotesSystem() {
-            const notesTextarea = document.getElementById('user-notes');
-            const saveNotesBtn = document.getElementById('save-notes-btn');
-            
-            // Загрузить сохраненные заметки
-            const user = JSON.parse(localStorage.getItem('currentUser'));
-            if (user && user.notes && user.notes.module1) {
-                notesTextarea.value = user.notes.module1;
-            }
-            
-            // Обработчик сохранения заметок
-            saveNotesBtn.addEventListener('click', function() {
-                const user = JSON.parse(localStorage.getItem('currentUser'));
-                if (user) {
-                    if (!user.notes) user.notes = {};
-                    user.notes.module1 = notesTextarea.value;
-                    
-                    // Сохранить изменения
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    
-                    // Обновить данные в общем списке пользователей
-                    const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
-                    const userIndex = users.findIndex(u => u.id === user.id);
-                    if (userIndex !== -1) {
-                        users[userIndex] = user;
-                        localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
-                    }
-                    
-                    // Показать уведомление
-                    showNotification('Жазбалар сақталды!', 'success');
-                }
-            });
-            
-            // Автосохранение каждые 30 секунд
-            setInterval(() => {
-                if (notesTextarea.value !== '') {
-                    saveNotesBtn.click();
-                }
-            }, 30000);
-        }
-        
-        // Функция показа уведомлений
-        function showNotification(message, type = 'info') {
-            // Создать элемент уведомления
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.top = '20px';
-            notification.style.right = '20px';
-            notification.style.padding = '15px 20px';
-            notification.style.borderRadius = '5px';
-            notification.style.color = 'white';
-            notification.style.zIndex = '1000';
-            notification.style.transition = 'all 0.3s ease';
-            
-            // Установить цвет в зависимости от типа
-            if (type === 'success') {
-                notification.style.background = '#4caf50';
-            } else if (type === 'error') {
-                notification.style.background = '#f44336';
-            } else {
-                notification.style.background = '#2196f3';
-            }
-            
-            // Добавить уведомление на страницу
-            document.body.appendChild(notification);
-            
-            // Удалить уведомление через 3 секунды
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-        
-        // ==================== СИСТЕМА ПЕРЕВОДА ====================
+        // Переключение языков
+        const ruBtn = document.getElementById('ru-btn');
+        const kzBtn = document.getElementById('kz-btn');
         
         // Тексты на казахском
         const kzTexts = {
             logo: "Жасыл әлем",
-            back: "Модульдер тізімі",
-            title: "Модуль 1: Өсімдіктер әлеміне кіріспе",
-            subtitle: "Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы",
-            section1: "Өсімдіктер деген не? Табиғаттағы рөлі",
-            section1p1: "Өсімдіктер - бұл көпжасушалы организмдер (кейбір біржасушалы балдырларды қоспағанда), фотосинтез арқылы органикалық заттар мен оттегі өндіре алатын, ол Жердегі өмірдің негізі болып табылады. Олар азық тізбегінің бастапқы буыны болып табылады және көптеген жануарлар, саңырауқұлақтар мен микроорганизмдерге азық болып, сондай-ақ олардың тіршілік ортасы қызметін атқарады.",
-            note1: "Негізгі айырмашылық",
-            note1text: "Өсімдіктердің басқа организмдерден негізгі айырмашылығы - олар күн энергиясы, су және көмірқышқыл газын пайдаланып органикалық заттарды өздері жасай алады (автотрофты азықтану). Сонымен қатар, өсімдіктер әдетте бекітілген тіршілік етеді және бүкіл өмірінде өседі.",
-            section2: "Өсімдіктердің клеткалық құрылымы",
-            section2p1: "Өсімдік клеткаларының бірқатар ерекше органеллалары бар, олар өсімдіктерге өзіндік қасиеттер береді:",
-            section2list: [
-                "Клетка қабырғасы - целлюлозадан тұратын, өсімдікке қажетті қаттылық пен құрылым береді",
-                "Хлоропласттар - фотосинтез процесін жүзеге асыратын органеллалар",
-                "Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды",
-                "Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар"
-            ],
-            section3: "Өсімдіктердің тіндері: түрлері мен функциялары",
-            section3p1: "Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:",
-            table1h1: "Тін түрі",
-            table1h2: "Функциялары",
-            table1h3: "Орналасуы",
-            table1: [
-                ["Өсу тіні (меристема)", "Өсімдіктің өсуін қамтамасыз етеді", "Сабақ ұшында, тамыр ұшында, бүршіклерде"],
-                ["Қабық тіні", "Өсімдікті сыртқы әсерлерден қорғайды", "Өсімдіктің сыртқы бетінде"],
-                ["Негізгі тін", "Фотосинтез, қоректену заттарын жинақтау", "Жапырақтарда, сабақтарда, жемістерде"],
-                ["Жеткізуші тін", "Су мен қоректік заттарды тасымалдау", "Сабақтарда, тамырларда, тамыржолдарында"],
-                ["Механикалық тін", "Қаттылық пен тұрақтылықты қамтамасыз етеді", "Сабақтарда, тамырларда, тамыржолдарында"]
-            ],
-            section4: "Өсімдіктер мен басқа организмдерді салыстыру",
-            section4p1: "Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:",
-            table2h1: "Сипаттама",
-            table2h2: "Өсімдіктер",
-            table2h3: "Жануарлар",
-            table2h4: "Саңырауқұлақтар",
-            table2: [
-                ["Азықтану түрі", "Автотрофты (өздігінен)", "Гетеротрофты (дайын)", "Гетеротрофты (дайын)"],
-                ["Қозғалғыштық", "Бекітілген", "Қозғалмалы", "Бекітілген"],
-                ["Клетка қабырғасы", "Целлюлозадан", "Жоқ", "Хитиннен"],
-                ["Энергия көзі", "Күн сәулесі", "Органикалық заттар", "Органикалық заттар"]
-            ],
-            slideTitle: "Презентация",
-            slideNote: "Презентацияны толық экран режимінде қарау үшін оны ашыңыз",
-            slideUrl: "https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000",
-            completedText: "Аяқталды",
-            progressText: "Оқу процесі:",
-            congratsText: "Құттықтаймыз!",
-            completionDesc: "Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!",
-            testBtnText: "Модуль бойынша тестті тапсыру",
-            prevBtn: "Модульдер тізімі",
-            nextBtn: "Келесі модуль",
-            logoutText: "Шығу",
-            notesTitle: "Жеке жазбалар",
-            saveNotesText: "Сақтау",
-            interactive1Title: "Фотосинтез туралы қосымша ақпарат",
-            interactive1Text: "Фотосинтез - бұл өсімдіктердің күн энергиясын химиялық энергияға айналдыру процесі. Бұл процесс кезінде көмірқышқыл газы мен су қант пен оттегіге айналады. Фотосинтез теңдеуі: 6CO₂ + 6H₂O + жарық энергиясы → C₆H₁₂O₆ + 6O₂",
-            interactive2Title: "Клетка құрылымының қызықты фактілері",
-            interactive2Text: "Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді."
+            back: "Басты бетке",
+            title: "Оқу модульдері",
+            subtitle: "7-сынып биологиясы бойынша толық курс",
+            videoTitle: "Курс жайлы бейне",
+            videoNote: "Бейнені толық экран режимінде қарау үшін оны ашыңыз",
+            progress: "Жалпы прогресс: ",
+            greeting: "Қош келдіңіз, ",
+            simulate: "Прогресті тестілеу (100% жасау)",
+            achievement: "Жетістік",
+            desktopView: "Компьютер көрінісі",
+            mobileView: "Телефон көрінісі",
+            modules: [
+                {
+                    title: "Өсімдіктер әлеміне кіріспе",
+                    desc: "Өсімдіктер дүниесін зерттеудің негіздері, өсімдіктердің жіктелуі және олардың биологиялық маңызы.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Төменгі және жоғары сатыдағы өсімдіктер",
+                    desc: "Өсімдіктердің эволюциялық дамуы, төменгі және жоғары сатыдағы өсімдіклердің ерекшеліктері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Тұқымды өсімдіктер",
+                    desc: "Тұқымды өсімдіктердің құрылысы, түрлері және олардың таралу ерекшеліктері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Вегетативті органдар",
+                    desc: "Өсімдіктердің вегетативті органдары: тамыр, сабақ, жапырақ құрылысы мен функциялары.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өмірлік процестер",
+                    desc: "Өсімдіктердің негізгі өмірлік процестері: фотосинтез, тыныс алу, тамырмен сіңіру.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өсімдіктердің көбеюі",
+                    desc: "Өсімдіктердің жыныстық және жыныссыз көбею түрлері, вегетативтік көбею әдістері.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Өсімдіктер және экология",
+                    desc: "Өсімдіктердің экожүйедегі рөлі, табиғатты қорғаудағы маңызы және экологиялық мәселелер.",
+                    btn: "Оқуды бастау"
+                },
+                {
+                    title: "Сырлы модуль",
+                    desc: "Құттықтаймыз! Сіз барлық модульдерді бітірдіңіз. Бұл сізге арналған арнайы модуль.",
+                    btn: "Сырды ашу"
+                }
+            ]
         };
         
         // Тексты на русском
         const ruTexts = {
             logo: "Зеленый мир",
-            back: "Список модулей",
-            title: "Модуль 1: Введение в мир растений",
-            subtitle: "Классификация, строение и значение растений в природе",
-            section1: "Что такое растения? Их роль в природе",
-            section1p1: "Растения — это многоклеточные организмы (за исключением некоторых одноклеточных водорослей), способные с помощью фотосинтеза производить органические вещества и кислород, который служит основой жизни на Земле. Они являются начальным звеном пищевой цепи и служат пищей, а также средой обитания для многих животных, грибов и микроорганизмов.",
-            note1: "Основное отличие",
-            note1text: "Главное отличие растений от других организмов заключается в том, что они сами создают органические вещества с помощью солнечной энергии, воды и углекислого газа (автотрофное питание). Кроме того, растения обычно ведут прикреплённый образ жизни и растут в течение всей жизни.",
-            section2: "Клеточное строение растений",
-            section2p1: "Клетки растений имеют ряд особых органелл, которые придают растениям уникальные свойства:",
-            section2list: [
-                "Клеточная стенка - состоит из целлюлозы, придает растению необходимую жесткость и структуру",
-                "Хлоропласты - органеллы, осуществляющие процесс фотосинтеза",
-                "Вакуоль - большая полость, заполненная клеточным соком, поддерживает тургорное давление клетки",
-                "Пластиды - органеллы для накопления и хранения пигментов"
-            ],
-            section3: "Ткани растений: виды и функции",
-            section3p1: "У растений есть несколько основных типов тканей, каждый из которых выполняет свои функции:",
-            table1h1: "Тип ткани",
-            table1h2: "Функции",
-            table1h3: "Расположение",
-            table1: [
-                ["Образовательная ткань (меристема)", "Обеспечивает рост растения", "На кончиках стеблей, корней, в почках"],
-                ["Покровная ткань", "Защищает растение от внешних воздействий", "На внешней поверхности растения"],
-                ["Основная ткань", "Фотосинтез, накопление питательных веществ", "В листьях, стеблях, плодах"],
-                ["Проводящая ткань", "Транспорт воды и питательных веществ", "В стеблях, корнях, жилках"],
-                ["Механическая ткани", "Обеспечивает прочность и устойчивость", "В стеблях, корнях, жилках"]
-            ],
-            section4: "Сравнение растений с другими организмами",
-            section4p1: "Основные особенности, отличающие растений от животных и грибов:",
-            table2h1: "Характеристика",
-            table2h2: "Растения",
-            table2h3: "Животные",
-            table2h4: "Грибы",
-            table2: [
-                ["Тип питания", "Автотрофный (самостоятельный)", "Гетеротрофный (готовый)", "Гетеротрофный (готовый)"],
-                ["Подвижность", "Прикреплённый", "Подвижный", "Прикреплённый"],
-                ["Клеточная стенка", "Из целлюлозы", "Отсутствует", "Из хитина"],
-                ["Источник энергии", "Солнечный свет", "Органические вещества", "Органические вещества"]
-            ],
-            slideTitle: "Презентация",
-            slideNote: "Откройте презентацию в полноэкранном режиме для лучшего просмотра",
-            slideUrl: "https://docs.google.com/presentation/d/1J8Kif_nFNHQkj75cQjLCjUWEy6vKQbLStsYOt21Oy28/embed?start=false&loop=false&delayms=3000",
-            completedText: "Завершено",
-            progressText: "Процесс обучения:",
-            congratsText: "Поздравляем!",
-            completionDesc: "Вы успешно завершили этот модуль. Готовы перейти к следующему!",
-            testBtnText: "Пройти тест по модулю",
-            prevBtn: "Список модулей",
-            nextBtn: "Следующий модуль",
-            logoutText: "Выйти",
-            notesTitle: "Личные заметки",
-            saveNotesText: "Сохранить",
-            interactive1Title: "Дополнительная информация о фотосинтезе",
-            interactive1Text: "Фотосинтез - это процесс преобразования растениями солнечной энергии в химическую. В ходе этого процесса углекислый газ и вода превращаются в сахар и кислород. Уравнение фотосинтеза: 6CO₂ + 6H₂O + световая энергия → C₆H₁₂O₆ + 6O₂",
-            interactive2Title: "Интересные факты о строении клетки",
-            interactive2Text: "Вакуоли растительных клеток иногда могут занимать до 90% объема клетки. В хлоропластах содержится зеленый пигмент хлорофилл, который поглощает солнечный свет."
+            back: "На главную",
+            title: "Учебные модули",
+            subtitle: "Полный курс по биологии для 7 класса",
+            videoTitle: "Видео о курсе",
+            videoNote: "Откройте видео в полноэкранном режиме для лучшего просмотра",
+            progress: "Общий прогресс: ",
+            greeting: "Добро пожаловать, ",
+            simulate: "Протестировать прогресс (сделать 100%)",
+            achievement: "Достижение",
+            desktopView: "Вид для компьютера",
+            mobileView: "Вид для телефона",
+            modules: [
+                {
+                    title: "Введение в мир растений",
+                    desc: "Основы изучения растительного мира, классификация растений и их биологическое значение.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Низшие и высшие растения",
+                    desc: "Эволюционное развитие растений, особенности низших и высших растений.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Семенные растения",
+                    desc: "Строение семенных растений, их виды и особенности распространения.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Вегетативные органы",
+                    desc: "Вегетативные органы растений: строение и функции корня, стебля, листа.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Процессы жизнедеятельности",
+                    desc: "Основные жизненные процессы растений: фотосинтез, дыхание, корневое питание.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Размножение растений",
+                    desc: "Половое и бесполое размножение растений, методы вегетативного размножения.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Растения и экология",
+                    desc: "Роль растений в экосистеме, их значение в охране природы и экологические проблемы.",
+                    btn: "Начать изучение"
+                },
+                {
+                    title: "Секретный модуль",
+                    desc: "Поздравляем! Вы завершили все модули. Это специальный модуль для вас.",
+                    btn: "Открыть секрет"
+                }
+            ]
         };
         
         // Установка казахского языка по умолчанию
         function setKazakhLanguage() {
             document.documentElement.lang = 'kk';
-            document.getElementById('ru-btn').classList.remove('active');
-            document.getElementById('kz-btn').classList.add('active');
+            ruBtn.classList.remove('active');
+            kzBtn.classList.add('active');
             
             document.getElementById('logo-text').textContent = kzTexts.logo;
             document.getElementById('back-text').textContent = kzTexts.back;
-            document.getElementById('module-title').textContent = kzTexts.title;
-            document.getElementById('module-subtitle').textContent = kzTexts.subtitle;
+            document.getElementById('page-title').textContent = kzTexts.title;
+            document.getElementById('page-subtitle').textContent = kzTexts.subtitle;
+            document.getElementById('video-title').textContent = kzTexts.videoTitle;
+            document.getElementById('video-note').textContent = kzTexts.videoNote;
+            document.getElementById('progress-text').innerHTML = kzTexts.progress + '<span>0%</span>';
+            document.getElementById('user-greeting').textContent = kzTexts.greeting;
+            document.getElementById('simulate-text').textContent = kzTexts.simulate;
+            document.getElementById('achievement-text').textContent = kzTexts.achievement;
             
-            document.getElementById('section1-title').textContent = kzTexts.section1;
-            document.getElementById('section1-p1').textContent = kzTexts.section1p1;
-            document.getElementById('important-note1').textContent = kzTexts.note1;
-            document.getElementById('important-note1-text').textContent = kzTexts.note1text;
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = kzTexts.desktopView;
+            document.getElementById('mobile-btn').title = kzTexts.mobileView;
             
-            document.getElementById('section2-title').textContent = kzTexts.section2;
-            document.getElementById('section2-p1').textContent = kzTexts.section2p1;
-            
-            const listItems = document.querySelectorAll('#section2-list li');
-            kzTexts.section2list.forEach((text, index) => {
-                if (listItems[index]) {
-                    listItems[index].textContent = text;
+            for (let i = 0; i < 8; i++) {
+                document.getElementById(`module${i+1}-title`).textContent = kzTexts.modules[i].title;
+                document.getElementById(`module${i+1}-desc`).textContent = kzTexts.modules[i].desc;
+                if (document.getElementById(`module${i+1}-btn`)) {
+                    document.getElementById(`module${i+1}-btn`).textContent = kzTexts.modules[i].btn;
                 }
-            });
-            
-            document.getElementById('section3-title').textContent = kzTexts.section3;
-            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
-            
-            document.getElementById('table-header1').textContent = kzTexts.table1h1;
-            document.getElementById('table-header2').textContent = kzTexts.table1h2;
-            document.getElementById('table-header3').textContent = kzTexts.table1h3;
-            
-            const table1Cells = [
-                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
-                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
-                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
-                ['table4-cell1', 'table4-cell2', 'table4-cell3'],
-                ['table5-cell1', 'table5-cell2', 'table5-cell3']
-            ];
-            
-            kzTexts.table1.forEach((row, rowIndex) => {
-                row.forEach((cellText, cellIndex) => {
-                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
-                });
-            });
-            
-            document.getElementById('section4-title').textContent = kzTexts.section4;
-            document.getElementById('section4-p1').textContent = kzTexts.section4p1;
-            
-            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
-            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
-            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
-            document.getElementById('table2-header4').textContent = kzTexts.table2h4;
-            
-            const table2Cells = [
-                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3', 'table2-1-cell4'],
-                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3', 'table2-2-cell4'],
-                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3', 'table2-3-cell4'],
-                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3', 'table2-4-cell4']
-            ];
-            
-            kzTexts.table2.forEach((row, rowIndex) => {
-                row.forEach((cellText, cellIndex) => {
-                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
-                });
-            });
-            
-            // Обновление презентации
-            document.getElementById('slide-title').textContent = kzTexts.slideTitle;
-            document.getElementById('slide-note').textContent = kzTexts.slideNote;
-            document.getElementById('slide-iframe').src = kzTexts.slideUrl;
-            
-            // Обновление прогресса
-            document.getElementById('completed-text').textContent = kzTexts.completedText;
-            document.getElementById('progress-text').textContent = kzTexts.progressText;
-            document.getElementById('congrats-text').textContent = kzTexts.congratsText;
-            document.getElementById('completion-desc').textContent = kzTexts.completionDesc;
-            document.getElementById('test-btn-text').textContent = kzTexts.testBtnText;
-            document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
-            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
-            document.getElementById('logout-text').textContent = kzTexts.logoutText;
-            
-            // Обновление новых элементов
-            document.getElementById('notes-title').textContent = kzTexts.notesTitle;
-            document.getElementById('save-notes-text').textContent = kzTexts.saveNotesText;
-            document.getElementById('interactive1-title').textContent = kzTexts.interactive1Title;
-            document.getElementById('interactive1-text').textContent = kzTexts.interactive1Text;
-            document.getElementById('interactive2-title').textContent = kzTexts.interactive2Title;
-            document.getElementById('interactive2-text').textContent = kzTexts.interactive2Text;
+            }
         }
         
         // Установка русского языка
         function setRussianLanguage() {
             document.documentElement.lang = 'ru';
-            document.getElementById('kz-btn').classList.remove('active');
-            document.getElementById('ru-btn').classList.add('active');
+            kzBtn.classList.remove('active');
+            ruBtn.classList.add('active');
             
             document.getElementById('logo-text').textContent = ruTexts.logo;
             document.getElementById('back-text').textContent = ruTexts.back;
-            document.getElementById('module-title').textContent = ruTexts.title;
-            document.getElementById('module-subtitle').textContent = ruTexts.subtitle;
+            document.getElementById('page-title').textContent = ruTexts.title;
+            document.getElementById('page-subtitle').textContent = ruTexts.subtitle;
+            document.getElementById('video-title').textContent = ruTexts.videoTitle;
+            document.getElementById('video-note').textContent = ruTexts.videoNote;
+            document.getElementById('progress-text').innerHTML = ruTexts.progress + '<span>0%</span>';
+            document.getElementById('user-greeting').textContent = ruTexts.greeting;
+            document.getElementById('simulate-text').textContent = ruTexts.simulate;
+            document.getElementById('achievement-text').textContent = ruTexts.achievement;
             
-            document.getElementById('section1-title').textContent = ruTexts.section1;
-            document.getElementById('section1-p1').textContent = ruTexts.section1p1;
-            document.getElementById('important-note1').textContent = ruTexts.note1;
-            document.getElementById('important-note1-text').textContent = ruTexts.note1text;
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = ruTexts.desktopView;
+            document.getElementById('mobile-btn').title = ruTexts.mobileView;
             
-            document.getElementById('section2-title').textContent = ruTexts.section2;
-            document.getElementById('section2-p1').textContent = ruTexts.section2p1;
-            
-            const listItems = document.querySelectorAll('#section2-list li');
-            ruTexts.section2list.forEach((text, index) => {
-                if (listItems[index]) {
-                    listItems[index].textContent = text;
+            for (let i = 0; i < 8; i++) {
+                document.getElementById(`module${i+1}-title`).textContent = ruTexts.modules[i].title;
+                document.getElementById(`module${i+1}-desc`).textContent = ruTexts.modules[i].desc;
+                if (document.getElementById(`module${i+1}-btn`)) {
+                    document.getElementById(`module${i+1}-btn`).textContent = ruTexts.modules[i].btn;
                 }
-            });
-            
-            document.getElementById('section3-title').textContent = ruTexts.section3;
-            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
-            
-            document.getElementById('table-header1').textContent = ruTexts.table1h1;
-            document.getElementById('table-header2').textContent = ruTexts.table1h2;
-            document.getElementById('table-header3').textContent = ruTexts.table1h3;
-            
-            const table1Cells = [
-                ['table1-cell1', 'table1-cell2', 'table1-cell3'],
-                ['table2-cell1', 'table2-cell2', 'table2-cell3'],
-                ['table3-cell1', 'table3-cell2', 'table3-cell3'],
-                ['table4-cell1', 'table4-cell2', 'table4-cell3'],
-                ['table5-cell1', 'table5-cell2', 'table5-cell3']
-            ];
-            
-            ruTexts.table1.forEach((row, rowIndex) => {
-                row.forEach((cellText, cellIndex) => {
-                    document.getElementById(table1Cells[rowIndex][cellIndex]).textContent = cellText;
-                });
-            });
-            
-            document.getElementById('section4-title').textContent = ruTexts.section4;
-            document.getElementById('section4-p1').textContent = ruTexts.section4p1;
-            
-            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
-            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
-            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
-            document.getElementById('table2-header4').textContent = ruTexts.table2h4;
-            
-            const table2Cells = [
-                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3', 'table2-1-cell4'],
-                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3', 'table2-2-cell4'],
-                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3', 'table2-3-cell4'],
-                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3', 'table2-4-cell4']
-            ];
-            
-            ruTexts.table2.forEach((row, rowIndex) => {
-                row.forEach((cellText, cellIndex) => {
-                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
-                });
-            });
-            
-            // Обновление презентации
-            document.getElementById('slide-title').textContent = ruTexts.slideTitle;
-            document.getElementById('slide-note').textContent = ruTexts.slideNote;
-            document.getElementById('slide-iframe').src = ruTexts.slideUrl;
-            
-            // Обновление прогресса
-            document.getElementById('completed-text').textContent = ruTexts.completedText;
-            document.getElementById('progress-text').textContent = ruTexts.progressText;
-            document.getElementById('congrats-text').textContent = ruTexts.congratsText;
-            document.getElementById('completion-desc').textContent = ruTexts.completionDesc;
-            document.getElementById('test-btn-text').textContent = ruTexts.testBtnText;
-            document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
-            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
-            document.getElementById('logout-text').textContent = ruTexts.logoutText;
-            
-            // Обновление новых элементов
-            document.getElementById('notes-title').textContent = ruTexts.notesTitle;
-            document.getElementById('save-notes-text').textContent = ruTexts.saveNotesText;
-            document.getElementById('interactive1-title').textContent = ruTexts.interactive1Title;
-            document.getElementById('interactive1-text').textContent = ruTexts.interactive1Text;
-            document.getElementById('interactive2-title').textContent = ruTexts.interactive2Title;
-            document.getElementById('interactive2-text').textContent = ruTexts.interactive2Text;
+            }
         }
         
-        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
+        // Обработчики кнопок переключения языка
+        ruBtn.addEventListener('click', setRussianLanguage);
+        kzBtn.addEventListener('click', setKazakhLanguage);
         
+        // Показ информации пользователя и выход
         document.addEventListener('DOMContentLoaded', function() {
-            // Проверка авторизации
-            const user = checkAuth();
+            const user = getCurrentUser();
             if (user) {
-                showUserInfo(user);
-                
-                // Настройка отслеживания прогресса
-                setupScrollTracking();
-                
-                // Обновление отображения прогресса
-                updateProgressDisplay(user);
-                
-                // Настройка новых функций
-                setupBookmarks();
-                setupCollapsibleSections();
-                setupInteractiveElements();
-                setupNotesSystem();
+                document.getElementById('user-display-name').textContent = user.name;
             }
             
-            // Установка языка
+            document.getElementById('modules-logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+            
+            // Кнопка для тестирования прогресса
+            document.getElementById('simulate-progress').addEventListener('click', simulateProgress);
+            
+            // Настройка переключателя устройств
+            setupDeviceSwitcher();
+        });
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
-            
-            // Обработчики событий
-            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
-            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
-            document.getElementById('logout-btn').addEventListener('click', logout);
-            
-            // Изначально заблокировать кнопку следующего модуля
-            document.getElementById('next-module-btn').style.pointerEvents = 'none';
-            document.getElementById('next-module-btn').style.opacity = '0.5';
+            updateProgress();
         });
     </script>
 </body>
