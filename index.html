@@ -209,10 +209,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .language-switcher {
+        .settings-container {
             position: absolute;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .language-switcher {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 5px;
@@ -235,6 +241,73 @@
             color: white;
         }
         
+        /* Новые стили для переключателя устройств */
+        .device-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .device-btn {
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .device-btn.active {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .device-btn:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        /* Стили для мобильного вида */
+        body.mobile-view .container {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        
+        body.mobile-view .header {
+            padding: 20px 15px;
+        }
+        
+        body.mobile-view .logo {
+            font-size: 2rem;
+        }
+        
+        body.mobile-view .title {
+            font-size: 1.5rem;
+        }
+        
+        body.mobile-view .auth-container {
+            padding: 20px 15px;
+        }
+        
+        body.mobile-view .form-input {
+            padding: 10px 12px;
+            font-size: 16px; /* Предотвращает масштабирование в iOS */
+        }
+        
+        body.mobile-view .btn {
+            padding: 12px;
+        }
+        
+        body.mobile-view .settings-container {
+            top: 10px;
+            right: 10px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
         @media (max-width: 480px) {
             .container {
                 max-width: 100%;
@@ -243,13 +316,44 @@
             .auth-container {
                 padding: 20px;
             }
+            
+            /* Для мобильных устройств по умолчанию используем mobile view */
+            body:not(.desktop-view) {
+                padding: 10px;
+            }
+            
+            body:not(.desktop-view) .container {
+                max-width: 100%;
+                border-radius: 10px;
+            }
+        }
+        
+        /* Для очень маленьких экранов */
+        @media (max-width: 350px) {
+            .settings-container {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="language-switcher">
-        <button class="language-btn active" id="kz-btn">Қаз</button>
-        <button class="language-btn" id="ru-btn">Рус</button>
+    <div class="settings-container">
+        <div class="language-switcher">
+            <button class="language-btn active" id="kz-btn">Қаз</button>
+            <button class="language-btn" id="ru-btn">Рус</button>
+        </div>
+        <div class="device-switcher">
+            <button class="device-btn" id="desktop-btn" title="Desktop view">
+                <i class="fas fa-desktop"></i>
+            </button>
+            <button class="device-btn active" id="mobile-btn" title="Mobile view">
+                <i class="fas fa-mobile-alt"></i>
+            </button>
+        </div>
     </div>
     
     <div class="container">
@@ -355,7 +459,9 @@
             passwordMismatch: "Құпия сөздер сәйкес келмейді",
             passwordShort: "Құпия сөз кемінде 6 символ болуы керек",
             userExists: "Бұл электрондық пошта бойынша пайдаланушы тіркелген",
-            invalidCredentials: "Электрондық пошта немесе құпия сөз қате"
+            invalidCredentials: "Электрондық пошта немесе құпия сөз қате",
+            desktopView: "Компьютер көрінісі",
+            mobileView: "Телефон көрінісі"
         };
         
         // Тексты на русском
@@ -385,8 +491,52 @@
             passwordMismatch: "Пароли не совпадают",
             passwordShort: "Пароль должен быть не менее 6 символов",
             userExists: "Пользователь с таким email уже зарегистрирован",
-            invalidCredentials: "Неверный email или пароль"
+            invalidCredentials: "Неверный email или пароль",
+            desktopView: "Вид для компьютера",
+            mobileView: "Вид для телефона"
         };
+        
+        // Система переключения между desktop/mobile view
+        function setupDeviceSwitcher() {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            
+            // Загрузить сохраненные настройки
+            const savedView = localStorage.getItem('preferredView') || 'auto';
+            setView(savedView);
+            
+            // Обработчики событий
+            desktopBtn.addEventListener('click', () => setView('desktop'));
+            mobileBtn.addEventListener('click', () => setView('mobile'));
+        }
+        
+        function setView(viewType) {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            const body = document.body;
+            
+            // Сбросить активные классы
+            desktopBtn.classList.remove('active');
+            mobileBtn.classList.remove('active');
+            body.classList.remove('desktop-view', 'mobile-view');
+            
+            // Установить выбранный вид
+            if (viewType === 'mobile') {
+                mobileBtn.classList.add('active');
+                body.classList.add('mobile-view');
+            } else if (viewType === 'desktop') {
+                desktopBtn.classList.add('active');
+                body.classList.add('desktop-view');
+            }
+            
+            // Сохранить настройки
+            localStorage.setItem('preferredView', viewType);
+            
+            // Обновить title кнопок
+            const lang = document.documentElement.lang;
+            desktopBtn.title = lang === 'kk' ? kzTexts.desktopView : ruTexts.desktopView;
+            mobileBtn.title = lang === 'kk' ? kzTexts.mobileView : ruTexts.mobileView;
+        }
         
         // Установка казахского языка по умолчанию
         function setKazakhLanguage() {
@@ -413,6 +563,10 @@
             document.getElementById('login-password').placeholder = kzTexts.passwordPlaceholder;
             document.getElementById('register-password').placeholder = kzTexts.passwordLength;
             document.getElementById('register-confirm').placeholder = kzTexts.confirmPlaceholder;
+            
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = kzTexts.desktopView;
+            document.getElementById('mobile-btn').title = kzTexts.mobileView;
         }
         
         // Установка русского языка
@@ -440,6 +594,10 @@
             document.getElementById('login-password').placeholder = ruTexts.passwordPlaceholder;
             document.getElementById('register-password').placeholder = ruTexts.passwordLength;
             document.getElementById('register-confirm').placeholder = ruTexts.confirmPlaceholder;
+            
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = ruTexts.desktopView;
+            document.getElementById('mobile-btn').title = ruTexts.mobileView;
         }
         
         // Функции для работы с пользователями
@@ -616,6 +774,9 @@
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
+            
+            // Настройка переключателя устройств
+            setupDeviceSwitcher();
             
             // Проверка авторизованного пользователя
             const currentUser = getCurrentUser();
