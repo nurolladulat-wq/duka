@@ -264,6 +264,40 @@
             margin-right: 10px;
         }
         
+        /* Стили для переключателя таблиц */
+        .table-view-switcher {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #c5e1a5;
+        }
+        
+        .view-toggle-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .view-toggle-btn i {
+            margin-right: 8px;
+        }
+        
+        .view-toggle-btn:hover {
+            background: #2e7d32;
+            transform: translateY(-2px);
+        }
+        
+        /* Стили для компьютерной версии таблиц */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -287,6 +321,51 @@
         
         .comparison-table tr:nth-child(even) {
             background: #f1f8e9;
+        }
+        
+        /* Стили для мобильной версии таблиц (карточки) */
+        .mobile-cards {
+            display: none;
+            margin: 25px 0;
+        }
+        
+        .mobile-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4caf50;
+        }
+        
+        .mobile-card h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .card-row {
+            display: flex;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .card-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .card-label {
+            font-weight: 600;
+            color: #558b2f;
+            min-width: 120px;
+        }
+        
+        .card-value {
+            flex: 1;
+            color: #333;
         }
 
         /* Новые стили для интерактивных элементов */
@@ -548,6 +627,7 @@
             background: #ff8f00;
         }
         
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .module-content {
                 padding: 20px;
@@ -580,6 +660,33 @@
 
             .slide-container, .video-container {
                 padding-bottom: 70%; /* Немного больше для мобильных устройств */
+            }
+            
+            /* На мобильных устройствах показываем карточки по умолчанию */
+            .comparison-table {
+                display: none;
+            }
+            
+            .mobile-cards {
+                display: block;
+            }
+            
+            .table-view-switcher {
+                display: flex;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .table-view-switcher {
+                display: none;
+            }
+            
+            .mobile-cards {
+                display: none !important;
+            }
+            
+            .comparison-table {
+                display: table;
             }
         }
     </style>
@@ -717,7 +824,7 @@
                 </div>
             </div>
             
-            <!-- НОВАЯ СЕКЦИЯ С ВИДЕО -->
+            <!-- Секция с видео -->
             <div class="video-section" id="section-video">
                 <button class="bookmark-btn" id="bookmark-video" data-section="section-video">
                     <i class="far fa-bookmark"></i>
@@ -756,7 +863,15 @@
                 <div class="section-content" id="section4-content">
                     <p id="section3-p1">Өсімдіктерде бірнеше негізгі тін түрлері бар, әрқайсысы өзіндік функцияларды атқарады:</p>
                     
-                    <table class="comparison-table">
+                    <!-- Переключатель для таблиц -->
+                    <div class="table-view-switcher">
+                        <button class="view-toggle-btn" id="table-toggle-btn">
+                            <i class="fas fa-mobile-alt"></i> <span id="toggle-text">Карточкаларды көрсету</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Компьютерная версия таблицы -->
+                    <table class="comparison-table" id="table1-desktop">
                         <thead>
                             <tr>
                                 <th id="table-header1">Тін түрі</th>
@@ -792,6 +907,65 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Мобильная версия таблицы (карточки) -->
+                    <div class="mobile-cards" id="table1-mobile">
+                        <div class="mobile-card">
+                            <h4>Өсу тіні (меристема)</h4>
+                            <div class="card-row">
+                                <div class="card-label">Функциялары:</div>
+                                <div class="card-value">Өсімдіктің өсуін қамтамасыз етеді</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Орналасуы:</div>
+                                <div class="card-value">Сабақ ұшында, тамыр ұшында, бүршіклерде</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Қабық тіні</h4>
+                            <div class="card-row">
+                                <div class="card-label">Функциялары:</div>
+                                <div class="card-value">Өсімдікті сыртқы әсерлерден қорғайды</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Орналасуы:</div>
+                                <div class="card-value">Өсімдіктің сыртқы бетінде</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Негізгі тін</h4>
+                            <div class="card-row">
+                                <div class="card-label">Функциялары:</div>
+                                <div class="card-value">Фотосинтез, қоректену заттарын жинақтау</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Орналасуы:</div>
+                                <div class="card-value">Жапырақтарда, сабақтарда, жемістерде</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Жеткізуші тін</h4>
+                            <div class="card-row">
+                                <div class="card-label">Функциялары:</div>
+                                <div class="card-value">Су мен қоректік заттарды тасымалдау</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Орналасуы:</div>
+                                <div class="card-value">Сабақтарда, тамырларда, тамыржолдарында</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Механикалық тін</h4>
+                            <div class="card-row">
+                                <div class="card-label">Функциялары:</div>
+                                <div class="card-value">Қаттылық пен тұрақтылықты қамтамасыз етеді</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Орналасуы:</div>
+                                <div class="card-value">Сабақтарда, тамырларда, тамыржолдарында</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -808,7 +982,8 @@
                 <div class="section-content" id="section5-content">
                     <p id="section4-p1">Өсімдіктерді жануарлар мен саңырауқұлақтардан ажырататын негізгі ерекшеліктер:</p>
                     
-                    <table class="comparison-table">
+                    <!-- Компьютерная версия таблицы -->
+                    <table class="comparison-table" id="table2-desktop">
                         <thead>
                             <tr>
                                 <th id="table2-header1">Сипаттама</th>
@@ -844,6 +1019,70 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Мобильная версия таблицы (карточки) -->
+                    <div class="mobile-cards" id="table2-mobile">
+                        <div class="mobile-card">
+                            <h4>Азықтану түрі</h4>
+                            <div class="card-row">
+                                <div class="card-label">Өсімдіктер:</div>
+                                <div class="card-value">Автотрофты (өздігінен)</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Жануарлар:</div>
+                                <div class="card-value">Гетеротрофты (дайын)</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Саңырауқұлақтар:</div>
+                                <div class="card-value">Гетеротрофты (дайын)</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Қозғалғыштық</h4>
+                            <div class="card-row">
+                                <div class="card-label">Өсімдіктер:</div>
+                                <div class="card-value">Бекітілген</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Жануарлар:</div>
+                                <div class="card-value">Қозғалмалы</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Саңырауқұлақтар:</div>
+                                <div class="card-value">Бекітілген</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Клетка қабырғасы</h4>
+                            <div class="card-row">
+                                <div class="card-label">Өсімдіктер:</div>
+                                <div class="card-value">Целлюлозадан</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Жануарлар:</div>
+                                <div class="card-value">Жоқ</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Саңырауқұлақтар:</div>
+                                <div class="card-value">Хитиннен</div>
+                            </div>
+                        </div>
+                        <div class="mobile-card">
+                            <h4>Энергия көзі</h4>
+                            <div class="card-row">
+                                <div class="card-label">Өсімдіктер:</div>
+                                <div class="card-value">Күн сәулесі</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Жануарлар:</div>
+                                <div class="card-value">Органикалық заттар</div>
+                            </div>
+                            <div class="card-row">
+                                <div class="card-label">Саңырауқұлақтар:</div>
+                                <div class="card-value">Органикалық заттар</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -1004,6 +1243,70 @@
             window.addEventListener('scroll', checkSections);
             // Проверить сразу при загрузке (на случай, если пользователь уже прокрутил)
             setTimeout(checkSections, 1000);
+        }
+        
+        // ==================== СИСТЕМА ПЕРЕКЛЮЧЕНИЯ ТАБЛИЦ ====================
+        
+        function setupTableToggle() {
+            const toggleBtn = document.getElementById('table-toggle-btn');
+            const toggleText = document.getElementById('toggle-text');
+            let isTableView = false;
+            
+            // На мобильных устройствах по умолчанию показываем карточки
+            if (window.innerWidth <= 768) {
+                document.querySelectorAll('.comparison-table').forEach(table => {
+                    table.style.display = 'none';
+                });
+                document.querySelectorAll('.mobile-cards').forEach(cards => {
+                    cards.style.display = 'block';
+                });
+                isTableView = false;
+                updateToggleButton();
+            }
+            
+            toggleBtn.addEventListener('click', function() {
+                isTableView = !isTableView;
+                
+                if (isTableView) {
+                    // Показываем таблицы
+                    document.querySelectorAll('.comparison-table').forEach(table => {
+                        table.style.display = 'table';
+                    });
+                    document.querySelectorAll('.mobile-cards').forEach(cards => {
+                        cards.style.display = 'none';
+                    });
+                } else {
+                    // Показываем карточки
+                    document.querySelectorAll('.comparison-table').forEach(table => {
+                        table.style.display = 'none';
+                    });
+                    document.querySelectorAll('.mobile-cards').forEach(cards => {
+                        cards.style.display = 'block';
+                    });
+                }
+                
+                updateToggleButton();
+            });
+            
+            function updateToggleButton() {
+                if (isTableView) {
+                    toggleText.textContent = 'Карточкаларды көрсету';
+                    toggleBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> <span id="toggle-text">Карточкаларды көрсету</span>';
+                } else {
+                    toggleText.textContent = 'Кестелерді көрсету';
+                    toggleBtn.innerHTML = '<i class="fas fa-table"></i> <span id="toggle-text">Кестелерді көрсету</span>';
+                }
+            }
+            
+            // Обновляем текст кнопки при смене языка
+            window.updateTableToggleText = function() {
+                const currentLang = document.documentElement.lang;
+                if (currentLang === 'kk') {
+                    toggleText.textContent = isTableView ? 'Карточкаларды көрсету' : 'Кестелерді көрсету';
+                } else {
+                    toggleText.textContent = isTableView ? 'Показать карточки' : 'Показать таблицы';
+                }
+            };
         }
         
         // ==================== НОВЫЕ ФУНКЦИИ ====================
@@ -1239,7 +1542,9 @@
             interactive1Title: "Фотосинтез туралы қосымша ақпарат",
             interactive1Text: "Фотосинтез - бұл өсімдіктердің күн энергиясын химиялық энергияға айналдыру процесі. Бұл процесс кезінде көмірқышқыл газы мен су қант пен оттегіге айналады. Фотосинтез теңдеуі: 6CO₂ + 6H₂O + жарық энергиясы → C₆H₁₂O₆ + 6O₂",
             interactive2Title: "Клетка құрылымының қызықты фактілері",
-            interactive2Text: "Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді."
+            interactive2Text: "Өсімдік клеткаларының вакуолдері кейде клетка көлемінің 90%-ын алып жүруі мүмкін. Хлоропласттарда хлорофилл деп аталатын жасыл пигмент болады, ол күн сәулесін сіңіреді.",
+            toggleTextCards: "Карточкаларды көрсету",
+            toggleTextTables: "Кестелерді көрсету"
         };
         
         // Тексты на русском
@@ -1304,7 +1609,9 @@
             interactive1Title: "Дополнительная информация о фотосинтезе",
             interactive1Text: "Фотосинтез - это процесс преобразования растениями солнечной энергии в химическую. В ходе этого процесса углекислый газ и вода превращаются в сахар и кислород. Уравнение фотосинтеза: 6CO₂ + 6H₂O + световая энергия → C₆H₁₂O₆ + 6O₂",
             interactive2Title: "Интересные факты о строении клетки",
-            interactive2Text: "Вакуоли растительных клеток иногда могут занимать до 90% объема клетки. В хлоропластах содержится зеленый пигмент хлорофилл, который поглощает солнечный свет."
+            interactive2Text: "Вакуоли растительных клеток иногда могут занимать до 90% объема клетки. В хлоропластах содержится зеленый пигмент хлорофилл, который поглощает солнечный свет.",
+            toggleTextCards: "Показать карточки",
+            toggleTextTables: "Показать таблицы"
         };
         
         // Установка казахского языка по умолчанию
@@ -1403,6 +1710,11 @@
             document.getElementById('interactive1-text').textContent = kzTexts.interactive1Text;
             document.getElementById('interactive2-title').textContent = kzTexts.interactive2Title;
             document.getElementById('interactive2-text').textContent = kzTexts.interactive2Text;
+            
+            // Обновление текста переключателя таблиц
+            if (typeof window.updateTableToggleText === 'function') {
+                window.updateTableToggleText();
+            }
         }
         
         // Установка русского языка
@@ -1501,6 +1813,11 @@
             document.getElementById('interactive1-text').textContent = ruTexts.interactive1Text;
             document.getElementById('interactive2-title').textContent = ruTexts.interactive2Title;
             document.getElementById('interactive2-text').textContent = ruTexts.interactive2Text;
+            
+            // Обновление текста переключателя таблиц
+            if (typeof window.updateTableToggleText === 'function') {
+                window.updateTableToggleText();
+            }
         }
         
         // ==================== ИНИЦИАЛИЗАЦИЯ ====================
@@ -1522,6 +1839,7 @@
                 setupCollapsibleSections();
                 setupInteractiveElements();
                 setupNotesSystem();
+                setupTableToggle();
             }
             
             // Установка языка
