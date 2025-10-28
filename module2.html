@@ -51,6 +51,12 @@
             margin-right: 10px;
         }
         
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
         .language-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.2);
@@ -70,6 +76,32 @@
         }
         
         .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .media-controls {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4px;
+        }
+        
+        .media-btn {
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .media-btn.active {
             background: white;
             color: #2e7d32;
         }
@@ -197,6 +229,43 @@
             background: #f1f8e9;
         }
         
+        /* Стили для медиа-контента */
+        .media-content {
+            display: none;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .media-content.active {
+            display: block;
+        }
+        
+        .presentation-container, .video-container {
+            background: #f1f8e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .presentation-frame, .video-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .media-title {
+            font-size: 1.4rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -255,6 +324,11 @@
                 text-align: center;
             }
             
+            .header-controls {
+                flex-direction: column;
+                width: 100%;
+            }
+            
             .navigation-buttons {
                 flex-direction: column;
                 gap: 15px;
@@ -263,6 +337,10 @@
             .nav-btn {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .presentation-frame, .video-frame {
+                height: 300px;
             }
         }
     </style>
@@ -274,9 +352,23 @@
                 <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
             </a>
             
-            <div class="language-switcher">
-                <button class="language-btn" id="ru-btn">Рус</button>
-                <button class="language-btn active" id="kz-btn">Қаз</button>
+            <div class="header-controls">
+                <div class="media-controls">
+                    <button class="media-btn" id="text-btn">
+                        <i class="fas fa-book"></i> <span id="text-btn-text">Мәтін</span>
+                    </button>
+                    <button class="media-btn" id="presentation-btn">
+                        <i class="fas fa-desktop"></i> <span id="presentation-btn-text">Презентация</span>
+                    </button>
+                    <button class="media-btn" id="video-btn">
+                        <i class="fas fa-play-circle"></i> <span id="video-btn-text">Видео</span>
+                    </button>
+                </div>
+                
+                <div class="language-switcher">
+                    <button class="language-btn" id="ru-btn">Рус</button>
+                    <button class="language-btn active" id="kz-btn">Қаз</button>
+                </div>
             </div>
             
             <a href="modules.html" class="back-btn">
@@ -290,112 +382,147 @@
                 <p class="module-subtitle" id="module-subtitle">Өсімдіктердің эволюциялық дамуы, төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері</p>
             </div>
             
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section1-title">Төменгі сатыдағы өсімдіктер</span></h2>
-                <div class="section-content">
-                    <p id="section1-p1">Төменгі сатыдағы өсімдіктер - бұл қарапайым құрылымды, негізінен сулы ортада тіршілік ететін өсімдіктер. Оларға балдырлар, мүктер, қыналар және қына тәрізділер жатады.</p>
-                    
-                    <div class="important-note">
-                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі ерекшеліктері</span></h4>
-                        <p id="important-note1-text">Төменгі сатыдағы өсімдіктердің негізгі ерекшелігі - олардың денесі тіндерге бөлінбеген талломдық құрылымға ие болуы. Олардың тамыр, сабақ, жапырақ сияқты айқын органдары болмайды.</p>
+            <!-- Текстовый контент (по умолчанию активен) -->
+            <div class="text-content media-content active">
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section1-title">Төменгі сатыдағы өсімдіктер</span></h2>
+                    <div class="section-content">
+                        <p id="section1-p1">Төменгі сатыдағы өсімдіктер - бұл қарапайым құрылымды, негізінен сулы ортада тіршілік ететін өсімдіктер. Оларға балдырлар, мүктер, қыналар және қына тәрізділер жатады.</p>
+                        
+                        <div class="important-note">
+                            <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Негізгі ерекшеліктері</span></h4>
+                            <p id="important-note1-text">Төменгі сатыдағы өсімдіктердің негізгі ерекшелігі - олардың денесі тіндерге бөлінбеген талломдық құрылымға ие болуы. Олардың тамыр, сабақ, жапырақ сияқты айқын органдары болмайды.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-microscope"></i> <span id="section2-title">Жоғары сатыдағы өсімдіклер</span></h2>
+                    <div class="section-content">
+                        <p id="section2-p1">Жоғары сатыдағы өсімдіктер - бұл күрделі құрылымды, тіндерге жіктелген, арнайы органдары бар өсімдіктер. Оларға қырыққұлақтар, ашық тұқымдылар және жабық тұқымдылар жатады.</p>
+                        
+                        <ul id="section2-list">
+                            <li>Органдарға бөлінген: тамыр, сабақ, жапырақ</li>
+                            <li>Тіндері маманданған: өсу, тасымалдау, қорғаныш тіндері</li>
+                            <li>Көбею жүйесі дамыған: споралар немесе тұқымдар арқылы көбейеді</li>
+                            <li>Көпшілігі құрлықта тіршілік етеді</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-layer-group"></i> <span id="section3-title">Төменгі және жоғары сатыдағы өсімдіктерді салыстыру</span></h2>
+                    <div class="section-content">
+                        <p id="section3-p1">Төменгі және жоғары сатыдағы өсімдіктердің негізгі айырмашылықтары:</p>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th id="table-header1">Сипаттама</th>
+                                    <th id="table-header2">Төменгі сатыдағы өсімдіктер</th>
+                                    <th id="table-header3">Жоғары сатыдағы өсімдіктер</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="table1-cell1">Дене құрылымы</td>
+                                    <td id="table1-cell2">Талломдық (тендерге бөлінбеген)</td>
+                                    <td id="table1-cell3">Органдық (тендерге бөлінген)</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-cell1">Негізгі өкілдері</td>
+                                    <td id="table2-cell2">Балдырлар, мүктер, қыналар</td>
+                                    <td id="table2-cell3">Қырыққұлақтар, ашық және жабық тұқымдылар</td>
+                                </tr>
+                                <tr>
+                                    <td id="table3-cell1">Тіршілік ортасы</td>
+                                    <td id="table3-cell2">Негізінен сулы орта</td>
+                                    <td id="table3-cell3">Негізінен құрлық</td>
+                                </tr>
+                                <tr>
+                                    <td id="table4-cell1">Көбею тәсілі</td>
+                                    <td id="table4-cell2">Негізінен вегетативті және споралар арқылы</td>
+                                    <td id="table4-cell3">Споралар немесе тұқымдар арқылы</td>
+                                </tr>
+                                <tr>
+                                    <td id="table5-cell1">Тамыр жүйесі</td>
+                                    <td id="table5-cell2">Жоқ (ризоидтар бар)</td>
+                                    <td id="table5-cell3">Дамыған тамыр жүйесі</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Эволюциялық даму</span></h2>
+                    <div class="section-content">
+                        <p id="section4-p1">Өсімдіктердің эволюциялық дамуы сулы ортадан құрлыққа шығу бағытында болды. Бұл үдерісте өсімдіктер күрделірек құрылымдар дамытып, жаңа бейімделушіліктерге ие болды:</p>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th id="table2-header1">Эволюциялық кезең</th>
+                                    <th id="table2-header2">Негізгі ерекшеліктері</th>
+                                    <th id="table2-header3">Өкілдері</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="table2-1-cell1">Алғашқы өсімдіктер</td>
+                                    <td id="table2-1-cell2">Суда тіршілік ету, қарапайым құрылым</td>
+                                    <td id="table2-1-cell3">Жасыл балдырлар</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-2-cell1">Су-құрлық өсімдіктері</td>
+                                    <td id="table2-2-cell2">Сулы ортадан құрлыққа бейімделу</td>
+                                    <td id="table2-2-cell3">Мүктер, қыналар</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-3-cell1">Ашық тұқымдылар</td>
+                                    <td id="table2-3-cell2">Тұқым арқылы көбею, дамыған мүшелер</td>
+                                    <td id="table2-3-cell3">Қылқан жапырақтылар</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-4-cell1">Жабық тұқымдылар</td>
+                                    <td id="table2-4-cell2">Гүлді өсімдіктер, жеміс пен тұқым жасушаларда</td>
+                                    <td id="table2-4-cell3">Көптеген гүлді өсімдіктер</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-microscope"></i> <span id="section2-title">Жоғары сатыдағы өсімдіктер</span></h2>
-                <div class="section-content">
-                    <p id="section2-p1">Жоғары сатыдағы өсімдіктер - бұл күрделі құрылымды, тіндерге жіктелген, арнайы органдары бар өсімдіктер. Оларға қырыққұлақтар, ашық тұқымдылар және жабық тұқымдылар жатады.</p>
-                    
-                    <ul id="section2-list">
-                        <li>Органдарға бөлінген: тамыр, сабақ, жапырақ</li>
-                        <li>Тіндері маманданған: өсу, тасымалдау, қорғаныш тіндері</li>
-                        <li>Көбею жүйесі дамыған: споралар немесе тұқымдар арқылы көбейеді</li>
-                        <li>Көпшілігі құрлықта тіршілік етеді</li>
-                    </ul>
+            <!-- Контент презентации -->
+            <div class="presentation-content media-content">
+                <div class="presentation-container">
+                    <h3 class="media-title">
+                        <i class="fas fa-desktop"></i> 
+                        <span id="presentation-title">Төменгі және жоғары сатыдағы өсімдіктер презентациясы</span>
+                    </h3>
+                    <iframe class="presentation-frame" id="presentation-frame" 
+                            src="https://docs.google.com/presentation/d/1oU0bYyFycrIh03xVYWlFpvCavSWxFTFetxk8Pkudk6s/embed?start=false&loop=false&delayms=3000" 
+                            frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                    </iframe>
                 </div>
             </div>
             
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-layer-group"></i> <span id="section3-title">Төменгі және жоғары сатыдағы өсімдіктерді салыстыру</span></h2>
-                <div class="section-content">
-                    <p id="section3-p1">Төменгі және жоғары сатыдағы өсімдіктердің негізгі айырмашылықтары:</p>
-                    
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th id="table-header1">Сипаттама</th>
-                                <th id="table-header2">Төменгі сатыдағы өсімдіктер</th>
-                                <th id="table-header3">Жоғары сатыдағы өсімдіктер</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="table1-cell1">Дене құрылымы</td>
-                                <td id="table1-cell2">Талломдық (тендерге бөлінбеген)</td>
-                                <td id="table1-cell3">Органдық (тендерге бөлінген)</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-cell1">Негізгі өкілдері</td>
-                                <td id="table2-cell2">Балдырлар, мүктер, қыналар</td>
-                                <td id="table2-cell3">Қырыққұлақтар, ашық және жабық тұқымдылар</td>
-                            </tr>
-                            <tr>
-                                <td id="table3-cell1">Тіршілік ортасы</td>
-                                <td id="table3-cell2">Негізінен сулы орта</td>
-                                <td id="table3-cell3">Негізінен құрлық</td>
-                            </tr>
-                            <tr>
-                                <td id="table4-cell1">Көбею тәсілі</td>
-                                <td id="table4-cell2">Негізінен вегетативті және споралар арқылы</td>
-                                <td id="table4-cell3">Споралар немесе тұқымдар арқылы</td>
-                            </tr>
-                            <tr>
-                                <td id="table5-cell1">Тамыр жүйесі</td>
-                                <td id="table5-cell2">Жоқ (ризоидтар бар)</td>
-                                <td id="table5-cell3">Дамыған тамыр жүйесі</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-balance-scale"></i> <span id="section4-title">Эволюциялық даму</span></h2>
-                <div class="section-content">
-                    <p id="section4-p1">Өсімдіктердің эволюциялық дамуы сулы ортадан құрлыққа шығу бағытында болды. Бұл үдерісте өсімдіктер күрделірек құрылымдар дамытып, жаңа бейімделушіліктерге ие болды:</p>
-                    
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th id="table2-header1">Эволюциялық кезең</th>
-                                <th id="table2-header2">Негізгі ерекшеліктері</th>
-                                <th id="table2-header3">Өкілдері</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="table2-1-cell1">Алғашқы өсімдіктер</td>
-                                <td id="table2-1-cell2">Суда тіршілік ету, қарапайым құрылым</td>
-                                <td id="table2-1-cell3">Жасыл балдырлар</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-2-cell1">Су-құрлық өсімдіктері</td>
-                                <td id="table2-2-cell2">Сулы ортадан құрлыққа бейімделу</td>
-                                <td id="table2-2-cell3">Мүктер, қыналар</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-3-cell1">Ашық тұқымдылар</td>
-                                <td id="table2-3-cell2">Тұқым арқылы көбею, дамыған мүшелер</td>
-                                <td id="table2-3-cell3">Қылқан жапырақтылар</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-4-cell1">Жабық тұқымдылар</td>
-                                <td id="table2-4-cell2">Гүлді өсімдіктер, жеміс пен тұқым жасушаларда</td>
-                                <td id="table2-4-cell3">Көптеген гүлді өсімдіктер</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Видео контент -->
+            <div class="video-content media-content">
+                <div class="video-container">
+                    <h3 class="media-title">
+                        <i class="fas fa-play-circle"></i> 
+                        <span id="video-title">Төменгі және жоғары сатыдағы өсімдіктер бойынша видео сабақ</span>
+                    </h3>
+                    <iframe class="video-frame" id="video-frame" 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                    <p id="video-description" style="margin-top: 15px; color: #666; font-style: italic;">
+                        Бұл бейне сабақта төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері мен айырмашылықтары қарастырылады.
+                    </p>
                 </div>
             </div>
             
@@ -457,7 +584,17 @@
                 ["Жабық тұқымдылар", "Гүлді өсімдіклер, жеміс пен тұқым жасушаларда", "Көптеген гүлді өсімдіктер"]
             ],
             prevBtn: "Алдыңғы модуль",
-            nextBtn: "Келесі модуль"
+            nextBtn: "Келесі модуль",
+            textBtn: "Мәтін",
+            presentationBtn: "Презентация",
+            videoBtn: "Видео",
+            presentationTitle: "Төменгі және жоғары сатыдағы өсімдіктер презентациясы",
+            videoTitle: "Төменгі және жоғары сатыдағы өсімдіктер бойынша видео сабақ",
+            videoDescription: "Бұл бейне сабақта төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері мен айырмашылықтары қарастырылады.",
+            kzPresentation: "https://docs.google.com/presentation/d/1oU0bYyFycrIh03xVYWlFpvCavSWxFTFetxk8Pkudk6s/embed?start=false&loop=false&delayms=3000",
+            ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
+            kzVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            ruVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ"
         };
         
         // Тексты на русском
@@ -502,7 +639,17 @@
                 ["Покрытосеменные", "Цветковые растения, плоды и семена в завязи", "Многие цветковые растения"]
             ],
             prevBtn: "Предыдущий модуль",
-            nextBtn: "Следующий модуль"
+            nextBtn: "Следующий модуль",
+            textBtn: "Текст",
+            presentationBtn: "Презентация",
+            videoBtn: "Видео",
+            presentationTitle: "Презентация по низшим и высшим растениям",
+            videoTitle: "Видеоурок по низшим и высшим растениям",
+            videoDescription: "В этом видеоуроке рассматриваются особенности и различия низших и высших растений.",
+            kzPresentation: "https://docs.google.com/presentation/d/1oU0bYyFycrIh03xVYWlFpvCavSWxFTFetxk8Pkudk6s/embed?start=false&loop=false&delayms=3000",
+            ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
+            kzVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            ruVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ"
         };
         
         // Установка казахского языка по умолчанию
@@ -574,6 +721,20 @@
             
             document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
             document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+            
+            // Обновление текста кнопок медиа
+            document.getElementById('text-btn-text').textContent = kzTexts.textBtn;
+            document.getElementById('presentation-btn-text').textContent = kzTexts.presentationBtn;
+            document.getElementById('video-btn-text').textContent = kzTexts.videoBtn;
+            
+            // Обновление медиа-контента
+            document.getElementById('presentation-title').textContent = kzTexts.presentationTitle;
+            document.getElementById('video-title').textContent = kzTexts.videoTitle;
+            document.getElementById('video-description').textContent = kzTexts.videoDescription;
+            
+            // Обновление ссылок на медиа
+            document.getElementById('presentation-frame').src = kzTexts.kzPresentation;
+            document.getElementById('video-frame').src = kzTexts.kzVideo;
         }
         
         // Установка русского языка
@@ -645,18 +806,73 @@
             
             document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
             document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+            
+            // Обновление текста кнопок медиа
+            document.getElementById('text-btn-text').textContent = ruTexts.textBtn;
+            document.getElementById('presentation-btn-text').textContent = ruTexts.presentationBtn;
+            document.getElementById('video-btn-text').textContent = ruTexts.videoBtn;
+            
+            // Обновление медиа-контента
+            document.getElementById('presentation-title').textContent = ruTexts.presentationTitle;
+            document.getElementById('video-title').textContent = ruTexts.videoTitle;
+            document.getElementById('video-description').textContent = ruTexts.videoDescription;
+            
+            // Обновление ссылок на медиа
+            document.getElementById('presentation-frame').src = ruTexts.ruPresentation;
+            document.getElementById('video-frame').src = ruTexts.ruVideo;
+        }
+        
+        // Функции для переключения между режимами отображения
+        function showTextContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.text-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('text-btn').classList.add('active');
+        }
+        
+        function showPresentationContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.presentation-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('presentation-btn').classList.add('active');
+        }
+        
+        function showVideoContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.video-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('video-btn').classList.add('active');
         }
         
         // Обработчики кнопок переключения языка
         document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
         document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
         
+        // Обработчики кнопок переключения режимов
+        document.getElementById('text-btn').addEventListener('click', showTextContent);
+        document.getElementById('presentation-btn').addEventListener('click', showPresentationContent);
+        document.getElementById('video-btn').addEventListener('click', showVideoContent);
+        
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
+            showTextContent(); // По умолчанию показываем текстовый контент
         });
     </script>
 </body>
 </html>
-            
-           
