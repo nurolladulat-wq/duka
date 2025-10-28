@@ -385,6 +385,38 @@
             color: #689f38;
         }
         
+        /* Стили для видеоплеера */
+        .video-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-note {
+            margin-top: 15px;
+            font-style: italic;
+            color: #689f38;
+        }
+        
         .completion-message {
             background: #e8f5e9;
             border: 2px solid #4caf50;
@@ -546,7 +578,7 @@
                 justify-content: center;
             }
 
-            .slide-container {
+            .slide-container, .video-container {
                 padding-bottom: 70%; /* Немного больше для мобильных устройств */
             }
         }
@@ -649,7 +681,7 @@
                         <li>Клетка қабырғасы - целлюлозадан тұратын, өсімдікке қажетті қаттылық пен құрылым береді</li>
                         <li>Хлоропласттар - фотосинтез процесін жүзеге асыратын органеллалар</li>
                         <li>Вакуоль - клетка сүтімен толтырылған үлкен қуыс, клетканың тургорлық қысымын сақтайды</li>
-                        <li>Пластидтер - пигменттерді жинақтауға және сақтауға арналған органеллалар</li>
+                        <li>Пластидлер - пигменттерді жинақтауға және сақтауға арналған органеллалар</li>
                     </ul>
                     
                     <!-- Интерактивный элемент -->
@@ -682,6 +714,32 @@
                                 frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
                     </div>
                     <p class="slide-note" id="slide-note">Презентацияны толық экран режимінде қарау үшін оны ашыңыз</p>
+                </div>
+            </div>
+            
+            <!-- НОВАЯ СЕКЦИЯ С ВИДЕО -->
+            <div class="video-section" id="section-video">
+                <button class="bookmark-btn" id="bookmark-video" data-section="section-video">
+                    <i class="far fa-bookmark"></i>
+                </button>
+                <div class="section-completion" id="section-video-completion">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="section-title" id="section-video-title-toggle">
+                    <i class="fas fa-chevron-down"></i> <span id="video-title">Білімдік бейне: Өсімдіктердің құрылымы</span>
+                </h2>
+                <div class="section-content" id="section-video-content">
+                    <div class="video-container">
+                        <iframe id="video-iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=btXXg5qp5o9OMOg9" 
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <p class="video-note" id="video-note">Бейнені толық экран режимінде қарау үшін оны ашыңыз</p>
+                    
+                    <div class="important-note">
+                        <h4><i class="fas fa-info-circle"></i> <span id="video-note-title">Бейне туралы</span></h4>
+                        <p id="video-note-text">Бұл бейнеде өсімдіктердің негізгі құрылымдары мен олардың функциялары туралы қызықты ақпарат беріледі. Өсімдіктердің тамыр, сабақ, жапырақ және гүлдерінің қызметтері егжей-тегжейлі түсіндіріледі.</p>
+                    </div>
                 </div>
             </div>
             
@@ -875,17 +933,17 @@
             if (!user || !user.progress || !user.progress.module1) return;
             
             const progress = user.progress.module1;
-            const totalSections = 5;
+            const totalSections = 6; // Обновили количество секций
             let completedSections = 0;
             
             // Проверить каждую секцию
-            for (let i = 1; i <= totalSections; i++) {
-                const sectionId = `section${i}`;
+            const sections = ['section1', 'section2', 'section3', 'section-video', 'section4', 'section5'];
+            sections.forEach(sectionId => {
                 if (progress[sectionId]) {
                     completedSections++;
                     document.getElementById(`${sectionId}-completion`).style.display = 'block';
                 }
-            }
+            });
             
             // Рассчитать процент прогресса
             const progressPercent = Math.round((completedSections / totalSections) * 100);
@@ -923,6 +981,7 @@
                 { id: 'section1', element: document.getElementById('section1') },
                 { id: 'section2', element: document.getElementById('section2') },
                 { id: 'section3', element: document.getElementById('section3') },
+                { id: 'section-video', element: document.getElementById('section-video') }, // Добавили видео-секцию
                 { id: 'section4', element: document.getElementById('section4') },
                 { id: 'section5', element: document.getElementById('section5') }
             ];
@@ -1163,6 +1222,10 @@
             slideTitle: "Презентация",
             slideNote: "Презентацияны толық экран режимінде қарау үшін оны ашыңыз",
             slideUrl: "https://docs.google.com/presentation/d/1WvYpHdp_VSN-bBqXTpLLPLj5hDqPeWEucxib-_DhcWU/embed?start=false&loop=false&delayms=3000",
+            videoTitle: "Білімдік бейне: Өсімдіктердің құрылымы",
+            videoNote: "Бейнені толық экран режимінде қарау үшін оны ашыңыз",
+            videoNoteTitle: "Бейне туралы",
+            videoNoteText: "Бұл бейнеде өсімдіктердің негізгі құрылымдары мен олардың функциялары туралы қызықты ақпарат беріледі. Өсімдіктердің тамыр, сабақ, жапырақ және гүлдерінің қызметтері егжей-тегжейлі түсіндіріледі.",
             completedText: "Аяқталды",
             progressText: "Оқу процесі:",
             congratsText: "Құттықтаймыз!",
@@ -1224,6 +1287,10 @@
             slideTitle: "Презентация",
             slideNote: "Откройте презентацию в полноэкранном режиме для лучшего просмотра",
             slideUrl: "https://docs.google.com/presentation/d/1J8Kif_nFNHQkj75cQjLCjUWEy6vKQbLStsYOt21Oy28/embed?start=false&loop=false&delayms=3000",
+            videoTitle: "Обучающее видео: Строение растений",
+            videoNote: "Откройте видео в полноэкранном режиме для лучшего просмотра",
+            videoNoteTitle: "О видео",
+            videoNoteText: "В этом видео представлена интересная информация об основных структурах растений и их функциях. Подробно объясняются функции корней, стеблей, листьев и цветов растений.",
             completedText: "Завершено",
             progressText: "Процесс обучения:",
             congratsText: "Поздравляем!",
@@ -1312,6 +1379,12 @@
             document.getElementById('slide-title').textContent = kzTexts.slideTitle;
             document.getElementById('slide-note').textContent = kzTexts.slideNote;
             document.getElementById('slide-iframe').src = kzTexts.slideUrl;
+            
+            // Обновление видео-секции
+            document.getElementById('video-title').textContent = kzTexts.videoTitle;
+            document.getElementById('video-note').textContent = kzTexts.videoNote;
+            document.getElementById('video-note-title').textContent = kzTexts.videoNoteTitle;
+            document.getElementById('video-note-text').textContent = kzTexts.videoNoteText;
             
             // Обновление прогресса
             document.getElementById('completed-text').textContent = kzTexts.completedText;
@@ -1404,6 +1477,12 @@
             document.getElementById('slide-title').textContent = ruTexts.slideTitle;
             document.getElementById('slide-note').textContent = ruTexts.slideNote;
             document.getElementById('slide-iframe').src = ruTexts.slideUrl;
+            
+            // Обновление видео-секции
+            document.getElementById('video-title').textContent = ruTexts.videoTitle;
+            document.getElementById('video-note').textContent = ruTexts.videoNote;
+            document.getElementById('video-note-title').textContent = ruTexts.videoNoteTitle;
+            document.getElementById('video-note-text').textContent = ruTexts.videoNoteText;
             
             // Обновление прогресса
             document.getElementById('completed-text').textContent = ruTexts.completedText;
