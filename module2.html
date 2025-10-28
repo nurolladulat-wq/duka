@@ -271,6 +271,58 @@
             gap: 8px;
         }
         
+        /* Стили для кнопки тестирования */
+        .test-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
+        }
+        
+        .test-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .test-description {
+            color: #fff3e0;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .test-btn {
+            background: white;
+            color: #f57c00;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .test-btn i {
+            margin-right: 8px;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+        }
+        
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
@@ -299,42 +351,6 @@
         .nav-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
-        }
-        
-        /* Стили для нижних кнопок управления */
-        .bottom-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        .control-group {
-            display: flex;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 20px;
-            padding: 5px;
-        }
-        
-        .control-btn {
-            padding: 8px 16px;
-            border: none;
-            background: none;
-            border-radius: 16px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            color: #2e7d32;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-        }
-        
-        .control-btn.active {
-            background: #4caf50;
-            color: white;
         }
         
         footer {
@@ -433,6 +449,24 @@
                 gap: 5px;
             }
             
+            .test-section {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .test-title {
+                font-size: 1.3rem;
+            }
+            
+            .test-description {
+                font-size: 0.9rem;
+            }
+            
+            .test-btn {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+            
             .navigation-buttons {
                 flex-direction: column;
                 gap: 12px;
@@ -442,17 +476,6 @@
                 width: 100%;
                 justify-content: center;
                 padding: 10px 15px;
-            }
-            
-            .bottom-controls {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .control-group {
-                width: 100%;
-                justify-content: center;
             }
         }
         
@@ -506,9 +529,21 @@
                 font-size: 1rem;
             }
             
-            .control-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+            .test-section {
+                padding: 15px;
+            }
+            
+            .test-title {
+                font-size: 1.1rem;
+            }
+            
+            .test-description {
+                font-size: 0.85rem;
+            }
+            
+            .test-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
             }
             
             .nav-btn {
@@ -686,6 +721,20 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- Секция с тестом -->
+                <div class="test-section">
+                    <h3 class="test-title">
+                        <i class="fas fa-tasks"></i> 
+                        <span id="test-title">Біліміңізді тексеріңіз!</span>
+                    </h3>
+                    <p class="test-description" id="test-description">
+                        Осы модуль бойынша біліміңізді тексеру үшін тестілеуге қатысыңыз. Сіз 10 сұраққа жауап беріп, өзіңіздің білім деңгейіңізді бағалай аласыз.
+                    </p>
+                    <a href="https://wayground.com/join?gc=48922794" class="test-btn" id="test-btn" target="_blank">
+                        <i class="fas fa-play"></i> <span id="test-btn-text">Тестілеуді бастау</span>
+                    </a>
+                </div>
             </div>
             
             <!-- Контент презентации -->
@@ -717,27 +766,6 @@
                     <p id="video-description" style="margin-top: 15px; color: #666; font-style: italic;">
                         Бұл бейне сабақта төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері мен айырмашылықтары қарастырылады.
                     </p>
-                </div>
-            </div>
-            
-            <!-- Нижние кнопки управления -->
-            <div class="bottom-controls">
-                <div class="control-group">
-                    <button class="control-btn" id="bottom-ru-btn">
-                        <i class="fas fa-language"></i> <span id="bottom-ru-text">Русский</span>
-                    </button>
-                    <button class="control-btn active" id="bottom-kz-btn">
-                        <i class="fas fa-language"></i> <span id="bottom-kz-text">Қазақша</span>
-                    </button>
-                </div>
-                
-                <div class="control-group">
-                    <button class="control-btn" id="phone-view-btn">
-                        <i class="fas fa-mobile-alt"></i> <span id="phone-view-text">Телефон</span>
-                    </button>
-                    <button class="control-btn active" id="desktop-view-btn">
-                        <i class="fas fa-desktop"></i> <span id="desktop-view-text">Компьютер</span>
-                    </button>
                 </div>
             </div>
             
@@ -810,10 +838,11 @@
             ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
             kzVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
             ruVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-            bottomRu: "Русский",
-            bottomKz: "Қазақша",
-            phoneView: "Телефон",
-            desktopView: "Компьютер"
+            // Тексты для теста
+            testTitle: "Біліміңізді тексеріңіз!",
+            testDescription: "Осы модуль бойынша біліміңізді тексеру үшін тестілеуге қатысыңыз. Сіз 10 сұраққа жауап беріп, өзіңіздің білім деңгейіңізді бағалай аласыз.",
+            testBtnText: "Тестілеуді бастау",
+            testLink: "https://wayground.com/join?gc=48922794"
         };
         
         // Тексты на русском
@@ -869,10 +898,11 @@
             ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
             kzVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
             ruVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-            bottomRu: "Русский",
-            bottomKz: "Қазақша",
-            phoneView: "Телефон",
-            desktopView: "Компьютер"
+            // Тексты для теста
+            testTitle: "Проверь себя!",
+            testDescription: "Пройдите тестирование, чтобы проверить свои знания по этому модулю. Вы ответите на 10 вопросов и сможете оценить свой уровень знаний.",
+            testBtnText: "Начать тестирование",
+            testLink: "https://wayground.com/join?gc=14188714"
         };
         
         // Установка казахского языка по умолчанию
@@ -880,8 +910,6 @@
             document.documentElement.lang = 'kk';
             document.getElementById('ru-btn').classList.remove('active');
             document.getElementById('kz-btn').classList.add('active');
-            document.getElementById('bottom-ru-btn').classList.remove('active');
-            document.getElementById('bottom-kz-btn').classList.add('active');
             
             document.getElementById('logo-text').textContent = kzTexts.logo;
             document.getElementById('back-text').textContent = kzTexts.back;
@@ -961,11 +989,11 @@
             document.getElementById('presentation-frame').src = kzTexts.kzPresentation;
             document.getElementById('video-frame').src = kzTexts.kzVideo;
             
-            // Обновление нижних кнопок
-            document.getElementById('bottom-ru-text').textContent = kzTexts.bottomRu;
-            document.getElementById('bottom-kz-text').textContent = kzTexts.bottomKz;
-            document.getElementById('phone-view-text').textContent = kzTexts.phoneView;
-            document.getElementById('desktop-view-text').textContent = kzTexts.desktopView;
+            // Обновление тестовой секции
+            document.getElementById('test-title').textContent = kzTexts.testTitle;
+            document.getElementById('test-description').textContent = kzTexts.testDescription;
+            document.getElementById('test-btn-text').textContent = kzTexts.testBtnText;
+            document.getElementById('test-btn').href = kzTexts.testLink;
         }
         
         // Установка русского языка
@@ -973,8 +1001,6 @@
             document.documentElement.lang = 'ru';
             document.getElementById('kz-btn').classList.remove('active');
             document.getElementById('ru-btn').classList.add('active');
-            document.getElementById('bottom-kz-btn').classList.remove('active');
-            document.getElementById('bottom-ru-btn').classList.add('active');
             
             document.getElementById('logo-text').textContent = ruTexts.logo;
             document.getElementById('back-text').textContent = ruTexts.back;
@@ -1054,11 +1080,11 @@
             document.getElementById('presentation-frame').src = ruTexts.ruPresentation;
             document.getElementById('video-frame').src = ruTexts.ruVideo;
             
-            // Обновление нижних кнопок
-            document.getElementById('bottom-ru-text').textContent = ruTexts.bottomRu;
-            document.getElementById('bottom-kz-text').textContent = ruTexts.bottomKz;
-            document.getElementById('phone-view-text').textContent = ruTexts.phoneView;
-            document.getElementById('desktop-view-text').textContent = ruTexts.desktopView;
+            // Обновление тестовой секции
+            document.getElementById('test-title').textContent = ruTexts.testTitle;
+            document.getElementById('test-description').textContent = ruTexts.testDescription;
+            document.getElementById('test-btn-text').textContent = ruTexts.testBtnText;
+            document.getElementById('test-btn').href = ruTexts.testLink;
         }
         
         // Функции для переключения между режимами отображения
@@ -1098,52 +1124,19 @@
             document.getElementById('video-btn').classList.add('active');
         }
         
-        // Функции для переключения режима просмотра (телефон/компьютер)
-        function enableMobileView() {
-            document.body.classList.add('mobile-view');
-            document.getElementById('phone-view-btn').classList.add('active');
-            document.getElementById('desktop-view-btn').classList.remove('active');
-            
-            // Принудительно применяем мобильные стили
-            const viewport = document.querySelector('meta[name="viewport"]');
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        }
-        
-        function enableDesktopView() {
-            document.body.classList.remove('mobile-view');
-            document.getElementById('desktop-view-btn').classList.add('active');
-            document.getElementById('phone-view-btn').classList.remove('active');
-            
-            // Восстанавливаем обычный viewport
-            const viewport = document.querySelector('meta[name="viewport"]');
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-        }
-        
         // Обработчики кнопок переключения языка
         document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
         document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
-        document.getElementById('bottom-ru-btn').addEventListener('click', setRussianLanguage);
-        document.getElementById('bottom-kz-btn').addEventListener('click', setKazakhLanguage);
         
         // Обработчики кнопок переключения режимов
         document.getElementById('text-btn').addEventListener('click', showTextContent);
         document.getElementById('presentation-btn').addEventListener('click', showPresentationContent);
         document.getElementById('video-btn').addEventListener('click', showVideoContent);
         
-        // Обработчики кнопок переключения вида
-        document.getElementById('phone-view-btn').addEventListener('click', enableMobileView);
-        document.getElementById('desktop-view-btn').addEventListener('click', enableDesktopView);
-        
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
             showTextContent(); // По умолчанию показываем текстовый контент
-            enableDesktopView(); // По умолчанию включаем компьютерный вид
-            
-            // Автоматическое определение мобильного устройства
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                enableMobileView();
-            }
         });
     </script>
 </body>
