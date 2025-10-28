@@ -2,7 +2,7 @@
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Модуль 1 - Өсімдіктер әлеміне кіріспе</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -17,15 +17,17 @@
             background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
             color: #33691e;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
@@ -33,13 +35,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
+            flex-wrap: wrap;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -48,25 +51,27 @@
         }
         
         .logo i {
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
         .user-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             color: white;
+            font-size: 0.9rem;
         }
         
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
@@ -78,10 +83,11 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
         
         .logout-btn:hover {
@@ -92,19 +98,20 @@
         .language-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 4px;
+            border-radius: 16px;
+            padding: 3px;
         }
         
         .language-btn {
-            padding: 6px 16px;
+            padding: 5px 12px;
             border: none;
             background: none;
-            border-radius: 16px;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
             color: white;
+            font-size: 0.85rem;
         }
         
         .language-btn.active {
@@ -112,27 +119,26 @@
             color: #2e7d32;
         }
         
-        /* Переключатель версий в header */
         .version-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 4px;
+            border-radius: 16px;
+            padding: 3px;
         }
         
         .version-btn {
-            padding: 6px 16px;
+            padding: 5px 12px;
             border: none;
             background: none;
-            border-radius: 16px;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
             color: white;
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.9rem;
+            gap: 4px;
+            font-size: 0.85rem;
         }
         
         .version-btn.active {
@@ -148,17 +154,18 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 8px 15px;
+            border-radius: 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
         
         .back-btn i {
-            margin-right: 8px;
+            margin-right: 6px;
         }
         
         .back-btn:hover {
@@ -167,73 +174,74 @@
         }
         
         .module-content {
-            padding: 40px;
+            padding: 25px;
         }
         
         .module-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
         }
         
         .completion-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 5px;
+            right: 5px;
             background: #4caf50;
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
             display: none;
         }
         
         .module-title {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #2e7d32;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .module-subtitle {
             color: #689f38;
-            font-size: 1.2rem;
+            font-size: 1rem;
             max-width: 700px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         
         .progress-indicator {
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: center;
         }
         
         .progress-text {
             color: #558b2f;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
         
         .content-section {
-            margin-bottom: 40px;
-            padding: 25px;
+            margin-bottom: 30px;
+            padding: 20px;
             background: #f9fbf8;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             position: relative;
             transition: all 0.3s ease;
         }
         
         .content-section.active {
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
-            border-left: 5px solid #4caf50;
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4caf50;
         }
         
         .section-completion {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px;
+            right: 12px;
             color: #4caf50;
-            font-size: 1.2rem;
+            font-size: 1rem;
             display: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -244,10 +252,10 @@
         }
         
         .section-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #558b2f;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #c5e1a5;
             display: flex;
             align-items: center;
@@ -255,7 +263,7 @@
         }
         
         .section-title i {
-            margin-right: 12px;
+            margin-right: 10px;
             color: #4caf50;
             transition: transform 0.3s ease;
         }
@@ -265,8 +273,8 @@
         }
         
         .section-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
             color: #333;
             transition: all 0.3s ease;
             max-height: 1000px;
@@ -279,42 +287,43 @@
         }
         
         .section-content p {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             text-align: justify;
         }
         
         .important-note {
             background: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 5px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
         }
         
         .important-note h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
+            font-size: 1rem;
         }
         
         .important-note h4 i {
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
-        /* Компьютерная версия таблиц */
         .desktop-version .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             overflow: hidden;
+            font-size: 0.9rem;
         }
         
         .desktop-version .comparison-table th, 
         .desktop-version .comparison-table td {
-            padding: 15px;
+            padding: 12px;
             text-align: left;
             border: 1px solid #c5e1a5;
         }
@@ -329,30 +338,30 @@
             background: #f1f8e9;
         }
         
-        /* Мобильная версия таблиц (карточки) */
         .mobile-version .mobile-cards {
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
         .mobile-version .mobile-card {
             background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #4caf50;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 3px solid #4caf50;
         }
         
         .mobile-version .mobile-card h4 {
             color: #2e7d32;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
         }
         
         .mobile-version .card-row {
             display: flex;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
+            flex-direction: column;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -365,41 +374,42 @@
         .mobile-version .card-label {
             font-weight: 600;
             color: #558b2f;
-            min-width: 120px;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
         }
         
         .mobile-version .card-value {
-            flex: 1;
             color: #333;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        /* Скрытие неактивных версий */
         .desktop-version .mobile-cards,
         .mobile-version .comparison-table {
             display: none;
         }
 
-        /* Новые стили для интерактивных элементов */
         .interactive-element {
             background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #4caf50;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 3px solid #4caf50;
         }
         
         .interactive-title {
             display: flex;
             align-items: center;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
             color: #2e7d32;
+            font-size: 0.95rem;
         }
         
         .interactive-title i {
-            margin-right: 10px;
+            margin-right: 8px;
             transition: transform 0.3s ease;
         }
         
@@ -419,19 +429,20 @@
         
         .bookmark-btn {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 12px;
+            left: 12px;
             background: rgba(255, 255, 255, 0.8);
             border: none;
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             color: #757575;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .bookmark-btn.active {
@@ -443,9 +454,8 @@
             transform: scale(1.1);
         }
 
-        /* Стили для секции с презентацией */
         .slide-section {
-            margin: 40px 0;
+            margin: 30px 0;
             text-align: center;
         }
         
@@ -453,11 +463,11 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 60%; /* Соотношение сторон 16:9 */
+            padding-bottom: 60%;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 15px 0;
         }
         
         .slide-container iframe {
@@ -470,14 +480,14 @@
         }
         
         .slide-note {
-            margin-top: 15px;
+            margin-top: 12px;
             font-style: italic;
             color: #689f38;
+            font-size: 0.9rem;
         }
         
-        /* Стили для видеоплеера */
         .video-section {
-            margin: 40px 0;
+            margin: 30px 0;
             text-align: center;
         }
         
@@ -485,11 +495,11 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* Соотношение сторон 16:9 для видео */
+            padding-bottom: 56.25%;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 15px 0;
         }
         
         .video-container iframe {
@@ -502,53 +512,59 @@
         }
         
         .video-note {
-            margin-top: 15px;
+            margin-top: 12px;
             font-style: italic;
             color: #689f38;
+            font-size: 0.9rem;
         }
         
         .completion-message {
             background: #e8f5e9;
             border: 2px solid #4caf50;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
-            margin: 30px 0;
+            margin: 25px 0;
             display: none;
         }
         
         .completion-message h3 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
         }
         
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
+            margin-top: 30px;
+            gap: 15px;
         }
         
         .nav-btn {
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
             text-decoration: none;
+            font-size: 0.9rem;
+            flex: 1;
+            justify-content: center;
         }
         
         .nav-btn i {
-            margin: 0 8px;
+            margin: 0 6px;
         }
         
         .nav-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
         }
         
         .nav-btn:disabled {
@@ -562,29 +578,30 @@
             background: linear-gradient(135deg, #ff9800, #f57c00);
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
+            padding: 12px 25px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
             text-decoration: none;
-            margin: 20px auto;
-            font-size: 1.2rem;
+            margin: 15px auto;
+            font-size: 1rem;
         }
         
         .test-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
         }
         
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
-            margin-top: 40px;
+            margin-top: 30px;
+            font-size: 0.85rem;
         }
         
         .author {
@@ -593,96 +610,316 @@
             text-decoration: underline;
         }
         
-        /* Стили для заметок пользователя */
         .notes-section {
-            margin: 30px 0;
+            margin: 25px 0;
             background: #fffde7;
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #ffd54f;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 3px solid #ffd54f;
         }
         
         .notes-title {
             color: #f57f17;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
         }
         
         .notes-title i {
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
         .notes-textarea {
             width: 100%;
-            min-height: 100px;
+            min-height: 80px;
             border: 1px solid #ffe082;
             border-radius: 5px;
-            padding: 10px;
+            padding: 8px;
             font-family: inherit;
             resize: vertical;
+            font-size: 0.9rem;
         }
         
         .save-notes-btn {
             background: #ffb300;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 8px;
             transition: all 0.3s ease;
+            font-size: 0.85rem;
         }
         
         .save-notes-btn:hover {
             background: #ff8f00;
         }
         
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
         /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
             .module-content {
-                padding: 20px;
+                padding: 15px;
             }
             
             .module-title {
-                font-size: 1.8rem;
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .module-subtitle {
+                font-size: 0.9rem;
             }
             
             header {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
                 text-align: center;
+                padding: 12px;
             }
             
             .header-controls {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
                 width: 100%;
             }
             
             .user-info {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
             
             .navigation-buttons {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
             }
             
             .nav-btn {
                 width: 100%;
-                justify-content: center;
+                padding: 8px 16px;
+                font-size: 0.85rem;
             }
 
             .slide-container, .video-container {
-                padding-bottom: 70%; /* Немного больше для мобильных устройств */
+                padding-bottom: 65%;
             }
             
             .language-switcher, .version-switcher {
                 width: 100%;
                 justify-content: center;
             }
+            
+            .mobile-version .section-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .mobile-version .section-content {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .mobile-version .section-content p {
+                margin-bottom: 12px;
+            }
+            
+            .mobile-version .important-note {
+                padding: 12px;
+                margin: 15px 0;
+            }
+            
+            .mobile-version .important-note h4 {
+                font-size: 0.95rem;
+            }
+            
+            .mobile-version .interactive-element {
+                padding: 12px;
+                margin: 12px 0;
+            }
+            
+            .mobile-version .interactive-title {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-version .mobile-card {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+            
+            .mobile-version .mobile-card h4 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            .mobile-version .card-row {
+                margin-bottom: 6px;
+                padding-bottom: 6px;
+            }
+            
+            .mobile-version .card-label {
+                font-size: 0.85rem;
+                margin-bottom: 3px;
+            }
+            
+            .mobile-version .card-value {
+                font-size: 0.85rem;
+            }
+            
+            .test-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 12px auto;
+            }
+            
+            .back-btn, .logout-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .notes-section {
+                margin: 20px 0;
+                padding: 12px;
+            }
+            
+            .notes-title {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            
+            .notes-textarea {
+                min-height: 70px;
+                font-size: 0.85rem;
+            }
+            
+            .save-notes-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .progress-indicator {
+                margin: 12px 0;
+            }
+            
+            .progress-text {
+                font-size: 0.85rem;
+            }
+            
+            .mobile-version ul {
+                padding-left: 18px;
+            }
+            
+            .mobile-version li {
+                margin-bottom: 6px;
+                font-size: 0.9rem;
+            }
+            
+            .content-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .bookmark-btn {
+                width: 28px;
+                height: 28px;
+                top: 10px;
+                left: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .module-content {
+                padding: 12px;
+            }
+            
+            .module-title {
+                font-size: 1.2rem;
+            }
+            
+            .content-section {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .mobile-version .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .mobile-version .mobile-card {
+                padding: 10px;
+            }
+            
+            .mobile-version .mobile-card h4 {
+                font-size: 0.95rem;
+            }
+            
+            .language-btn, .version-btn {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .version-btn span {
+                display: none;
+            }
+            
+            .version-btn i {
+                margin-right: 0;
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .test-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .nav-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        .mobile-version * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .mobile-version img,
+        .mobile-version iframe,
+        .mobile-version video {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -709,7 +946,6 @@
                     <button class="language-btn active" id="kz-btn">Қаз</button>
                 </div>
                 
-                <!-- Переключатель версий добавлен в header -->
                 <div class="version-switcher">
                     <button class="version-btn active" id="desktop-btn">
                         <i class="fas fa-desktop"></i> <span>Компьютер</span>
@@ -738,7 +974,6 @@
                 </div>
             </div>
             
-            <!-- Секция заметок пользователя -->
             <div class="notes-section">
                 <h3 class="notes-title"><i class="fas fa-sticky-note"></i> <span id="notes-title">Жеке жазбалар</span></h3>
                 <textarea class="notes-textarea" id="user-notes" placeholder="Модуль бойынша жазбаларыңызды осы жерге жазыңыз..."></textarea>
@@ -747,14 +982,12 @@
                 </button>
             </div>
             
-            <!-- Компьютерная версия -->
             <div class="desktop-version" id="desktop-version">
-                <!-- Содержимое для компьютерной версии -->
+                <!-- Desktop content will be loaded here -->
             </div>
             
-            <!-- Мобильная версия -->
             <div class="mobile-version" id="mobile-version" style="display: none;">
-                <!-- Содержимое для мобильной версии -->
+                <!-- Mobile content will be loaded here -->
             </div>
             
             <div class="completion-message" id="completion-message">
@@ -762,7 +995,7 @@
                 <p id="completion-desc">Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!</p>
             </div>
             
-            <div style="text-align: center; margin: 30px 0;">
+            <div style="text-align: center; margin: 20px 0;">
                 <a href="test1.html" class="test-btn" id="test-btn">
                     <i class="fas fa-graduation-cap"></i> <span id="test-btn-text">Модуль бойынша тестті тапсыру</span>
                 </a>
@@ -786,14 +1019,12 @@
     <script>
         // ==================== СИСТЕМА ВЕРСИЙ ====================
         
-        // Функция переключения между версиями
         function setupVersionSwitcher() {
             const desktopBtn = document.getElementById('desktop-btn');
             const mobileBtn = document.getElementById('mobile-btn');
             const desktopVersion = document.getElementById('desktop-version');
             const mobileVersion = document.getElementById('mobile-version');
             
-            // Загрузить сохраненную версию
             const savedVersion = localStorage.getItem('preferredVersion') || 'desktop';
             
             if (savedVersion === 'mobile') {
@@ -811,8 +1042,6 @@
                 desktopVersion.style.display = 'block';
                 mobileVersion.style.display = 'none';
                 localStorage.setItem('preferredVersion', 'desktop');
-                
-                // Загрузить контент для десктопной версии
                 loadDesktopContent();
             }
             
@@ -822,17 +1051,13 @@
                 mobileVersion.style.display = 'block';
                 desktopVersion.style.display = 'none';
                 localStorage.setItem('preferredVersion', 'mobile');
-                
-                // Загрузить контент для мобильной версии
                 loadMobileContent();
             }
         }
         
-        // Загрузка контента для десктопной версии
         function loadDesktopContent() {
             const desktopVersion = document.getElementById('desktop-version');
             desktopVersion.innerHTML = `
-                <!-- Содержимое такое же как в предыдущем коде -->
                 <div class="content-section" id="section1">
                     <button class="bookmark-btn" id="bookmark1" data-section="section1">
                         <i class="far fa-bookmark"></i>
@@ -1044,15 +1269,12 @@
                 </div>
             `;
             
-            // Инициализировать функциональность для загруженного контента
             initializeContent('desktop-version');
         }
         
-        // Загрузка контента для мобильной версии
         function loadMobileContent() {
             const mobileVersion = document.getElementById('mobile-version');
             mobileVersion.innerHTML = `
-                <!-- Содержимое такое же как в предыдущем коде, но с карточками вместо таблиц -->
                 <div class="content-section" id="section1">
                     <button class="bookmark-btn" id="bookmark1" data-section="section1">
                         <i class="far fa-bookmark"></i>
@@ -1311,18 +1533,14 @@
                 </div>
             `;
             
-            // Инициализировать функциональность для загруженного контента
             initializeContent('mobile-version');
         }
         
-        // Инициализация контента
         function initializeContent(version) {
-            // Здесь будет код для инициализации закладок, прогресса и других функций
             setupBookmarks();
             setupCollapsibleSections();
             setupInteractiveElements();
             
-            // Обновить перевод для загруженного контента
             if (document.documentElement.lang === 'kk') {
                 setKazakhLanguage();
             } else {
@@ -1330,11 +1548,148 @@
             }
         }
 
-        // ==================== ОСНОВНОЙ КОД ====================
-        // Здесь должен быть ваш существующий код для систем авторизации, прогресса и т.д.
-        // Для краткости я покажу только основные функции
-
-        // Система авторизации
+        function setupBookmarks() {
+            const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+            
+            bookmarkButtons.forEach(btn => {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user && user.bookmarks && user.bookmarks.module1) {
+                    const sectionId = btn.getAttribute('data-section');
+                    if (user.bookmarks.module1.includes(sectionId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+                    }
+                }
+                
+                btn.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const user = JSON.parse(localStorage.getItem('currentUser'));
+                    
+                    if (user) {
+                        if (!user.bookmarks) user.bookmarks = {};
+                        if (!user.bookmarks.module1) user.bookmarks.module1 = [];
+                        
+                        const index = user.bookmarks.module1.indexOf(sectionId);
+                        
+                        if (index === -1) {
+                            user.bookmarks.module1.push(sectionId);
+                            this.classList.add('active');
+                            this.innerHTML = '<i class="fas fa-bookmark"></i>';
+                            showNotification('Бетбелгі қосылды!', 'success');
+                        } else {
+                            user.bookmarks.module1.splice(index, 1);
+                            this.classList.remove('active');
+                            this.innerHTML = '<i class="far fa-bookmark"></i>';
+                            showNotification('Бетбелгі жойылды!', 'info');
+                        }
+                        
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                        
+                        const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+                        const userIndex = users.findIndex(u => u.id === user.id);
+                        if (userIndex !== -1) {
+                            users[userIndex] = user;
+                            localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                        }
+                    }
+                });
+            });
+        }
+        
+        function setupCollapsibleSections() {
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            sectionTitles.forEach(title => {
+                title.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    this.classList.toggle('collapsed');
+                    content.classList.toggle('collapsed');
+                    
+                    if (!content.classList.contains('collapsed')) {
+                        this.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        }
+        
+        function setupInteractiveElements() {
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            
+            interactiveElements.forEach(element => {
+                const title = element.querySelector('.interactive-title');
+                
+                title.addEventListener('click', function() {
+                    element.classList.toggle('active');
+                });
+            });
+        }
+        
+        function setupNotesSystem() {
+            const notesTextarea = document.getElementById('user-notes');
+            const saveNotesBtn = document.getElementById('save-notes-btn');
+            
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.notes && user.notes.module1) {
+                notesTextarea.value = user.notes.module1;
+            }
+            
+            saveNotesBtn.addEventListener('click', function() {
+                const user = JSON.parse(localStorage.getItem('currentUser'));
+                if (user) {
+                    if (!user.notes) user.notes = {};
+                    user.notes.module1 = notesTextarea.value;
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    const users = JSON.parse(localStorage.getItem('plantBiologyUsers')) || [];
+                    const userIndex = users.findIndex(u => u.id === user.id);
+                    if (userIndex !== -1) {
+                        users[userIndex] = user;
+                        localStorage.setItem('plantBiologyUsers', JSON.stringify(users));
+                    }
+                    
+                    showNotification('Жазбалар сақталды!', 'success');
+                }
+            });
+            
+            setInterval(() => {
+                if (notesTextarea.value !== '') {
+                    saveNotesBtn.click();
+                }
+            }, 30000);
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '15px';
+            notification.style.right = '15px';
+            notification.style.padding = '12px 16px';
+            notification.style.borderRadius = '5px';
+            notification.style.color = 'white';
+            notification.style.zIndex = '1000';
+            notification.style.transition = 'all 0.3s ease';
+            notification.style.fontSize = '0.9rem';
+            
+            if (type === 'success') {
+                notification.style.background = '#4caf50';
+            } else if (type === 'error') {
+                notification.style.background = '#f44336';
+            } else {
+                notification.style.background = '#2196f3';
+            }
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
         function checkAuth() {
             const user = JSON.parse(localStorage.getItem('currentUser'));
             if (!user) {
@@ -1355,62 +1710,65 @@
             window.location.href = 'index.html';
         }
 
-        // Система закладок
-        function setupBookmarks() {
-            // Ваш код для закладок
-        }
-
-        // Система сворачивания секций
-        function setupCollapsibleSections() {
-            // Ваш код для сворачивания
-        }
-
-        // Интерактивные элементы
-        function setupInteractiveElements() {
-            // Ваш код для интерактивных элементов
-        }
-
-        // Система заметок
-        function setupNotesSystem() {
-            // Ваш код для заметок
-        }
-
-        // Система перевода
         function setKazakhLanguage() {
             document.documentElement.lang = 'kk';
             document.getElementById('ru-btn').classList.remove('active');
             document.getElementById('kz-btn').classList.add('active');
-            // Обновление текстов
+            
+            document.getElementById('logo-text').textContent = "Жасыл әлем";
+            document.getElementById('back-text').textContent = "Модульдер тізімі";
+            document.getElementById('module-title').textContent = "Модуль 1: Өсімдіктер әлеміне кіріспе";
+            document.getElementById('module-subtitle').textContent = "Өсімдіктердің жіктелуі, құрылымы және табиғаттағы маңызы";
+            document.getElementById('completed-text').textContent = "Аяқталды";
+            document.getElementById('progress-text').textContent = "Оқу процесі:";
+            document.getElementById('notes-title').textContent = "Жеке жазбалар";
+            document.getElementById('save-notes-text').textContent = "Сақтау";
+            document.getElementById('congrats-text').textContent = "Құттықтаймыз!";
+            document.getElementById('completion-desc').textContent = "Сіз бұл модульді сәтті аяқтадыңыз. Келесі модульге өтуге дайынсыз!";
+            document.getElementById('test-btn-text').textContent = "Модуль бойынша тестті тапсыру";
+            document.getElementById('prev-btn').textContent = "Модульдер тізімі";
+            document.getElementById('next-btn').textContent = "Келесі модуль";
+            document.getElementById('logout-text').textContent = "Шығу";
         }
 
         function setRussianLanguage() {
             document.documentElement.lang = 'ru';
             document.getElementById('kz-btn').classList.remove('active');
             document.getElementById('ru-btn').classList.add('active');
-            // Обновление текстов
+            
+            document.getElementById('logo-text').textContent = "Зеленый мир";
+            document.getElementById('back-text').textContent = "Список модулей";
+            document.getElementById('module-title').textContent = "Модуль 1: Введение в мир растений";
+            document.getElementById('module-subtitle').textContent = "Классификация, строение и значение растений в природе";
+            document.getElementById('completed-text').textContent = "Завершено";
+            document.getElementById('progress-text').textContent = "Процесс обучения:";
+            document.getElementById('notes-title').textContent = "Личные заметки";
+            document.getElementById('save-notes-text').textContent = "Сохранить";
+            document.getElementById('congrats-text').textContent = "Поздравляем!";
+            document.getElementById('completion-desc').textContent = "Вы успешно завершили этот модуль. Готовы перейти к следующему!";
+            document.getElementById('test-btn-text').textContent = "Пройти тест по модулю";
+            document.getElementById('prev-btn').textContent = "Список модулей";
+            document.getElementById('next-btn').textContent = "Следующий модуль";
+            document.getElementById('logout-text').textContent = "Выйти";
         }
-
-        // ==================== ИНИЦИАЛИЗАЦИЯ ====================
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Проверка авторизации
             const user = checkAuth();
             if (user) {
                 showUserInfo(user);
-                // Настройка других функций
                 setupNotesSystem();
             }
             
-            // Настройка системы версий
             setupVersionSwitcher();
             
-            // Установка языка
             setKazakhLanguage();
             
-            // Обработчики событий
             document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
             document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
             document.getElementById('logout-btn').addEventListener('click', logout);
+            
+            document.getElementById('next-module-btn').style.pointerEvents = 'none';
+            document.getElementById('next-module-btn').style.opacity = '0.5';
         });
     </script>
 </body>
