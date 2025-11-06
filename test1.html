@@ -275,7 +275,7 @@
         
         .test-controls {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin-top: 30px;
             gap: 15px;
         }
@@ -284,7 +284,7 @@
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
@@ -292,7 +292,7 @@
             align-items: center;
             transition: all 0.3s ease;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
         
         .control-btn i {
@@ -410,6 +410,13 @@
             margin-right: 8px;
         }
         
+        .progress-info {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+            color: #558b2f;
+        }
+        
         /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             body {
@@ -464,8 +471,8 @@
             
             .control-btn {
                 width: 100%;
-                padding: 8px 16px;
-                font-size: 0.85rem;
+                padding: 10px 20px;
+                font-size: 0.9rem;
                 justify-content: center;
             }
             
@@ -612,17 +619,15 @@
                 </button>
             </div>
             
+            <div class="progress-info" id="progress-info" style="display: none;">
+                <span id="progress-text">Жауап берілген сұрақтар: <span id="answered-count">0</span> / 20</span>
+            </div>
+            
             <div class="test-questions" id="test-questions">
                 <!-- Вопросы будут загружены через JavaScript -->
             </div>
             
             <div class="test-controls" id="test-controls" style="display: none;">
-                <button class="control-btn" id="prev-btn">
-                    <i class="fas fa-arrow-left"></i> <span id="prev-text">Алдыңғы</span>
-                </button>
-                <button class="control-btn" id="next-btn">
-                    <span id="next-text">Келесі</span> <i class="fas fa-arrow-right"></i>
-                </button>
                 <button class="control-btn finish" id="finish-btn">
                     <i class="fas fa-flag-checkered"></i> <span id="finish-text">Тестті аяқтау</span>
                 </button>
@@ -684,7 +689,7 @@
                                 explanation: "Қырыққұлақтар — ДҰРЫС ЖАУАП. Олардың гүлдері жоқ және олар, әдетте, жапырақтардың астыңғы жағында, споралар түзеді."
                             },
                             {
-                                text: "Гүлді өсімдіктердегі еркек көбею мүшесі қалай аталады?",
+                                text: "Гүлді өсімдіклердегі еркек көбею мүшесі қалай аталады?",
                                 options: ["а) Аналық", "б) Аталық", "в) Түйін", "г) Жұмсақ"],
                                 correct: 1,
                                 explanation: "Аталық — ДҰРЫС ЖАУАП. Ол аталық түтікшеден және тозаңнан тұрады, онда тозаң түзіледі."
@@ -714,7 +719,7 @@
                                 explanation: "Көмірқышқыл газы (CO₂) — ДҰРЫС ЖАУАП. Бұл фотосинтез процесінің негізгі шикізат газы."
                             },
                             {
-                                text: "Бірнеше жыл өмір сүріп, бірнеше рет гүлдейтін өсімдіктер қалай аталады?",
+                                text: "Бірнеше жыл өмір сүріп, бірнеше рет гүлдейтін өсімдіклер қалай аталады?",
                                 options: ["а) Біржылдықтар", "б) Екіжылдықтар", "в) Көпжылдықтар", "г) Эфемерлер"],
                                 correct: 2,
                                 explanation: "Көпжылдықтар — ДҰРЫС ЖАУАП. Екі жылдан аса өмір сүреді және өмірінде бірнеше рет гүлдейді."
@@ -726,14 +731,12 @@
                         questions: [
                             {
                                 text: "Суретке назар салыңыз. Мұнда өсімдікке өмірлік маңызы бар қандай процесс көрсетілген?",
-                                image: "Photosynthesis_ru.svg.png",
                                 options: ["а) Тыныс алу", "б) Транспирация", "в) Фотосинтез", "г) Ұрықтану"],
                                 correct: 2,
                                 explanation: "Бұл сұлба көмірқышқыл газы мен судың жарық әсерінен глюкозаға және оттегіне айналатын фотосинтез процесін анық көрсетеді."
                             },
                             {
                                 text: "Суретте көрсетілген гүл шоғыры қандай түрге жатады, анықтаңыз.",
-                                image: "Traube_(inflorescence).svg.png",
                                 options: ["а) Күміс", "б) Бота", "в) Себет", "г) Сыпыртқы"],
                                 correct: 3,
                                 explanation: "Суретте дәл осы құрылым көрініп тұр, бұл сыпыртқы гүл шоғырына сәйкес келеді."
@@ -793,7 +796,7 @@
                         title: "Д бөлімі: 6 нұсқасы бар сұрақтар (біреуі дұрыс)",
                         questions: [
                             {
-                                text: "Бұл өсімдіктердің қайсысы жәндікжегіш болып табылады?",
+                                text: "Бұл өсімдіклердің қайсысы жәндікжегіш болып табылады?",
                                 options: ["а) Кактус", "б) Қайың", "в) Шықшытай", "г) Ақшешек", "д) Қалақай", "е) Мәтәжімек"],
                                 correct: 2,
                                 explanation: "Шықшытай — ДҰРЫС ЖАУАП. Бұл жәндіктерді жапырақтарындағы желімді түктермен ұстайтын әйгілі жәндікжегіш өсімдік."
@@ -808,8 +811,6 @@
                     }
                 ],
                 buttons: {
-                    prev: "Алдыңғы",
-                    next: "Келесі",
                     finish: "Тестті аяқтау"
                 },
                 results: {
@@ -862,8 +863,6 @@
                     // Остальные разделы на русском...
                 ],
                 buttons: {
-                    prev: "Назад",
-                    next: "Далее",
                     finish: "Завершить тест"
                 },
                 results: {
@@ -879,8 +878,6 @@
 
         // Переменные состояния
         let currentLanguage = 'kz';
-        let currentSection = 0;
-        let currentQuestion = 0;
         let userAnswers = {};
         let testStarted = false;
         let timeLeft = 60 * 60; // 60 минут в секундах
@@ -894,6 +891,8 @@
         const resultsScreen = document.getElementById('results-screen');
         const warningMessage = document.getElementById('warning-message');
         const timerDisplay = document.getElementById('time-display');
+        const progressInfo = document.getElementById('progress-info');
+        const answeredCount = document.getElementById('answered-count');
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
@@ -905,8 +904,6 @@
             document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
             document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
             document.getElementById('start-test-btn').addEventListener('click', startTest);
-            document.getElementById('prev-btn').addEventListener('click', goToPreviousQuestion);
-            document.getElementById('next-btn').addEventListener('click', goToNextQuestion);
             document.getElementById('finish-btn').addEventListener('click', finishTest);
             
             // Предупреждение при попытке покинуть страницу
@@ -938,8 +935,6 @@
             document.getElementById('start-test-text').textContent = data.startButton;
             document.getElementById('warning-text').textContent = data.warning.title;
             document.getElementById('warning-desc').textContent = data.warning.text;
-            document.getElementById('prev-text').textContent = data.buttons.prev;
-            document.getElementById('next-text').textContent = data.buttons.next;
             document.getElementById('finish-text').textContent = data.buttons.finish;
             
             // Обновление инструкций
@@ -964,6 +959,7 @@
             testQuestions.style.display = 'block';
             testControls.style.display = 'flex';
             warningMessage.style.display = 'block';
+            progressInfo.style.display = 'block';
             
             // Запуск таймера
             startTimer();
@@ -1057,6 +1053,7 @@
                         
                         input.addEventListener('change', function() {
                             saveAnswer(sectionIndex, questionIndex, optionIndex, question.multiple);
+                            updateProgress();
                         });
                         
                         optionElement.appendChild(input);
@@ -1075,8 +1072,7 @@
                 testQuestions.appendChild(sectionElement);
             });
             
-            // Показ текущего вопроса
-            showCurrentQuestion();
+            updateProgress();
         }
 
         function saveAnswer(sectionIndex, questionIndex, optionIndex, isMultiple) {
@@ -1099,43 +1095,35 @@
             }
         }
 
-        function showCurrentQuestion() {
-            // Скрываем все вопросы
-            const allQuestions = document.querySelectorAll('.question');
-            allQuestions.forEach(q => q.style.display = 'none');
+        function updateProgress() {
+            let answered = 0;
+            const totalQuestions = 20;
             
-            // Показываем текущий вопрос
-            const currentQuestionElement = document.getElementById(`q-${Math.floor(currentQuestion / 10)}-${currentQuestion % 10}`);
-            if (currentQuestionElement) {
-                currentQuestionElement.style.display = 'block';
+            // Подсчет отвеченных вопросов
+            for (let i = 0; i < totalQuestions; i++) {
+                const sectionIndex = Math.floor(i / 10);
+                const questionIndex = i % 10;
+                const answerKey = `${sectionIndex}-${questionIndex}`;
                 
-                // Прокрутка к вопросу
-                currentQuestionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (userAnswers[answerKey]) {
+                    if (Array.isArray(userAnswers[answerKey])) {
+                        if (userAnswers[answerKey].length > 0) {
+                            answered++;
+                        }
+                    } else {
+                        answered++;
+                    }
+                }
             }
             
-            // Обновление состояния кнопок навигации
-            document.getElementById('prev-btn').disabled = currentQuestion === 0;
-            document.getElementById('next-btn').disabled = currentQuestion === 19; // Всего 20 вопросов
-        }
-
-        function goToPreviousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showCurrentQuestion();
-            }
-        }
-
-        function goToNextQuestion() {
-            if (currentQuestion < 19) { // Всего 20 вопросов
-                currentQuestion++;
-                showCurrentQuestion();
-            }
+            answeredCount.textContent = answered;
         }
 
         function finishTest() {
             clearInterval(timerInterval);
             testQuestions.style.display = 'none';
             testControls.style.display = 'none';
+            progressInfo.style.display = 'none';
             resultsScreen.style.display = 'block';
             
             showResults();
