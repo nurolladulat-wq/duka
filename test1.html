@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль 1 тесті - Өсімдіктер әлеміне кіріспе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+        }
+        
+        .test-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .timer {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .back-btn i {
+            margin-right: 6px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .test-content {
+            padding: 25px;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-title {
+            font-size: 1.8rem;
+            color: #2e7d32;
+            margin-bottom: 12px;
+        }
+        
+        .test-subtitle {
+            color: #689f38;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .language-selection {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .language-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .language-btn i {
+            margin-right: 8px;
+        }
+        
+        .test-start-screen {
+            text-align: center;
+            padding: 30px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .test-instructions {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .test-instructions h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .test-instructions h3 i {
+            margin-right: 10px;
+        }
+        
+        .test-instructions ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .test-instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .start-test-btn {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .start-test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+        }
+        
+        .start-test-btn i {
+            margin-right: 10px;
+        }
+        
+        .test-questions {
+            display: none;
+        }
+        
+        .question-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #558b2f;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c5e1a5;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #f1f8e9;
+        }
+        
+        .option input {
+            margin-top: 3px;
+        }
+        
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .control-btn i {
+            margin: 0 6px;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .control-btn.finish {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .control-btn.finish:hover {
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+        }
+        
+        .results-screen {
+            display: none;
+            padding: 30px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+        
+        .score-percent {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .score-text {
+            font-size: 1rem;
+        }
+        
+        .results-details {
+            margin-top: 30px;
+        }
+        
+        .result-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .result-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+        
+        .result-answer {
+            margin-bottom: 10px;
+        }
+        
+        .result-explanation {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .correct {
+            color: #4caf50;
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #f44336;
+            font-weight: 600;
+        }
+        
+        .warning-message {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin: 25px 0;
+            display: none;
+        }
+        
+        .warning-message h3 {
+            color: #f57c00;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .warning-message h3 i {
+            margin-right: 8px;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .test-content {
+                padding: 15px;
+            }
+            
+            .test-title {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .test-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                padding: 12px;
+            }
+            
+            .test-info {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+            
+            .language-selection {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .language-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .test-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .control-btn {
+                width: 100%;
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                justify-content: center;
+            }
+            
+            .question-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .question {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .question-text {
+                font-size: 0.95rem;
+            }
+            
+            .results-screen {
+                padding: 15px;
+            }
+            
+            .score-circle {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .score-percent {
+                font-size: 2rem;
+            }
+            
+            .score-text {
+                font-size: 0.9rem;
+            }
+            
+            .result-item {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .test-content {
+                padding: 12px;
+            }
+            
+            .test-title {
+                font-size: 1.2rem;
+            }
+            
+            .question-section {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .language-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .start-test-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+            
+            .score-circle {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .score-percent {
+                font-size: 1.5rem;
+            }
+            
+            .score-text {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="module1.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="test-info">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i> <span id="time-display">60:00</span>
+                </div>
+                
+                <a href="module1.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="back-text">Модульге оралу</span>
+                </a>
+            </div>
+        </header>
+        
+        <div class="test-content">
+            <div class="test-header">
+                <h1 class="test-title" id="test-title">Модуль 1: Өсімдіктер әлеміне кіріспе</h1>
+                <p class="test-subtitle" id="test-subtitle">Білімдеріңізді тексеру үшін тест</p>
+            </div>
+            
+            <div class="warning-message" id="warning-message">
+                <h3><i class="fas fa-exclamation-triangle"></i> <span id="warning-text">Ескерту!</span></h3>
+                <p id="warning-desc">Тест басталғаннан кейін беттен шықпаңыз. Әйтпесе, тест нәтижесі жоғалады.</p>
+            </div>
+            
+            <div class="language-selection" id="language-selection">
+                <button class="language-btn" id="kz-btn">
+                    <i class="fas fa-language"></i> <span>Қазақ тілінде тестілеу</span>
+                </button>
+                <button class="language-btn" id="ru-btn">
+                    <i class="fas fa-language"></i> <span>Тестирование на русском</span>
+                </button>
+            </div>
+            
+            <div class="test-start-screen" id="test-start-screen">
+                <div class="test-instructions">
+                    <h3><i class="fas fa-info-circle"></i> <span id="instructions-title">Тест туралы ақпарат</span></h3>
+                    <ul id="instructions-list">
+                        <li id="instruction-1">Тест 60 минутқа созылады</li>
+                        <li id="instruction-2">Тест 5 бөлімнен тұрады: А, Б, В, Г, Д</li>
+                        <li id="instruction-3">Барлығы 20 сұрақ бар</li>
+                        <li id="instruction-4">Сұрақтарға жауап бергеннен кейін, оларды өзгертуге болады</li>
+                        <li id="instruction-5">Тест аяқталғаннан кейін, нәтижелеріңізді және түсіндірмелерді көресіз</li>
+                    </ul>
+                </div>
+                
+                <button class="start-test-btn" id="start-test-btn">
+                    <i class="fas fa-play"></i> <span id="start-test-text">Тестті бастау</span>
+                </button>
+            </div>
+            
+            <div class="test-questions" id="test-questions">
+                <!-- Вопросы будут загружены через JavaScript -->
+            </div>
+            
+            <div class="test-controls" id="test-controls" style="display: none;">
+                <button class="control-btn" id="prev-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="prev-text">Алдыңғы</span>
+                </button>
+                <button class="control-btn" id="next-btn">
+                    <span id="next-text">Келесі</span> <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="control-btn finish" id="finish-btn">
+                    <i class="fas fa-flag-checkered"></i> <span id="finish-text">Тестті аяқтау</span>
+                </button>
+            </div>
+            
+            <div class="results-screen" id="results-screen">
+                <!-- Результаты будут загружены через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Вопросы теста на казахском и русском языках
+        const testData = {
+            kz: {
+                title: "Модуль 1: Өсімдіктер әлеміне кіріспе",
+                subtitle: "Білімдеріңізді тексеру үшін тест",
+                instructions: {
+                    title: "Тест туралы ақпарат",
+                    items: [
+                        "Тест 60 минутқа созылады",
+                        "Тест 5 бөлімнен тұрады: А, Б, В, Г, Д",
+                        "Барлығы 20 сұрақ бар",
+                        "Сұрақтарға жауап бергеннен кейін, оларды өзгертуге болады",
+                        "Тест аяқталғаннан кейін, нәтижелеріңізді және түсіндірмелерді көресіз"
+                    ]
+                },
+                startButton: "Тестті бастау",
+                warning: {
+                    title: "Ескерту!",
+                    text: "Тест басталғаннан кейін беттен шықпаңыз. Әйтпесе, тест нәтижесі жоғалады."
+                },
+                sections: [
+                    {
+                        title: "А бөлімі: Бір дұрыс жауапты таңдау сұрақтары (а-г)",
+                        questions: [
+                            {
+                                text: "Өсімдіктерге органикалық заттарды бейорганикалық заттардан құруды қандай процесс қамтамасыз етеді?",
+                                options: ["а) Тыныс алу", "б) Фотосинтез", "в) Транспирация", "г) Көбею"],
+                                correct: 1,
+                                explanation: "Фотосинтез — ДҰРЫС ЖАУАП. Бұл өсімдіктердің күн сәулесінің энергиясын пайдаланып, суды (H₂O) және көмірқышқыл газын (CO₂) глюкозаға (органикалық зат) және оттегіге (O₂) айналдыру процесі."
+                            },
+                            {
+                                text: "Өсімдіктегі газ алмасудың негізгі мүшесі — бұл:",
+                                options: ["а) Сабақ", "б) Тамыр", "в) Жапырақ", "г) Гүл"],
+                                correct: 2,
+                                explanation: "Жапырақ — ДҰРЫС ЖАУАП. Оның құрылымы (устьицалардың болуы) көмірқышқыл газын сіңіру және оттегі мен су буын бөліп шығару үшін идеал бейімделген."
+                            },
+                            {
+                                text: "Өсімдіктерде су мен минералды заттарды тамырдан жапыраққа дейін тасымалдауға қандай ұлпа жауап береді?",
+                                options: ["а) Електі түтікшелер (флоэма)", "б) Қаптама ұлпасы", "в) Ерін (ксилема)", "г) Қалпына келтіруші ұлпа"],
+                                correct: 2,
+                                explanation: "Ерін (ксилема) — ДҰРЫС ЖАУАП. Ол тамырдан жоғары қарай су мен минералды тұздарды көтеретін құбыршалар мен трахеидтардан тұрады."
+                            },
+                            {
+                                text: "Гүлдері болмайды және споралар арқылы көбейетін организмдер қандай өсімдіктер тобына жатады?",
+                                options: ["а) Ашық тұқымдылар", "б) Қырыққұлақтар", "в) Қылқан жапырақтылар", "г) Жабық тұқымдылар"],
+                                correct: 1,
+                                explanation: "Қырыққұлақтар — ДҰРЫС ЖАУАП. Олардың гүлдері жоқ және олар, әдетте, жапырақтардың астыңғы жағында, споралар түзеді."
+                            },
+                            {
+                                text: "Гүлді өсімдіктердегі еркек көбею мүшесі қалай аталады?",
+                                options: ["а) Аналық", "б) Аталық", "в) Түйін", "г) Жұмсақ"],
+                                correct: 1,
+                                explanation: "Аталық — ДҰРЫС ЖАУАП. Ол аталық түтікшеден және тозаңнан тұрады, онда тозаң түзіледі."
+                            },
+                            {
+                                text: "Жерастындағы, қоректік заттарды жинақтайтын пулы бар өзгерген сабақ — бұл:",
+                                options: ["а) Клубень", "б) Тамырсабақ", "в) Пішәк", "г) Сахна"],
+                                correct: 2,
+                                explanation: "Пішәк — ДҰРЫС ЖАУАП. Бұл қысқа жазық сабағы (табаны) және етті қоректік пулары (мысалы, пияз, қызғалдақ) бар жерасты сабағының әйгілі мысалы."
+                            },
+                            {
+                                text: "Саңырауқұлақ пен балдырдың симбиозы қандай организмді құрайды?",
+                                options: ["а) Зең", "б) Мүк", "в) Қына", "г) Қырқағай"],
+                                correct: 2,
+                                explanation: "Қына — ДҰРЫС ЖАУАП. Бұл саңырауқұлақ су мен минералды заттармен қамтамасыз ететін, ал балдыр фотосинтез жүргізетін симбиотикалық организмнің әйгілі мысалы."
+                            },
+                            {
+                                text: "Өсімдіктің жапырақ арқылы суды булап шығару процесі қалай аталады?",
+                                options: ["а) Фотосинтез", "б) Осмос", "в) Транспирация", "г) Диффузия"],
+                                correct: 2,
+                                explanation: "Транспирация — ДҰРЫС ЖАУАП. Бұл дәл өсімдіктің, негізінен жапырақ устьицалары арқылы, суды булап шығару процесі."
+                            },
+                            {
+                                text: "Фотосинтез процесінде өсімдіклер атмосферадан қандай газды сіңіреді?",
+                                options: ["а) Оттегі (O₂)", "б) Азот (N₂)", "в) Көмірқышқыл газы (CO₂)", "г) Сутегі (H₂)"],
+                                correct: 2,
+                                explanation: "Көмірқышқыл газы (CO₂) — ДҰРЫС ЖАУАП. Бұл фотосинтез процесінің негізгі шикізат газы."
+                            },
+                            {
+                                text: "Бірнеше жыл өмір сүріп, бірнеше рет гүлдейтін өсімдіктер қалай аталады?",
+                                options: ["а) Біржылдықтар", "б) Екіжылдықтар", "в) Көпжылдықтар", "г) Эфемерлер"],
+                                correct: 2,
+                                explanation: "Көпжылдықтар — ДҰРЫС ЖАУАП. Екі жылдан аса өмір сүреді және өмірінде бірнеше рет гүлдейді."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Б бөлімі: Суреттері бар сұрақтар",
+                        questions: [
+                            {
+                                text: "Суретке назар салыңыз. Мұнда өсімдікке өмірлік маңызы бар қандай процесс көрсетілген?",
+                                image: "Photosynthesis_ru.svg.png",
+                                options: ["а) Тыныс алу", "б) Транспирация", "в) Фотосинтез", "г) Ұрықтану"],
+                                correct: 2,
+                                explanation: "Бұл сұлба көмірқышқыл газы мен судың жарық әсерінен глюкозаға және оттегіне айналатын фотосинтез процесін анық көрсетеді."
+                            },
+                            {
+                                text: "Суретте көрсетілген гүл шоғыры қандай түрге жатады, анықтаңыз.",
+                                image: "Traube_(inflorescence).svg.png",
+                                options: ["а) Күміс", "б) Бота", "в) Себет", "г) Сыпыртқы"],
+                                correct: 3,
+                                explanation: "Суретте дәл осы құрылым көрініп тұр, бұл сыпыртқы гүл шоғырына сәйкес келеді."
+                            }
+                        ]
+                    },
+                    {
+                        title: "В бөлімі: Бірнеше дұрыс жауабы бар сұрақтар",
+                        questions: [
+                            {
+                                text: "Төмендегілердің қайсысы өсімдіктерге тән белгілер? (3 нұсқаны таңдаңыз)",
+                                options: ["а) Автотрофты қоректену", "б) Хитиннен жасалған жасуша қабырғасы", "в) Целлюлозадан жасалған жасуша қабырғасы", "г) Фотосинтезге қабілеттілік", "д) Тамақ іздеп белсенді қозғалыс", "е) Өмір бойына өсу"],
+                                correct: [0, 2, 3, 5], // Индексы правильных ответов
+                                multiple: true,
+                                explanation: "Дұрыс жауаптар: а, в, г, е. Өсімдіктердің көпшілігі органикалық заттарды өзі түзеді (а), өсімдік жасушаларының қабырғасы целлюлозадан тұрады (в), фотосинтезге қабілетті (г) және өмір бойына өседі (е)."
+                            },
+                            {
+                                text: "Төмендегі өсімдіктердің қайсысы ашық тұқымдыларға жатады? (3 нұсқаны таңдаңыз)",
+                                options: ["а) Қарағай", "б) Шырша", "в) Қырыққұлақ Қандық", "г) Алма ағашы", "д) Арша", "е) Күнбағыс"],
+                                correct: [0, 1, 4],
+                                multiple: true,
+                                explanation: "Дұрыс жауаптар: а, б, д. Қарағай, шырша және арша ашық тұқымды өсімдіктерге жатады."
+                            },
+                            {
+                                text: "Өсімдік тамыры қандай функцияларды атқарады? (3 нұсқаны таңдаңыз)",
+                                options: ["а) Өсімдікті топырақта бекіту", "б) Су мен минералды заттарды сіңіру", "в) Фотосинтез", "г) Органикалық заттарды түзу", "д) Қоректік заттарды жинақтау", "е) Тозаңдану"],
+                                correct: [0, 1, 4],
+                                multiple: true,
+                                explanation: "Дұрыс жауаптар: а, б, д. Тамыр өсімдікті топырақта бекітеді (а), су мен минералды заттарды сіңіреді (б) және қоректік заттарды жинақтайды (д)."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Г бөлімі: 'Шын ба?' немесе 'Жалған ба?' сұрақтары",
+                        questions: [
+                            {
+                                text: "Балдырларда нағыз тамыр, сабақ және жапырақтар жоқ деген рас па?",
+                                options: ["а) Шын", "б) Жалған"],
+                                correct: 0,
+                                explanation: "Шын — ДҰРЫС ЖАУАП. Балдырлар — төменгі сатыдағы өсімдіктер. Олардың денесі (таллом) нағыз мүшелерге (тамыр, сабақ, жапырақ) бөлінбейді."
+                            },
+                            {
+                                text: "Барлық өсімдіктер тек тұқым арқылы көбейеді деген рас па?",
+                                options: ["а) Шын", "б) Жалған"],
+                                correct: 1,
+                                explanation: "Жалған — ДҰРЫС ЖАУАП. Көптеген өсімдіктер споралар арқылы (балдырлар, мүктер, қырыққұлақтар), вегетативті түрде (мекерлер, тамырсабақтар, клубеньдер және т.б.) көбейеді."
+                            },
+                            {
+                                text: "Хлорофилл — бұл өсімдіктерге жасыл түс беретін және фотосинтезге қатысатын пигмент деген рас па?",
+                                options: ["а) Шын", "б) Жалған"],
+                                correct: 0,
+                                explanation: "Шын — ДҰРЫС ЖАУАП. Хлорофилл хлоропласттарда болады және ол фотосинтезде пайдаланылатын күн энергиясын (негізінен көк және қызыл жарықты сіңіріп, жасылды шағылыстырады) сіңіреді."
+                            }
+                        ]
+                    },
+                    {
+                        title: "Д бөлімі: 6 нұсқасы бар сұрақтар (біреуі дұрыс)",
+                        questions: [
+                            {
+                                text: "Бұл өсімдіктердің қайсысы жәндікжегіш болып табылады?",
+                                options: ["а) Кактус", "б) Қайың", "в) Шықшытай", "г) Ақшешек", "д) Қалақай", "е) Мәтәжімек"],
+                                correct: 2,
+                                explanation: "Шықшытай — ДҰРЫС ЖАУАП. Бұл жәндіктерді жапырақтарындағы желімді түктермен ұстайтын әйгілі жәндікжегіш өсімдік."
+                            },
+                            {
+                                text: "Өсімдіктің қай элементі вегетативтік көбеюге қызмет ететін, өзгерген жерасты сабағы болып табылады?",
+                                options: ["а) Басты тамыр", "б) Қосымша тамыр", "в) Пішәк", "г) Тамырсабақ", "д) Меңзер сабақ", "е) Бүр"],
+                                correct: 3,
+                                explanation: "Тамырсабақ — ДҰРЫС ЖАУАП. Бұл дәл вегетативтік көбеюге (мысалы, ақбұйы, мәтәжімек, ирис) белсенді пайдаланылатын өзгерген жерасты сабағы (бүрлері және жабырғы пулдары бар)."
+                            }
+                        ]
+                    }
+                ],
+                buttons: {
+                    prev: "Алдыңғы",
+                    next: "Келесі",
+                    finish: "Тестті аяқтау"
+                },
+                results: {
+                    title: "Тест нәтижелері",
+                    score: "Ұпай",
+                    correct: "Дұрыс жауаптар",
+                    total: "Барлық сұрақтар",
+                    percentage: "Нәтиже",
+                    explanation: "Түсіндірме"
+                }
+            },
+            ru: {
+                // Аналогичная структура на русском языке
+                title: "Модуль 1: Введение в мир растений",
+                subtitle: "Тест для проверки ваших знаний",
+                instructions: {
+                    title: "Информация о тесте",
+                    items: [
+                        "Тест длится 60 минут",
+                        "Тест состоит из 5 частей: А, Б, В, Г, Д",
+                        "Всего 20 вопросов",
+                        "После ответа на вопросы их можно изменить",
+                        "После завершения теста вы увидите свои результаты и пояснения"
+                    ]
+                },
+                startButton: "Начать тест",
+                warning: {
+                    title: "Внимание!",
+                    text: "Не покидайте страницу после начала теста. В противном случае результаты теста будут потеряны."
+                },
+                sections: [
+                    {
+                        title: "Часть А: Вопросы с выбором одного правильного ответа (а-г)",
+                        questions: [
+                            {
+                                text: "Какой процесс обеспечивает растениям создание органических веществ из неорганических?",
+                                options: ["а) Дыхание", "б) Фотосинтез", "в) Транспирация", "г) Размножение"],
+                                correct: 1,
+                                explanation: "Фотосинтез — ПРАВИЛЬНЫЙ ОТВЕТ. Это процесс, при котором растения используют энергию солнечного света для превращения воды (H₂O) и углекислого газа (CO₂) в глюкозу (органическое вещество) и кислород (O₂)."
+                            },
+                            {
+                                text: "Основной орган газообмена у растения — это:",
+                                options: ["а) Стебель", "б) Корень", "в) Лист", "г) Цветок"],
+                                correct: 2,
+                                explanation: "Лист — ПРАВИЛЬНЫЙ ОТВЕТ. Его строение (наличие устьиц) идеально приспособлено для поглощения углекислого газа и выделения кислорода и паров воды."
+                            },
+                            // Остальные вопросы на русском...
+                        ]
+                    },
+                    // Остальные разделы на русском...
+                ],
+                buttons: {
+                    prev: "Назад",
+                    next: "Далее",
+                    finish: "Завершить тест"
+                },
+                results: {
+                    title: "Результаты теста",
+                    score: "Баллы",
+                    correct: "Правильные ответы",
+                    total: "Всего вопросов",
+                    percentage: "Результат",
+                    explanation: "Пояснение"
+                }
+            }
+        };
+
+        // Переменные состояния
+        let currentLanguage = 'kz';
+        let currentSection = 0;
+        let currentQuestion = 0;
+        let userAnswers = {};
+        let testStarted = false;
+        let timeLeft = 60 * 60; // 60 минут в секундах
+        let timerInterval;
+
+        // Элементы DOM
+        const languageSelection = document.getElementById('language-selection');
+        const testStartScreen = document.getElementById('test-start-screen');
+        const testQuestions = document.getElementById('test-questions');
+        const testControls = document.getElementById('test-controls');
+        const resultsScreen = document.getElementById('results-screen');
+        const warningMessage = document.getElementById('warning-message');
+        const timerDisplay = document.getElementById('time-display');
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            setKazakhLanguage();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+            document.getElementById('start-test-btn').addEventListener('click', startTest);
+            document.getElementById('prev-btn').addEventListener('click', goToPreviousQuestion);
+            document.getElementById('next-btn').addEventListener('click', goToNextQuestion);
+            document.getElementById('finish-btn').addEventListener('click', finishTest);
+            
+            // Предупреждение при попытке покинуть страницу
+            window.addEventListener('beforeunload', function(e) {
+                if (testStarted) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+        }
+
+        function setKazakhLanguage() {
+            currentLanguage = 'kz';
+            updateLanguageUI();
+        }
+
+        function setRussianLanguage() {
+            currentLanguage = 'ru';
+            updateLanguageUI();
+        }
+
+        function updateLanguageUI() {
+            const data = testData[currentLanguage];
+            
+            // Обновление текстов интерфейса
+            document.getElementById('test-title').textContent = data.title;
+            document.getElementById('test-subtitle').textContent = data.subtitle;
+            document.getElementById('instructions-title').textContent = data.instructions.title;
+            document.getElementById('start-test-text').textContent = data.startButton;
+            document.getElementById('warning-text').textContent = data.warning.title;
+            document.getElementById('warning-desc').textContent = data.warning.text;
+            document.getElementById('prev-text').textContent = data.buttons.prev;
+            document.getElementById('next-text').textContent = data.buttons.next;
+            document.getElementById('finish-text').textContent = data.buttons.finish;
+            
+            // Обновление инструкций
+            const instructionsList = document.getElementById('instructions-list');
+            instructionsList.innerHTML = '';
+            data.instructions.items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                instructionsList.appendChild(li);
+            });
+            
+            // Если тест уже начат, перезагружаем вопросы
+            if (testStarted) {
+                loadQuestions();
+            }
+        }
+
+        function startTest() {
+            testStarted = true;
+            testStartScreen.style.display = 'none';
+            languageSelection.style.display = 'none';
+            testQuestions.style.display = 'block';
+            testControls.style.display = 'flex';
+            warningMessage.style.display = 'block';
+            
+            // Запуск таймера
+            startTimer();
+            
+            // Загрузка вопросов
+            loadQuestions();
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(function() {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Изменение цвета при малом времени
+            if (timeLeft < 300) { // 5 минут
+                timerDisplay.style.color = '#f44336';
+            }
+        }
+
+        function loadQuestions() {
+            const data = testData[currentLanguage];
+            testQuestions.innerHTML = '';
+            
+            // Создание секций и вопросов
+            data.sections.forEach((section, sectionIndex) => {
+                const sectionElement = document.createElement('div');
+                sectionElement.className = 'question-section';
+                
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'section-title';
+                sectionTitle.textContent = section.title;
+                sectionElement.appendChild(sectionTitle);
+                
+                section.questions.forEach((question, questionIndex) => {
+                    const questionElement = document.createElement('div');
+                    questionElement.className = 'question';
+                    questionElement.id = `q-${sectionIndex}-${questionIndex}`;
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'question-text';
+                    questionText.textContent = `${sectionIndex * 10 + questionIndex + 1}. ${question.text}`;
+                    questionElement.appendChild(questionText);
+                    
+                    // Добавление изображения, если есть
+                    if (question.image) {
+                        const img = document.createElement('img');
+                        img.className = 'question-image';
+                        img.src = question.image;
+                        img.alt = 'Вопрос с изображением';
+                        questionElement.appendChild(img);
+                    }
+                    
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.className = 'options';
+                    
+                    question.options.forEach((option, optionIndex) => {
+                        const optionElement = document.createElement('label');
+                        optionElement.className = 'option';
+                        
+                        const input = document.createElement('input');
+                        input.type = question.multiple ? 'checkbox' : 'radio';
+                        input.name = `q-${sectionIndex}-${questionIndex}`;
+                        input.value = optionIndex;
+                        
+                        // Восстановление ответов пользователя
+                        const answerKey = `${sectionIndex}-${questionIndex}`;
+                        if (userAnswers[answerKey]) {
+                            if (question.multiple) {
+                                if (userAnswers[answerKey].includes(optionIndex)) {
+                                    input.checked = true;
+                                }
+                            } else {
+                                if (userAnswers[answerKey] === optionIndex) {
+                                    input.checked = true;
+                                }
+                            }
+                        }
+                        
+                        input.addEventListener('change', function() {
+                            saveAnswer(sectionIndex, questionIndex, optionIndex, question.multiple);
+                        });
+                        
+                        optionElement.appendChild(input);
+                        
+                        const optionText = document.createElement('span');
+                        optionText.textContent = option;
+                        optionElement.appendChild(optionText);
+                        
+                        optionsContainer.appendChild(optionElement);
+                    });
+                    
+                    questionElement.appendChild(optionsContainer);
+                    sectionElement.appendChild(questionElement);
+                });
+                
+                testQuestions.appendChild(sectionElement);
+            });
+            
+            // Показ текущего вопроса
+            showCurrentQuestion();
+        }
+
+        function saveAnswer(sectionIndex, questionIndex, optionIndex, isMultiple) {
+            const answerKey = `${sectionIndex}-${questionIndex}`;
+            
+            if (isMultiple) {
+                if (!userAnswers[answerKey]) {
+                    userAnswers[answerKey] = [];
+                }
+                
+                if (userAnswers[answerKey].includes(optionIndex)) {
+                    // Удаление ответа, если он уже выбран
+                    userAnswers[answerKey] = userAnswers[answerKey].filter(i => i !== optionIndex);
+                } else {
+                    // Добавление ответа
+                    userAnswers[answerKey].push(optionIndex);
+                }
+            } else {
+                userAnswers[answerKey] = optionIndex;
+            }
+        }
+
+        function showCurrentQuestion() {
+            // Скрываем все вопросы
+            const allQuestions = document.querySelectorAll('.question');
+            allQuestions.forEach(q => q.style.display = 'none');
+            
+            // Показываем текущий вопрос
+            const currentQuestionElement = document.getElementById(`q-${Math.floor(currentQuestion / 10)}-${currentQuestion % 10}`);
+            if (currentQuestionElement) {
+                currentQuestionElement.style.display = 'block';
+                
+                // Прокрутка к вопросу
+                currentQuestionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            // Обновление состояния кнопок навигации
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').disabled = currentQuestion === 19; // Всего 20 вопросов
+        }
+
+        function goToPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showCurrentQuestion();
+            }
+        }
+
+        function goToNextQuestion() {
+            if (currentQuestion < 19) { // Всего 20 вопросов
+                currentQuestion++;
+                showCurrentQuestion();
+            }
+        }
+
+        function finishTest() {
+            clearInterval(timerInterval);
+            testQuestions.style.display = 'none';
+            testControls.style.display = 'none';
+            resultsScreen.style.display = 'block';
+            
+            showResults();
+        }
+
+        function showResults() {
+            const data = testData[currentLanguage];
+            let correctCount = 0;
+            let totalQuestions = 0;
+            
+            resultsScreen.innerHTML = `
+                <div class="results-header">
+                    <h2>${data.results.title}</h2>
+                    <div class="score-circle">
+                        <div class="score-percent" id="score-percent">0%</div>
+                        <div class="score-text">${data.results.percentage}</div>
+                    </div>
+                    <p id="score-details">${data.results.correct}: 0 / ${data.results.total}: 20</p>
+                </div>
+                <div class="results-details" id="results-details"></div>
+            `;
+            
+            const resultsDetails = document.getElementById('results-details');
+            
+            // Проверка ответов и подсчет результатов
+            data.sections.forEach((section, sectionIndex) => {
+                section.questions.forEach((question, questionIndex) => {
+                    totalQuestions++;
+                    const answerKey = `${sectionIndex}-${questionIndex}`;
+                    const userAnswer = userAnswers[answerKey];
+                    let isCorrect = false;
+                    
+                    if (question.multiple) {
+                        // Для вопросов с несколькими правильными ответами
+                        if (userAnswer && Array.isArray(userAnswer) && 
+                            userAnswer.length === question.correct.length &&
+                            userAnswer.every(val => question.correct.includes(val))) {
+                            isCorrect = true;
+                            correctCount++;
+                        }
+                    } else {
+                        // Для вопросов с одним правильным ответом
+                        if (userAnswer === question.correct) {
+                            isCorrect = true;
+                            correctCount++;
+                        }
+                    }
+                    
+                    // Создание элемента результата
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'result-question';
+                    questionText.textContent = `${totalQuestions}. ${question.text}`;
+                    resultItem.appendChild(questionText);
+                    
+                    const answerStatus = document.createElement('div');
+                    answerStatus.className = isCorrect ? 'correct' : 'incorrect';
+                    answerStatus.textContent = isCorrect ? '✓ Дұрыс' : '✗ Қате';
+                    resultItem.appendChild(answerStatus);
+                    
+                    const explanation = document.createElement('div');
+                    explanation.className = 'result-explanation';
+                    explanation.textContent = question.explanation;
+                    resultItem.appendChild(explanation);
+                    
+                    resultsDetails.appendChild(resultItem);
+                });
+            });
+            
+            // Обновление итогового счета
+            const scorePercent = Math.round((correctCount / totalQuestions) * 100);
+            document.getElementById('score-percent').textContent = `${scorePercent}%`;
+            document.getElementById('score-details').textContent = 
+                `${data.results.correct}: ${correctCount} / ${data.results.total}: ${totalQuestions}`;
+            
+            // Прокрутка к началу результатов
+            resultsScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
