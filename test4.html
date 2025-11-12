@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test4 - Вегетативті органдар</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+        }
+        
+        .test-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .timer {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .back-btn i {
+            margin-right: 6px;
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .test-content {
+            padding: 25px;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-title {
+            font-size: 1.8rem;
+            color: #2e7d32;
+            margin-bottom: 12px;
+        }
+        
+        .test-subtitle {
+            color: #689f38;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        .language-selection {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .language-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .language-btn i {
+            margin-right: 8px;
+        }
+        
+        .test-start-screen {
+            text-align: center;
+            padding: 30px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .test-instructions {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .test-instructions h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .test-instructions h3 i {
+            margin-right: 10px;
+        }
+        
+        .test-instructions ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .test-instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .start-test-btn {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .start-test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+        }
+        
+        .start-test-btn i {
+            margin-right: 10px;
+        }
+        
+        .test-questions {
+            display: none;
+        }
+        
+        .question-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: #558b2f;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c5e1a5;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background: #f1f8e9;
+        }
+        
+        .option input {
+            margin-top: 3px;
+        }
+        
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c5e1a5;
+            background: #f1f8e9;
+            padding: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f1f8e9;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border: 2px dashed #c5e1a5;
+            color: #689f38;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .test-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        .control-btn i {
+            margin: 0 6px;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+        
+        .control-btn.finish {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .control-btn.finish:hover {
+            box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
+        }
+        
+        .results-screen {
+            display: none;
+            padding: 30px;
+            background: #f9fbf8;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+        
+        .score-percent {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .score-text {
+            font-size: 1rem;
+        }
+        
+        .results-details {
+            margin-top: 30px;
+        }
+        
+        .result-item {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .result-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+        
+        .result-answer {
+            margin-bottom: 10px;
+        }
+        
+        .result-explanation {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .correct {
+            color: #4caf50;
+            font-weight: 600;
+        }
+        
+        .incorrect {
+            color: #f44336;
+            font-weight: 600;
+        }
+        
+        .warning-message {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            margin: 25px 0;
+            display: none;
+        }
+        
+        .warning-message h3 {
+            color: #f57c00;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .warning-message h3 i {
+            margin-right: 8px;
+        }
+        
+        .progress-info {
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+            color: #558b2f;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .test-content {
+                padding: 15px;
+            }
+            
+            .test-title {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+            
+            .test-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                padding: 12px;
+            }
+            
+            .test-info {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+            
+            .language-selection {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .language-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .test-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .control-btn {
+                width: 100%;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                justify-content: center;
+            }
+            
+            .question-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .question {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .question-text {
+                font-size: 0.95rem;
+            }
+            
+            .results-screen {
+                padding: 15px;
+            }
+            
+            .score-circle {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .score-percent {
+                font-size: 2rem;
+            }
+            
+            .score-text {
+                font-size: 0.9rem;
+            }
+            
+            .result-item {
+                padding: 12px;
+            }
+            
+            .image-placeholder {
+                height: 150px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                font-size: 12px;
+            }
+            
+            .test-content {
+                padding: 12px;
+            }
+            
+            .test-title {
+                font-size: 1.2rem;
+            }
+            
+            .question-section {
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .language-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .start-test-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+            
+            .score-circle {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .score-percent {
+                font-size: 1.5rem;
+            }
+            
+            .score-text {
+                font-size: 0.8rem;
+            }
+            
+            .image-placeholder {
+                height: 120px;
+            }
+            
+            .image-placeholder i {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
+            </a>
+            
+            <div class="test-info">
+                <div class="timer" id="timer">
+                    <i class="fas fa-clock"></i> <span id="time-display">45:00</span>
+                </div>
+                
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> <span id="back-text">Басты бетке оралу</span>
+                </a>
+            </div>
+        </header>
+        
+        <div class="test-content">
+            <div class="test-header">
+                <h1 class="test-title" id="test-title">Test4 - Вегетативті органдар</h1>
+                <p class="test-subtitle" id="test-subtitle">Өсімдіктердің вегетативті органдары бойынша тест</p>
+            </div>
+            
+            <div class="warning-message" id="warning-message">
+                <h3><i class="fas fa-exclamation-triangle"></i> <span id="warning-text">Ескерту!</span></h3>
+                <p id="warning-desc">Тест басталғаннан кейін беттен шықпаңыз. Әйтпесе, тест нәтижесі жоғалады.</p>
+            </div>
+            
+            <div class="language-selection" id="language-selection">
+                <button class="language-btn" id="kz-btn">
+                    <i class="fas fa-language"></i> <span>Қазақ тілінде тестілеу</span>
+                </button>
+                <button class="language-btn" id="ru-btn">
+                    <i class="fas fa-language"></i> <span>Тестирование на русском</span>
+                </button>
+            </div>
+            
+            <div class="test-start-screen" id="test-start-screen">
+                <div class="test-instructions">
+                    <h3><i class="fas fa-info-circle"></i> <span id="instructions-title">Тест туралы ақпарат</span></h3>
+                    <ul id="instructions-list">
+                        <li id="instruction-1">Тест 45 минутқа созылады</li>
+                        <li id="instruction-2">Тест 4 бөлімнен тұрады: Оңай, Орташа, Қиын және Көп жауапты сұрақтар</li>
+                        <li id="instruction-3">Барлығы 20 сұрақ бар</li>
+                        <li id="instruction-4">Сұрақтарға жауап бергеннен кейін, оларды өзгертуге болады</li>
+                        <li id="instruction-5">Тест аяқталғаннан кейін, нәтижелеріңізді және түсіндірмелерді көресіз</li>
+                    </ul>
+                </div>
+                
+                <button class="start-test-btn" id="start-test-btn">
+                    <i class="fas fa-play"></i> <span id="start-test-text">Тестті бастау</span>
+                </button>
+            </div>
+            
+            <div class="progress-info" id="progress-info" style="display: none;">
+                <span id="progress-text">Жауап берілген сұрақтар: <span id="answered-count">0</span> / 20</span>
+            </div>
+            
+            <div class="test-questions" id="test-questions">
+                <!-- Вопросы будут загружены через JavaScript -->
+            </div>
+            
+            <div class="test-controls" id="test-controls" style="display: none;">
+                <button class="control-btn finish" id="finish-btn">
+                    <i class="fas fa-flag-checkered"></i> <span id="finish-text">Тестті аяқтау</span>
+                </button>
+            </div>
+            
+            <div class="results-screen" id="results-screen">
+                <!-- Результаты будут загружены через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Вопросы теста на казахском и русском языках
+        const testData = {
+            kz: {
+                title: "Test4 - Вегетативті органдар",
+                subtitle: "Өсімдіктердің вегетативті органдары бойынша тест",
+                instructions: {
+                    title: "Тест туралы ақпарат",
+                    items: [
+                        "Тест 45 минутқа созылады",
+                        "Тест 4 бөлімнен тұрады: Оңай, Орташа, Қиын және Көп жауапты сұрақтар",
+                        "Барлығы 20 сұрақ бар",
+                        "Сұрақтарға жауап бергеннен кейін, оларды өзгертуге болады",
+                        "Тест аяқталғаннан кейін, нәтижелеріңізді және түсіндірмелерді көресіз"
+                    ]
+                },
+                startButton: "Тестті бастау",
+                warning: {
+                    title: "Ескерту!",
+                    text: "Тест басталғаннан кейін беттен шықпаңыз. Әйтпесе, тест нәтижесі жоғалады."
+                },
+                sections: [
+                    {
+                        title: "I бөлім: Оңай сұрақтар (1-5)",
+                        questions: [
+                            {
+                                text: "Вегетативті органдарға ЖАТІН орган?",
+                                options: ["a) Тамыр", "b) Сабақ", "c) Гүл", "d) Жапырақ"],
+                                correct: 2,
+                                explanation: "c) Гүл - Гүл – бұл генеративті (көбею) органы, ал вегетативтік емес."
+                            },
+                            {
+                                text: "Тамырдың негізгі функциясы қандай?",
+                                options: ["a) Тозаңдану", "b) Желіндіру", "c) Қоректену заттарын сіңіру", "d) Фотосинтез"],
+                                correct: 2,
+                                explanation: "c) Қоректену заттарын сіңіру - Бұл тамыр жүйесінің негізгі функциясы."
+                            },
+                            {
+                                text: "Жапырақтың негізгі функциясы қандай?",
+                                options: ["a) Су мен тұздарды сіңіру", "b) Қоректік заттарды жинақтау", "c) Фотосинтез жүргізу", "d) Тұқым шашу"],
+                                correct: 2,
+                                explanation: "c) Фотосинтез жүргізу - Жапырақтың негізгі функциясы - күн энергиясын пайдаланып органикалық заттарды синтездеу."
+                            },
+                            {
+                                text: "Сабақтың негізгі функциясы қандай?",
+                                options: ["a) Жапырақтар мен гүлдерді көтеру", "b) Топырақтан су сіңіру", "c) Тозаңдану", "d) Тұқымдарды тарату"],
+                                correct: 0,
+                                explanation: "a) Жапырақтар мен гүлдерді көтеру - Сабақ тірек функциясын атқарады және тамыр жүйесін жапырақтармен байланыстырады."
+                            },
+                            {
+                                text: "Түйнек картоп – бұл өзгерген...",
+                                options: ["a) Тамыр", "b) Жапырақ", "c) Сабақ", "d) Гүл"],
+                                correct: 2,
+                                explanation: "c) Сабақ - Картоп түйнегі - бұл өзгерген жерасты сабағы (столон)."
+                            }
+                        ]
+                    },
+                    {
+                        title: "II бөлім: Орташа қиындықтағы сұрақтар (6-10)",
+                        questions: [
+                            {
+                                text: "Сөбілдіргіш (ризоид) деп аталатын тамырға ұқсас құрылым қай өсімдікте болады?",
+                                options: ["a) Қырыққұлақ", "b) Жоңышқа", "c) Қына", "d) Қарағай"],
+                                correct: 2,
+                                explanation: "c) Қына - Қынаның нағыз тамыры жоқ, оның орнына ризоидтар болады."
+                            },
+                            {
+                                text: "Қандай жапырақ құрылысы өсімдіктің құрғақшылыққа бейімделуін көрсетеді?",
+                                options: ["a) Ірі жапырақ пластинасы", "b) Терілі қабаттың қалың болуы", "c) Жапырақ сағағының ұзын болуы", "d) Көптеген күміш түсті бездердің болуы"],
+                                correct: 1,
+                                explanation: "b) Терілі қабаттың қалың болуы - Қалың терілі қабат судың булануын азайтады, бұл құрғақшылыққа бейімделу."
+                            },
+                            {
+                                text: "Қысқа сабақ пен қалыңдаған жапырақ қабыршақтарынан тұратын, пияз тәрізді өсімдік мәні не деп аталады?",
+                                options: ["a) Түйнек", "b) Түйіншек", "c) Бадана", "d) Соқыртамыр"],
+                                correct: 2,
+                                explanation: "c) Бадана - Бадана қысқа сабақтан (табан) және етті жапырақ қабыршақтарынан тұрады."
+                            },
+                            {
+                                text: "Пияз түйнегі – бұл өзгерген...",
+                                options: ["a) Тамыр", "b) Бадана", "c) Жапырақ", "d) Сабақ"],
+                                correct: 2,
+                                explanation: "c) Жапырақ - Пияз баданасы өзгерген жапырақтардан тұрады."
+                            },
+                            {
+                                text: "Қай өсімдікте жер асты сабағы (ризом) арқылы вегетативтік көбейеді?",
+                                options: ["a) Қызылша", "b) Картоп", "c) Итмұрын", "d) Саңырауқұлақ"],
+                                correct: 2,
+                                explanation: "c) Итмұрын - Итмұрын ризом (жер асты сабағы) арқылы вегетативтік жолмен көбейеді."
+                            }
+                        ]
+                    },
+                    {
+                        title: "III бөлім: Қиын сұрақтар (11-15)",
+                        questions: [
+                            {
+                                text: "«Соқыртамыр» немесе «аулау тамыр» деп қандай тамырды атайды?",
+                                options: ["a) Бағана тамыр", "b) Тарамталған тамыр", "c) Түйіншек тамыр", "d) Тығыздалған тамыр"],
+                                correct: 2,
+                                explanation: "c) Түйіншек тамыр - Бұршақ тұқымдас өсімдіктердің тамырларында азотты бекітетін бактериялар бар түйіншекті тамырлар болады."
+                            },
+                            {
+                                text: "Қандай өсімдікте фотосинтезге негізінен сабақ жасайды?",
+                                options: ["a) Кактус", "b) Қына", "c) Қырыққұлақ", "d) Жоңышқа"],
+                                correct: 0,
+                                explanation: "a) Кактус - Кактустарда жапырақтар тікендерге айналған, фотосинтезді сабақ орындайды."
+                            },
+                            {
+                                text: "Қынаның денесі неден тұрады?",
+                                options: ["a) Тамыр, сабақ, жапырақ", "b) Таллом (ведетка)", "c) Мицелий", "d) Ризиодтар мен фотосинтездеуші бөліктерден"],
+                                correct: 1,
+                                explanation: "b) Таллом (ведетка) - Қына денесі нағыз органдарға бөлінбейді, ол таллом деп аталады."
+                            },
+                            {
+                                text: "Құрма ағашындағы қатты, сүйек тәрізді қабырғасы бар жеміс қандай вегетативтік органның өзгеруі нәтижесінде пайда болады?",
+                                options: ["a) Жапырақ", "b) Тамыр", "c) Сабақ", "d) Гүл"],
+                                correct: 0,
+                                explanation: "a) Жапырақ - Құрма жемісі өзгерген жапырақтан пайда болады."
+                            },
+                            {
+                                text: "Қайсысы жапырақтың эпидермасындағы тығыз орналасқан клеткалардың функциясын дұрыс сипаттайды?",
+                                options: ["a) Фотосинтез", "b) Транспирация мен газ алмасу", "c) Механикалық қолдау", "d) Су мен қоректік заттарды тасымалдау"],
+                                correct: 1,
+                                explanation: "b) Транспирация мен газ алмасу - Устьица жасушалары судың булануын (транспирация) және газ алмасуды реттейді."
+                            }
+                        ]
+                    },
+                    {
+                        title: "IV бөлім: Көп жауапты сұрақтар (16-20)",
+                        questions: [
+                            {
+                                text: "Тамырдың қызметтеріне ЖАТІН нәрсені табыңыз?",
+                                options: ["a) Топырақтан су мен минералды тұздарды сіңіру", "b) Фотосинтез жүргізу", "c) Өсімдікті топыраққа бекіту", "d) Органикалық заттарды (крахмал, қант) жинақтау"],
+                                correct: [1],
+                                multiple: true,
+                                explanation: "b) Фотосинтез жүргізу - Фотосинтез негізінен жапырақтарда жүреді, тамырларда емес."
+                            },
+                            {
+                                text: "Қайсылар сабақтың өзгеруі болып табылады?",
+                                options: ["a) Тікен (қызылшекіргіш)", "b) Түйнек картоп", "c) Пияз", "d) Бұршақ түйіншегі"],
+                                correct: [0, 1],
+                                multiple: true,
+                                explanation: "a) Тікен (қызылшекіргіш) және b) Түйнек картоп - Бұлар сабақтың өзгерулері. Пияз - жапырақтың өзгеруі, ал бұршақ түйіншегі - тамырдың өзгеруі."
+                            },
+                            {
+                                text: "Қайсылар жапырақтың өзгеруі болып табылады?",
+                                options: ["a) Тікен (қызылшекіргіш)", "b) Мұртсабақ (бұршақ)", "c) Түйнек (гладиолус)", "d) Қоректік заттарды жинақтаушы бадана (лаваш)"],
+                                correct: [1, 3],
+                                multiple: true,
+                                explanation: "b) Мұртсабақ (бұршақ) және d) Қоректік заттарды жинақтаушы бадана (лаваш) - Бұлар жапырақтың өзгерулері. Тікен - сабақтың өзгеруі, түйнек - сабақтың өзгеруі."
+                            },
+                            {
+                                text: "Вегетативтік көбеюдің артықшылықтарына ЖАТІН нәрсені жатқызуға болады?",
+                                options: ["a) Жаңа тұқымдардың пайда болуы", "b) Ата-ана өсімдіктің барлық белгілерін сақтау", "c) Жылдам өсу және даму", "d) Түрдегі генетикалық әртүрлілікті арттыру"],
+                                correct: [0, 3],
+                                multiple: true,
+                                explanation: "a) Жаңа тұқымдардың пайда болуы және d) Түрдегі генетикалық әртүрлілікті арттыру - Вегетативтік көбею жыныссыз көбею болғандықтан, ол жаңа тұқымдарды түзбейді және генетикалық әртүрлілікті арттырмайды."
+                            },
+                            {
+                                text: "Қайсылар өсімдіктің негізгі вегетативтік органдары болып табылады?",
+                                options: ["a) Тамыр", "b) Сабақ", "c) Жапырақ", "d) Гүл"],
+                                correct: [0, 1, 2],
+                                multiple: true,
+                                explanation: "a) Тамыр, b) Сабақ, c) Жапырақ - Бұлар негізгі вегетативтік органдар. Гүл - генеративтік орган."
+                            }
+                        ]
+                    }
+                ],
+                buttons: {
+                    finish: "Тестті аяқтау"
+                },
+                results: {
+                    title: "Тест нәтижелері",
+                    score: "Ұпай",
+                    correct: "Дұрыс жауаптар",
+                    total: "Барлық сұрақтар",
+                    percentage: "Нәтиже",
+                    explanation: "Түсіндірме"
+                }
+            },
+            ru: {
+                title: "Test4 - Вегетативные органы",
+                subtitle: "Тест по вегетативным органам растений",
+                instructions: {
+                    title: "Информация о тесте",
+                    items: [
+                        "Тест длится 45 минут",
+                        "Тест состоит из 4 частей: Легкие, Средние, Сложные и Вопросы с множественным выбором",
+                        "Всего 20 вопросов",
+                        "После ответа на вопросы их можно изменить",
+                        "После завершения теста вы увидите свои результаты и пояснения"
+                    ]
+                },
+                startButton: "Начать тест",
+                warning: {
+                    title: "Внимание!",
+                    text: "Не покидайте страницу после начала теста. В противном случае результаты теста будут потеряны."
+                },
+                sections: [
+                    {
+                        title: "I часть: Легкие вопросы (1-5)",
+                        questions: [
+                            {
+                                text: "Какой орган НЕ относится к вегетативным?",
+                                options: ["a) Корень", "b) Стебель", "c) Цветок", "d) Лист"],
+                                correct: 2,
+                                explanation: "c) Цветок - Цветок – это генеративный (репродуктивный) орган, а не вегетативный."
+                            },
+                            {
+                                text: "Какова основная функция корня?",
+                                options: ["a) Опыление", "b) Размножение", "c) Поглощение воды и минеральных веществ", "d) Фотосинтез"],
+                                correct: 2,
+                                explanation: "c) Поглощение воды и минеральных веществ - Это основная функция корневой системы."
+                            },
+                            {
+                                text: "Какова основная функция листа?",
+                                options: ["a) Поглощение воды и солей", "b) Запас питательных веществ", "c) Осуществление фотосинтеза", "d) Рассеивание семян"],
+                                correct: 2,
+                                explanation: "c) Осуществление фотосинтеза - Главная функция листа – синтез органических веществ с использованием солнечной энергии."
+                            },
+                            {
+                                text: "Какова основная функция стебля?",
+                                options: ["a) Поддержка листьев и цветков", "b) Поглощение воды из почвы", "c) Опыление", "d) Распространение семян"],
+                                correct: 0,
+                                explanation: "a) Поддержка листьев и цветков - Стебель выполняет опорную функцию и связывает корневую систему с листьями."
+                            },
+                            {
+                                text: "Клубень картофеля – это видоизмененный...",
+                                options: ["a) Корень", "b) Лист", "c) Стебель", "d) Цветок"],
+                                correct: 2,
+                                explanation: "c) Стебель - Клубень картофеля – это видоизмененный подземный побег (столон)."
+                            }
+                        ]
+                    },
+                    {
+                        title: "II часть: Вопросы средней сложности (6-10)",
+                        questions: [
+                            {
+                                text: "Корнеподобные структуры, называемые ризоидами, есть у...",
+                                options: ["a) Грибов", "b) Мхов", "c) Водорослей", "d) Сосны"],
+                                correct: 2,
+                                explanation: "c) Водорослей - У водорослей нет настоящих корней, их функцию выполняют ризоиды."
+                            },
+                            {
+                                text: "Какое строение листа указывает на приспособленность растения к засушливым условиям?",
+                                options: ["a) Крупная листовая пластинка", "b) Толстый слой кутикулы", "c) Длинный черешок", "d) Наличие множества устьиц"],
+                                correct: 1,
+                                explanation: "b) Толстый слой кутикулы - Толстая кутикула уменьшает испарение воды, что является приспособлением к засухе."
+                            },
+                            {
+                                text: "Как называется видоизмененный побег, состоящий из короткого стебля и мясистых листьев (как у лука)?",
+                                options: ["a) Клубень", "b) Клубнелуковица", "c) Луковица", "d) Корнеплод"],
+                                correct: 2,
+                                explanation: "c) Луковица - Луковица состоит из донца (укороченного стебля) и мясистых чешуевидных листьев."
+                            },
+                            {
+                                text: "Луковица – это видоизмененный...",
+                                options: ["a) Корень", "b) Плод", "c) Лист", "d) Стебель"],
+                                correct: 2,
+                                explanation: "c) Лист - Луковица образуется из видоизмененных листьев."
+                            },
+                            {
+                                text: "Какое растение размножается вегетативно с помощью подземного побега – корневища?",
+                                options: ["a) Морковь", "b) Картофель", "c) Пырей", "d) Гриб"],
+                                correct: 2,
+                                explanation: "c) Пырей - Пырей активно размножается с помощью длинных подземных корневищ."
+                            }
+                        ]
+                    },
+                    {
+                        title: "III часть: Сложные вопросы (11-15)",
+                        questions: [
+                            {
+                                text: "«Клубеньковые» или «усваивающие» корни есть у...",
+                                options: ["a) Злаков", "b) Сложноцветных", "c) Бобовых", "d) Крестоцветных"],
+                                correct: 2,
+                                explanation: "c) Бобовых - На корнях бобовых растений живут клубеньковые бактерии, усваивающие атмосферный азот."
+                            },
+                            {
+                                text: "У какого растения фотосинтез в основном осуществляется стеблем?",
+                                options: ["a) Кактус", "b) Папоротник", "c) Гриб", "d) Мох"],
+                                correct: 0,
+                                explanation: "a) Кактус - У кактусов листья видоизменились в колючки, и функцию фотосинтеза взял на себя зеленый стебель."
+                            },
+                            {
+                                text: "Тело водоросли называется...",
+                                options: ["a) Корень, стебель, лист", "b) Таллом (слоевище)", "c) Мицелий", "d) Ризоиды и фотосинтезирующая часть"],
+                                correct: 1,
+                                explanation: "b) Таллом (слоевище) - Тело водорослей не разделено на настоящие корни, стебли и листья, оно называется талломом."
+                            },
+                            {
+                                text: "Плод финиковой пальмы с твердой, косточковой стенкой образуется в результате видоизменения какого вегетативного органа?",
+                                options: ["a) Листа", "b) Корня", "c) Стебля", "d) Цветка"],
+                                correct: 0,
+                                explanation: "a) Листа - Плод финиковой пальмы образуется из видоизмененного листа."
+                            },
+                            {
+                                text: "Какая функция устьичных клеток, плотно расположенных в эпидермисе листа, указана верно?",
+                                options: ["a) Фотосинтез", "b) Транспирация и газообмен", "c) Механическая опора", "d) Транспорт воды и питательных веществ"],
+                                correct: 1,
+                                explanation: "b) Транспирация и газообмен - Через устьица происходит испарение воды (транспирация) и обмен газами (CO2, O2)."
+                            }
+                        ]
+                    },
+                    {
+                        title: "IV часть: Вопросы с множественным выбором ответов (16-20)",
+                        questions: [
+                            {
+                                text: "Какие функции НЕ характерны для корня?",
+                                options: ["a) Поглощение воды и минеральных солей из почвы", "b) Осуществление фотосинтеза", "c) Закрепление растения в почве", "d) Запас органических веществ (крахмала, сахаров)"],
+                                correct: [1],
+                                multiple: true,
+                                explanation: "b) Осуществление фотосинтеза - Фотосинтез происходит primarily в листьях. Корни в этом процессе не участвуют напрямую."
+                            },
+                            {
+                                text: "Какие из перечисленных структур являются видоизменениями стебля?",
+                                options: ["a) Колючка (боярышник)", "b) Клубень картофеля", "c) Луковица", "d) Клубеньки на корнях бобовых"],
+                                correct: [0, 1],
+                                multiple: true,
+                                explanation: "a) Колючка (боярышник) и b) Клубень картофеля - Это видоизменения стебля. Луковица - видоизменение листьев, клубеньки на корнях бобовых - видоизменение корня."
+                            },
+                            {
+                                text: "Какие из перечисленных структур являются видоизменениями листа?",
+                                options: ["a) Колючка (кактус)", "b) Усик (горох)", "c) Клубень (гладиолус)", "d) Запасающая чешуя (лук)"],
+                                correct: [1, 3],
+                                multiple: true,
+                                explanation: "b) Усик (горох) и d) Запасающая чешуя (лук) - Это видоизменения листа. Колючка кактуса - видоизменение стебля, клубень гладиолуса - видоизменение стебля."
+                            },
+                            {
+                                text: "Какие преимущества вегетативного размножения НЕВЕРНЫ?",
+                                options: ["a) Появление новых семян", "b) Сохранение всех признаков материнского растения", "c) Быстрый рост и развитие", "d) Увеличение генетического разнообразия в популяции"],
+                                correct: [0, 3],
+                                multiple: true,
+                                explanation: "a) Появление новых семян и d) Увеличение генетического разнообразия в популяции - Вегетативное размножение бесполое, поэтому оно не приводит к появлению новых семян (a) и не увеличивает генетическое разнообразие (d). Наоборот, оно его сохраняет."
+                            },
+                            {
+                                text: "Какие органы являются основными вегетативными органами растения?",
+                                options: ["a) Корень", "b) Стебель", "c) Лист", "d) Цветок"],
+                                correct: [0, 1, 2],
+                                multiple: true,
+                                explanation: "a) Корень, b) Стебель, c) Лист - Это основные вегетативные органы. Цветок – генеративный орган."
+                            }
+                        ]
+                    }
+                ],
+                buttons: {
+                    finish: "Завершить тест"
+                },
+                results: {
+                    title: "Результаты теста",
+                    score: "Баллы",
+                    correct: "Правильные ответы",
+                    total: "Всего вопросов",
+                    percentage: "Результат",
+                    explanation: "Пояснение"
+                }
+            }
+        };
+
+        // Переменные состояния
+        let currentLanguage = 'kz';
+        let userAnswers = {};
+        let testStarted = false;
+        let timeLeft = 45 * 60; // 45 минут в секундах
+        let timerInterval;
+
+        // Элементы DOM
+        const languageSelection = document.getElementById('language-selection');
+        const testStartScreen = document.getElementById('test-start-screen');
+        const testQuestions = document.getElementById('test-questions');
+        const testControls = document.getElementById('test-controls');
+        const resultsScreen = document.getElementById('results-screen');
+        const warningMessage = document.getElementById('warning-message');
+        const timerDisplay = document.getElementById('time-display');
+        const progressInfo = document.getElementById('progress-info');
+        const answeredCount = document.getElementById('answered-count');
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            setKazakhLanguage();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+            document.getElementById('start-test-btn').addEventListener('click', startTest);
+            document.getElementById('finish-btn').addEventListener('click', finishTest);
+            
+            // Предупреждение при попытке покинуть страницу
+            window.addEventListener('beforeunload', function(e) {
+                if (testStarted) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+        }
+
+        function setKazakhLanguage() {
+            currentLanguage = 'kz';
+            updateLanguageUI();
+        }
+
+        function setRussianLanguage() {
+            currentLanguage = 'ru';
+            updateLanguageUI();
+        }
+
+        function updateLanguageUI() {
+            const data = testData[currentLanguage];
+            
+            // Обновление текстов интерфейса
+            document.getElementById('test-title').textContent = data.title;
+            document.getElementById('test-subtitle').textContent = data.subtitle;
+            document.getElementById('instructions-title').textContent = data.instructions.title;
+            document.getElementById('start-test-text').textContent = data.startButton;
+            document.getElementById('warning-text').textContent = data.warning.title;
+            document.getElementById('warning-desc').textContent = data.warning.text;
+            document.getElementById('finish-text').textContent = data.buttons.finish;
+            document.getElementById('back-text').textContent = currentLanguage === 'kz' ? 'Басты бетке оралу' : 'Вернуться на главную';
+            document.getElementById('logo-text').textContent = currentLanguage === 'kz' ? 'Жасыл әлем' : 'Зеленый мир';
+            document.getElementById('progress-text').textContent = currentLanguage === 'kz' 
+                ? 'Жауап берілген сұрақтар:' 
+                : 'Отвеченные вопросы:';
+            
+            // Обновление инструкций
+            const instructionsList = document.getElementById('instructions-list');
+            instructionsList.innerHTML = '';
+            data.instructions.items.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                instructionsList.appendChild(li);
+            });
+            
+            // Если тест уже начат, перезагружаем вопросы
+            if (testStarted) {
+                loadQuestions();
+            }
+        }
+
+        function startTest() {
+            testStarted = true;
+            testStartScreen.style.display = 'none';
+            languageSelection.style.display = 'none';
+            testQuestions.style.display = 'block';
+            testControls.style.display = 'flex';
+            warningMessage.style.display = 'block';
+            progressInfo.style.display = 'block';
+            
+            // Запуск таймера
+            startTimer();
+            
+            // Загрузка вопросов
+            loadQuestions();
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            timerInterval = setInterval(function() {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Изменение цвета при малом времени
+            if (timeLeft < 300) { // 5 минут
+                timerDisplay.style.color = '#f44336';
+            }
+        }
+
+        function loadQuestions() {
+            const data = testData[currentLanguage];
+            testQuestions.innerHTML = '';
+            
+            // Создание секций и вопросов
+            data.sections.forEach((section, sectionIndex) => {
+                const sectionElement = document.createElement('div');
+                sectionElement.className = 'question-section';
+                
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'section-title';
+                sectionTitle.textContent = section.title;
+                sectionElement.appendChild(sectionTitle);
+                
+                section.questions.forEach((question, questionIndex) => {
+                    const questionElement = document.createElement('div');
+                    questionElement.className = 'question';
+                    questionElement.id = `q-${sectionIndex}-${questionIndex}`;
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'question-text';
+                    questionText.textContent = `${sectionIndex * 5 + questionIndex + 1}. ${question.text}`;
+                    questionElement.appendChild(questionText);
+                    
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.className = 'options';
+                    
+                    question.options.forEach((option, optionIndex) => {
+                        const optionElement = document.createElement('label');
+                        optionElement.className = 'option';
+                        
+                        const input = document.createElement('input');
+                        input.type = question.multiple ? 'checkbox' : 'radio';
+                        input.name = `q-${sectionIndex}-${questionIndex}`;
+                        input.value = optionIndex;
+                        
+                        // Восстановление ответов пользователя
+                        const answerKey = `${sectionIndex}-${questionIndex}`;
+                        if (userAnswers[answerKey]) {
+                            if (question.multiple) {
+                                if (userAnswers[answerKey].includes(optionIndex)) {
+                                    input.checked = true;
+                                }
+                            } else {
+                                if (userAnswers[answerKey] === optionIndex) {
+                                    input.checked = true;
+                                }
+                            }
+                        }
+                        
+                        input.addEventListener('change', function() {
+                            saveAnswer(sectionIndex, questionIndex, optionIndex, question.multiple);
+                            updateProgress();
+                        });
+                        
+                        optionElement.appendChild(input);
+                        
+                        const optionText = document.createElement('span');
+                        optionText.textContent = option;
+                        optionElement.appendChild(optionText);
+                        
+                        optionsContainer.appendChild(optionElement);
+                    });
+                    
+                    questionElement.appendChild(optionsContainer);
+                    sectionElement.appendChild(questionElement);
+                });
+                
+                testQuestions.appendChild(sectionElement);
+            });
+            
+            updateProgress();
+        }
+
+        function saveAnswer(sectionIndex, questionIndex, optionIndex, isMultiple) {
+            const answerKey = `${sectionIndex}-${questionIndex}`;
+            
+            if (isMultiple) {
+                if (!userAnswers[answerKey]) {
+                    userAnswers[answerKey] = [];
+                }
+                
+                if (userAnswers[answerKey].includes(optionIndex)) {
+                    // Удаление ответа, если он уже выбран
+                    userAnswers[answerKey] = userAnswers[answerKey].filter(i => i !== optionIndex);
+                } else {
+                    // Добавление ответа
+                    userAnswers[answerKey].push(optionIndex);
+                }
+            } else {
+                userAnswers[answerKey] = optionIndex;
+            }
+        }
+
+        function updateProgress() {
+            let answered = 0;
+            const totalQuestions = 20;
+            
+            // Подсчет отвеченных вопросов
+            for (let i = 0; i < totalQuestions; i++) {
+                const sectionIndex = Math.floor(i / 5);
+                const questionIndex = i % 5;
+                const answerKey = `${sectionIndex}-${questionIndex}`;
+                
+                if (userAnswers[answerKey]) {
+                    if (Array.isArray(userAnswers[answerKey])) {
+                        if (userAnswers[answerKey].length > 0) {
+                            answered++;
+                        }
+                    } else {
+                        answered++;
+                    }
+                }
+            }
+            
+            answeredCount.textContent = answered;
+        }
+
+        function finishTest() {
+            clearInterval(timerInterval);
+            testQuestions.style.display = 'none';
+            testControls.style.display = 'none';
+            progressInfo.style.display = 'none';
+            resultsScreen.style.display = 'block';
+            
+            showResults();
+        }
+
+        function showResults() {
+            const data = testData[currentLanguage];
+            let correctCount = 0;
+            let totalQuestions = 0;
+            
+            resultsScreen.innerHTML = `
+                <div class="results-header">
+                    <h2>${data.results.title}</h2>
+                    <div class="score-circle">
+                        <div class="score-percent" id="score-percent">0%</div>
+                        <div class="score-text">${data.results.percentage}</div>
+                    </div>
+                    <p id="score-details">${data.results.correct}: 0 / ${data.results.total}: 20</p>
+                </div>
+                <div class="results-details" id="results-details"></div>
+            `;
+            
+            const resultsDetails = document.getElementById('results-details');
+            
+            // Проверка ответов и подсчет результатов
+            data.sections.forEach((section, sectionIndex) => {
+                section.questions.forEach((question, questionIndex) => {
+                    totalQuestions++;
+                    const answerKey = `${sectionIndex}-${questionIndex}`;
+                    const userAnswer = userAnswers[answerKey];
+                    let isCorrect = false;
+                    
+                    if (question.multiple) {
+                        // Для вопросов с несколькими правильными ответами
+                        if (userAnswer && Array.isArray(userAnswer) && 
+                            userAnswer.length === question.correct.length &&
+                            userAnswer.every(val => question.correct.includes(val))) {
+                            isCorrect = true;
+                            correctCount++;
+                        }
+                    } else {
+                        // Для вопросов с одним правильным ответом
+                        if (userAnswer === question.correct) {
+                            isCorrect = true;
+                            correctCount++;
+                        }
+                    }
+                    
+                    // Создание элемента результата
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'result-item';
+                    
+                    const questionText = document.createElement('div');
+                    questionText.className = 'result-question';
+                    questionText.textContent = `${totalQuestions}. ${question.text}`;
+                    resultItem.appendChild(questionText);
+                    
+                    const answerStatus = document.createElement('div');
+                    answerStatus.className = isCorrect ? 'correct' : 'incorrect';
+                    answerStatus.textContent = isCorrect 
+                        ? (currentLanguage === 'kz' ? '✓ Дұрыс' : '✓ Правильно') 
+                        : (currentLanguage === 'kz' ? '✗ Қате' : '✗ Неправильно');
+                    resultItem.appendChild(answerStatus);
+                    
+                    const explanation = document.createElement('div');
+                    explanation.className = 'result-explanation';
+                    explanation.textContent = question.explanation;
+                    resultItem.appendChild(explanation);
+                    
+                    resultsDetails.appendChild(resultItem);
+                });
+            });
+            
+            // Обновление итогового счета
+            const scorePercent = Math.round((correctCount / totalQuestions) * 100);
+            document.getElementById('score-percent').textContent = `${scorePercent}%`;
+            document.getElementById('score-details').textContent = 
+                `${data.results.correct}: ${correctCount} / ${data.results.total}: ${totalQuestions}`;
+            
+            // Прокрутка к началу результатов
+            resultsScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
