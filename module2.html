@@ -759,13 +759,19 @@
                         <span id="video-title">Төменгі және жоғары сатыдағы өсімдіктер бойынша видео сабақ</span>
                     </h3>
                     <iframe class="video-frame" id="video-frame" 
-                            src="https://youtu.be/qeMFqkcPYcg?si=hqMs-mo7LIGgbPCB" 
+                            src="https://www.youtube.com/embed/dJ2kI8h8Cr0" 
                             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen>
                     </iframe>
                     <p id="video-description" style="margin-top: 15px; color: #666; font-style: italic;">
                         Бұл бейне сабақта төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері мен айырмашылықтары қарастырылады.
                     </p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://youtu.be/dJ2kI8h8Cr0" target="_blank" style="color: #4caf50; text-decoration: none; font-weight: 500;">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span id="video-direct-link">Егер видео жүктелмесе, YouTube-та қарау үшін осы жерді басыңыз</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             
@@ -834,10 +840,11 @@
             presentationTitle: "Төменгі және жоғары сатыдағы өсімдіктер презентациясы",
             videoTitle: "Төменгі және жоғары сатыдағы өсімдіктер бойынша видео сабақ",
             videoDescription: "Бұл бейне сабақта төменгі және жоғары сатыдағы өсімдіктердің ерекшеліктері мен айырмашылықтары қарастырылады.",
+            videoDirectLink: "Егер видео жүктелмесе, YouTube-та қарау үшін осы жерді басыңыз",
             kzPresentation: "https://docs.google.com/presentation/d/1oU0bYyFycrIh03xVYWlFpvCavSWxFTFetxk8Pkudk6s/embed?start=false&loop=false&delayms=3000",
             ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
-            kzVideo: "https://youtu.be/qeMFqkcPYcg?si=hqMs-mo7LIGgbPCB",
-            ruVideo: "https://youtu.be/qeMFqkcPYcg?si=hqMs-mo7LIGgbPCB",
+            kzVideo: "https://www.youtube.com/embed/dJ2kI8h8Cr0",
+            ruVideo: "https://www.youtube.com/embed/dJ2kI8h8Cr0",
             // Тексты для теста
             testTitle: "Біліміңізді тексеріңіз!",
             testDescription: "Осы модуль бойынша біліміңізді тексеру үшін тестілеуге қатысыңыз. Сіз 5 сұраққа жауап беріп, өзіңіздің білім деңгейіңізді бағалай аласыз.",
@@ -894,10 +901,11 @@
             presentationTitle: "Презентация по низшим и высшим растениям",
             videoTitle: "Видеоурок по низшим и высшим растениям",
             videoDescription: "В этом видеоуроке рассматриваются особенности и различия низших и высших растений.",
+            videoDirectLink: "Если видео не загружается, нажмите здесь для просмотра на YouTube",
             kzPresentation: "https://docs.google.com/presentation/d/1oU0bYyFycrIh03xVYWlFpvCavSWxFTFetxk8Pkudk6s/embed?start=false&loop=false&delayms=3000",
             ruPresentation: "https://docs.google.com/presentation/d/1NIhYXwR7p999qUtJAZXIv2Xp5Vjw5ux4-cP2wwXKP00/embed?start=false&loop=false&delayms=3000",
-            kzVideo: "https://youtu.be/qeMFqkcPYcg?si=hqMs-mo7LIGgbPCB",
-            ruVideo: "https://youtu.be/qeMFqkcPYcg?si=hqMs-mo7LIGgbPCB",
+            kzVideo: "https://www.youtube.com/embed/dJ2kI8h8Cr0",
+            ruVideo: "https://www.youtube.com/embed/dJ2kI8h8Cr0",
             // Тексты для теста
             testTitle: "Проверь себя!",
             testDescription: "Пройдите тестирование, чтобы проверить свои знания по этому модулю. Вы ответите на 5 вопросов и сможете оценить свой уровень знаний.",
@@ -984,6 +992,7 @@
             document.getElementById('presentation-title').textContent = kzTexts.presentationTitle;
             document.getElementById('video-title').textContent = kzTexts.videoTitle;
             document.getElementById('video-description').textContent = kzTexts.videoDescription;
+            document.getElementById('video-direct-link').textContent = kzTexts.videoDirectLink;
             
             // Обновление ссылок на медиа
             document.getElementById('presentation-frame').src = kzTexts.kzPresentation;
@@ -1075,6 +1084,7 @@
             document.getElementById('presentation-title').textContent = ruTexts.presentationTitle;
             document.getElementById('video-title').textContent = ruTexts.videoTitle;
             document.getElementById('video-description').textContent = ruTexts.videoDescription;
+            document.getElementById('video-direct-link').textContent = ruTexts.videoDirectLink;
             
             // Обновление ссылок на медиа
             document.getElementById('presentation-frame').src = ruTexts.ruPresentation;
