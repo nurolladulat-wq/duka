@@ -21,7 +21,7 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -113,6 +113,14 @@
             margin-right: 10px;
         }
         
+        .section-title {
+            font-size: 1.6rem;
+            color: #558b2f;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c5e1a5;
+        }
+        
         .question {
             background: #f9fbf8;
             padding: 25px;
@@ -121,11 +129,42 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
         .question-text {
             font-size: 1.3rem;
             color: #558b2f;
-            margin-bottom: 20px;
             font-weight: 600;
+            flex: 1;
+        }
+        
+        .question-number {
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+        
+        .question-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
         }
         
         .options {
@@ -152,6 +191,11 @@
         
         .option input {
             margin-right: 12px;
+            transform: scale(1.2);
+        }
+        
+        .option-label {
+            font-weight: 500;
         }
         
         .submit-btn {
@@ -164,7 +208,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             display: block;
-            margin: 30px auto;
+            margin: 40px auto;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
         }
@@ -176,7 +220,7 @@
         
         .result {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             background: #e8f5e9;
             border-radius: 12px;
             margin-top: 30px;
@@ -184,22 +228,61 @@
         }
         
         .result-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #2e7d32;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .result-score {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 700;
             color: #f57c00;
             margin: 20px 0;
         }
         
         .result-message {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #689f38;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .result-details {
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-question {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-question:last-child {
+            border-bottom: none;
+        }
+        
+        .question-result {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .correct-answer {
+            color: #4caf50;
+        }
+        
+        .wrong-answer {
+            color: #f44336;
+        }
+        
+        .explanation {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
         }
         
         .restart-btn {
@@ -211,6 +294,7 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            margin-top: 20px;
         }
         
         .restart-btn:hover {
@@ -246,6 +330,20 @@
             .question-text {
                 font-size: 1.1rem;
             }
+            
+            .question-header {
+                flex-direction: column;
+            }
+            
+            .question-number {
+                margin-left: 0;
+                margin-top: 10px;
+                align-self: flex-start;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -264,83 +362,529 @@
         <div class="test-content">
             <div class="test-header">
                 <h1 class="test-title">Тест 4: Өсімдіктердің өсуі және дамуы</h1>
-                <p class="test-subtitle">Өсімдіктердің өсу кезеңдері, онтогенез және вегетативтік көбею</p>
+                <p class="test-subtitle">20 сұрақтық тест - Өсімдіктердің өсу кезеңдері, онтогенез және вегетативтік көбею</p>
             </div>
             
             <div class="test-info">
                 <h3><i class="fas fa-info-circle"></i> Тест туралы ақпарат</h3>
-                <p>Бұл тест 10 сұрақтан тұрады. Әрбір сұраққа бір дұрыс жауап бар. Тесті аяқтағаннан кейін нәтижеңізді көре аласыз.</p>
+                <p>Бұл тест 20 сұрақтан тұрады, олар 4 бөлімге бөлінген. Әрбір сұраққа бір дұрыс жауап бар. Тесті аяқтағаннан кейін нәтижеңізді көре аласыз және әрбір сұраққа түсініктеме ала аласыз.</p>
             </div>
             
             <form id="test-form">
+                <h2 class="section-title">БӨЛІМ А: Оңай сұрақтар (1-5)</h2>
+                
                 <div class="question">
-                    <div class="question-text">1. Өсімдіктердің өсуіне әсер ететін негізгі фактор қайсы?</div>
+                    <div class="question-header">
+                        <div class="question-text">1. Өсімдіктер жарықта қоректену үшін қандай процесс жүргізеді?</div>
+                        <div class="question-number">1/20</div>
+                    </div>
                     <div class="options">
                         <label class="option">
-                            <input type="radio" name="q1" value="a"> А) Тек температура
+                            <input type="radio" name="q1" value="a">
+                            <span class="option-label">А) Тыныс алу</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q1" value="b"> Б) Тек жарық
+                            <input type="radio" name="q1" value="b">
+                            <span class="option-label">Б) Фотосинтез</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q1" value="c"> В) Жарық, температура, ылғалдылық
+                            <input type="radio" name="q1" value="c">
+                            <span class="option-label">В) Транспирация</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q1" value="d"> Г) Тек топырақ құрамы
+                            <input type="radio" name="q1" value="d">
+                            <span class="option-label">Г) Ас қорыту</span>
                         </label>
                     </div>
                 </div>
                 
                 <div class="question">
-                    <div class="question-text">2. Онтогенез деген не?</div>
+                    <div class="question-header">
+                        <div class="question-text">2. Өсімдіктің жер астындағы негізгі бөлігі қалай аталады?</div>
+                        <div class="question-number">2/20</div>
+                    </div>
                     <div class="options">
                         <label class="option">
-                            <input type="radio" name="q2" value="a"> А) Тек тұқымның өнуі
+                            <input type="radio" name="q2" value="a">
+                            <span class="option-label">А) Сабақ</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q2" value="b"> Б) Өсімдіктің жеке даму үдерісі
+                            <input type="radio" name="q2" value="b">
+                            <span class="option-label">Б) Тамыр</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q2" value="c"> В) Тек гүлдеу кезеңі
+                            <input type="radio" name="q2" value="c">
+                            <span class="option-label">В) Жапырақ</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q2" value="d"> Г) Тек вегетативтік көбею
+                            <input type="radio" name="q2" value="d">
+                            <span class="option-label">Г) Бүр</span>
                         </label>
                     </div>
                 </div>
                 
                 <div class="question">
-                    <div class="question-text">3. Вегетативтік көбеюге мысал келтіріңіз:</div>
+                    <div class="question-header">
+                        <div class="question-text">3. Жапырақ көмірқышқыл газын қай тесікшелер арқылы қабылдайды?</div>
+                        <div class="question-number">3/20</div>
+                    </div>
                     <div class="options">
                         <label class="option">
-                            <input type="radio" name="q3" value="a"> А) Тұқым арқылы көбею
+                            <input type="radio" name="q3" value="a">
+                            <span class="option-label">А) Устьицалар</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q3" value="b"> Б) Гүл арқылы көбею
+                            <input type="radio" name="q3" value="b">
+                            <span class="option-label">Б) Томірлер</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q3" value="c"> В) Тамыр, сабақ, жапырақ арқылы көбею
+                            <input type="radio" name="q3" value="c">
+                            <span class="option-label">В) Күлтелер</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q3" value="d"> Г) Спора арқылы көбею
+                            <input type="radio" name="q3" value="d">
+                            <span class="option-label">Г) Түйіндер</span>
                         </label>
                     </div>
                 </div>
                 
                 <div class="question">
-                    <div class="question-text">4. Өсімдіктердің өсу кезеңдерінің дұрыс тізбегі қайсы?</div>
+                    <div class="question-header">
+                        <div class="question-text">4. Тозаңдануды көбінесе қандай жануарлар жүзеге асырады?</div>
+                        <div class="question-number">4/20</div>
+                    </div>
                     <div class="options">
                         <label class="option">
-                            <input type="radio" name="q4" value="a"> А) Тұқым өнуі → гүлдеу → өркен дамуы → тұқым беру
+                            <input type="radio" name="q4" value="a">
+                            <span class="option-label">А) Жер құрттары</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q4" value="b"> Б) Тұқым өнуі → өркен дамуы → гүлдеу → тұқым беру
+                            <input type="radio" name="q4" value="b">
+                            <span class="option-label">Б) Құстар мен жәндіктер</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q4" value="c"> В) Гүлдеу → тұқым өнуі → өркен дамуы → тұқым беру
+                            <input type="radio" name="q4" value="c">
+                            <span class="option-label">В) Құбырлар</span>
                         </label>
                         <label class="option">
-                            <input type="radio" name="q4" value="d"> Г) Өркен дамуы → тұқым өнуі → гүлдеу → тұқым беру
+                            <input type="radio" name="q4" value="d">
+                            <span class="option-label">Г) Жыландар</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">5. Өсімдіктер өсуі үшін қажетті негізгі минералды заттарды қайдан алады?</div>
+                        <div class="question-number">5/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5" value="a">
+                            <span class="option-label">А) Ауадан</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="b">
+                            <span class="option-label">Б) Топырақтан</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="c">
+                            <span class="option-label">В) Жаңбыр суынан</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="d">
+                            <span class="option-label">Г) Желден</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">БӨЛІМ Ә: Орташа сұрақтар (6-10)</h2>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">6. Фотосинтез процесінде өсімдіктер жарық энергиясын қандай энергия түріне айналдырады?</div>
+                        <div class="question-number">6/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q6" value="a">
+                            <span class="option-label">А) Механикалық энергия</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="b">
+                            <span class="option-label">Б) Химиялық энергия</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="c">
+                            <span class="option-label">В) Жылу энергиясы</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q6" value="d">
+                            <span class="option-label">Г) Электр энергиясы</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">7. Өсімдік сабағының басты функциясы қандай?</div>
+                        <div class="question-number">7/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q7" value="a">
+                            <span class="option-label">А) Су мен минералды тұздарды тасымалдау</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="b">
+                            <span class="option-label">Б) Тұқым шашу</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="c">
+                            <span class="option-label">В) Жапырақтарды күн сәулесіне көтеру</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q7" value="d">
+                            <span class="option-label">Г) Топаңдану</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">8. Өсімдіктердегі транспорт жүйесі не деп аталады?</div>
+                        <div class="question-number">8/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q8" value="a">
+                            <span class="option-label">А) Устьицалар</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="b">
+                            <span class="option-label">Б) Томірлер</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="c">
+                            <span class="option-label">В) Тамыр шаштыры</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q8" value="d">
+                            <span class="option-label">Г) Эпидермис</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">9. Өсімдік жасушасының қабырғасы неден тұрады?</div>
+                        <div class="question-number">9/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q9" value="a">
+                            <span class="option-label">А) Липидтер</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="b">
+                            <span class="option-label">Б) Целлюлоза</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="c">
+                            <span class="option-label">В) Белоктар</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q9" value="d">
+                            <span class="option-label">Г) Нуклеин қышқылдары</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">10. Тропизм дегеніміз не?</div>
+                        <div class="question-number">10/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q10" value="a">
+                            <span class="option-label">А) Өсімдіктің сыртқы әсерге байланысты бағытын өзгертуі</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="b">
+                            <span class="option-label">Б) Өсімдіктің тез өсуі</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="c">
+                            <span class="option-label">В) Жапырақтардың түнуі</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q10" value="d">
+                            <span class="option-label">Г) Гүлдердің ашуы</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">БӨЛІМ Б: Көп жауапты сұрақтар (11-15)</h2>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">11. Фотосинтез үшін қажетті негізгі факторлар қандай?</div>
+                        <div class="question-number">11/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q11" value="a">
+                            <span class="option-label">А) Жарық, су, көмірқышқыл газы</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="b">
+                            <span class="option-label">Б) Жарық, оттегі, азот</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="c">
+                            <span class="option-label">В) Су, минералдар, жел</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q11" value="d">
+                            <span class="option-label">Г) Ылғал, топырақ, температура</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">12. Өсімдіктердегі вегетативтік көбею әдістеріне қайсысы жатады?</div>
+                        <div class="question-number">12/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q12" value="a">
+                            <span class="option-label">А) Тұқым арқылы көбею</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="b">
+                            <span class="option-label">Б) Тамыр, сабақ, жапырақ арқылы көбею</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="c">
+                            <span class="option-label">В) Спорлар арқылы көбею</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q12" value="d">
+                            <span class="option-label">Г) Жәндіктер арқылы көбею</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">13. Өсімдік гормондарының (фитогормондар) негізгі функциясы қандай?</div>
+                        <div class="question-number">13/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q13" value="a">
+                            <span class="option-label">А) Су тасымалдау</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="b">
+                            <span class="option-label">Б) Өсу мен дамуды реттеу</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="c">
+                            <span class="option-label">В) Тыныс алу</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q13" value="d">
+                            <span class="option-label">Г) Тозаңдану</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">14. Өсімдіктердің топырақты қорғаудағы рөлі қандай?</div>
+                        <div class="question-number">14/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q14" value="a">
+                            <span class="option-label">А) Топырақты тығыздау</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="b">
+                            <span class="option-label">Б) Топырақты желіндеп тұру</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="c">
+                            <span class="option-label">В) Топырақтың құнарлығын арттыру</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q14" value="d">
+                            <span class="option-label">Г) Топырақты құрғату</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">15. Өсімдіктердің экожүйедегі маңызы қандай?</div>
+                        <div class="question-number">15/20</div>
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q15" value="a">
+                            <span class="option-label">А) Ауаны оттегімен байыту</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="b">
+                            <span class="option-label">Б) Жануарларға қорек көзі болу</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="c">
+                            <span class="option-label">В) Климатты реттеу</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q15" value="d">
+                            <span class="option-label">Г) Барлығы дұрыс</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">БӨЛІМ Г: Суреттік сұрақтар (16-20)</h2>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">16. Сурет A: Түрлі пішіндегі жапырақтар. Қай жапырақ түрі құрғақшылыққа бейімделген?</div>
+                        <div class="question-number">16/20</div>
+                    </div>
+                    <img src="https://news-img.gismeteo.st/ru/2018/10/5ceaf0ec.jpg" alt="Түрлі пішіндегі жапырақтар" class="question-image">
+                    <p class="image-caption">Сурет A: Ине жапырақты және кең жапырақты өсімдіктер</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q16" value="a">
+                            <span class="option-label">А) Ине жапырақты</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="b">
+                            <span class="option-label">Б) Кең жапырақты</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="c">
+                            <span class="option-label">В) Дөңгелек жапырақты</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q16" value="d">
+                            <span class="option-label">Г) Жіңішке жапырақты</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">17. Сурет B: Тамыр жүйелері. Бұл тамыр жүйелерінің атауларын жаз:</div>
+                        <div class="question-number">17/20</div>
+                    </div>
+                    <img src="https://ru-static.z-dn.net/files/dfc/ad3f542aaec0fccc476f6c575408ce59.png" alt="Тамыр жүйелері" class="question-image">
+                    <p class="image-caption">Сурет B: Тарамды және шашақты тамыр жүйелері</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q17" value="a">
+                            <span class="option-label">А) Тармақты және жіпшелі</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="b">
+                            <span class="option-label">Б) Тарамды және шашақты</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="c">
+                            <span class="option-label">В) Тік және көлденең</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q17" value="d">
+                            <span class="option-label">Г) Ұзын және қысқа</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">18. Сурет C: Гүл диаграммасы. Гүлдің аталық және аналық бөліктерін нөмірлеу арқымы көрсетіңіз:</div>
+                        <div class="question-number">18/20</div>
+                    </div>
+                    <img src="https://avatars.mds.yandex.net/i?id=97f2fd2d114e149aba69072d013383ccaa797224-12317070-images-thumbs&n=13" alt="Гүл диаграммасы" class="question-image">
+                    <p class="image-caption">Сурет C: Гүлдің құрылымдық бөліктері</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q18" value="a">
+                            <span class="option-label">А) 1-аталық, 2-аналық</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="b">
+                            <span class="option-label">Б) 1-аналық, 2-аталық</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="c">
+                            <span class="option-label">В) 1-тостағанша, 2-күлте</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q18" value="d">
+                            <span class="option-label">Г) 1-күлте, 2-тостағанша</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">19. Сурет D: Өсімдік бүршігінің өсу кезеңдері. Бұл процесс қалай аталады?</div>
+                        <div class="question-number">19/20</div>
+                    </div>
+                    <img src="https://img.freepik.com/free-vector/phases-plant-growth-infographic_90220-134.jpg?semt=ais_hybrid&w=740&q=80" alt="Өсімдік бүршігінің өсу кезеңдері" class="question-image">
+                    <p class="image-caption">Сурет D: Өсімдіктің өсу кезеңдері</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q19" value="a">
+                            <span class="option-label">А) Вегетативтік көбею</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="b">
+                            <span class="option-label">Б) Онтогенез</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="c">
+                            <span class="option-label">В) Тұқымның өнуі</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q19" value="d">
+                            <span class="option-label">Г) Фотосинтез</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <div class="question-text">20. Сурет E: Устьицаның жабық және ашық күйі. Бұл құрылымның атауы қандай?</div>
+                        <div class="question-number">20/20</div>
+                    </div>
+                    <img src="https://elementy.ru/images/eltpub/pochemu_kaktusy_ne_vysyhajut_02_505.jpg" alt="Устьицаның жабық және ашық күйі" class="question-image">
+                    <p class="image-caption">Сурет E: Устьицаның жұмыс істеу механизмі</p>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q20" value="a">
+                            <span class="option-label">А) Хлоропласт</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="b">
+                            <span class="option-label">Б) Устьица</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="c">
+                            <span class="option-label">В) Эпидермис</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q20" value="d">
+                            <span class="option-label">Г) Вакуоль</span>
                         </label>
                     </div>
                 </div>
@@ -352,8 +896,13 @@
             
             <div class="result" id="result">
                 <h2 class="result-title">Тест нәтижесі</h2>
-                <div class="result-score" id="score">0/4</div>
+                <div class="result-score" id="score">0/20</div>
                 <p class="result-message" id="message">Нәтижеңіз бойынша қосымша оқу ұсынылады</p>
+                
+                <div class="result-details" id="result-details">
+                    <!-- Детали результатов будут добавлены через JavaScript -->
+                </div>
+                
                 <button class="restart-btn" onclick="restartTest()">
                     <i class="fas fa-redo"></i> Тестті қайта бастау
                 </button>
@@ -368,10 +917,74 @@
     <script>
         // Дұрыс жауаптар
         const correctAnswers = {
-            q1: 'c',
-            q2: 'b', 
-            q3: 'c',
-            q4: 'b'
+            q1: 'b',
+            q2: 'b',
+            q3: 'a',
+            q4: 'b',
+            q5: 'b',
+            q6: 'b',
+            q7: 'c',
+            q8: 'b',
+            q9: 'b',
+            q10: 'a',
+            q11: 'a',
+            q12: 'b',
+            q13: 'b',
+            q14: 'b',
+            q15: 'd',
+            q16: 'a',
+            q17: 'b',
+            q18: 'a',
+            q19: 'c',
+            q20: 'b'
+        };
+
+        // Түсіндірмелер
+        const explanations = {
+            q1: "Фотосинтез - бұл өсімдіктердің жарық энергиясын пайдаланып, көмірқышқыл газы мен судан органикалық заттар түзу процесі.",
+            q2: "Тамыр - өсімдіктің жер астындағы негізгі бөлігі, ол өсімдікті топырақта бекіп, су мен минералды тұздарды сіңіреді.",
+            q3: "Устьицалар - жапырақ бетіндегі микроскопиялық тесікшелер, олар арқылы өсімдік көмірқышқыл газын сіңіріп, оттегін бөледі.",
+            q4: "Тозаңдану - бұл тозаңның аналық мойнына түсу процессі, ол көбінесе жәндіктер мен құстардың көмегімен жүзеге асырылады.",
+            q5: "Өсімдіктер тамырлары арқылы топырақтан азот, фосфор, калий сияқты минералды заттарды сіңіреді.",
+            q6: "Фотосинтез кезінде жарық энергиясы химиялық энергияға айналады да, бұл энергия глюкоза молекулаларында сақталады.",
+            q7: "Сабақтың негізгі функциясы - жапырақтарды күн сәулесіне көтеру, сонымен қатар ол су мен минералдарды тасымалдайды.",
+            q8: "Томірлер - өсімдіктердегі арнайы транспорт жүйесі, олар су, минералдар және органикалық заттарды тасымалдайды.",
+            q9: "Өсімдік жасушасының қабырғасы негізінен целлюлозадан тұрады, бұл оны берік ететін қатты құрылым.",
+            q10: "Тропизм - бұл өсімдіктің жарық, ауырлық күші, су сияқты сыртқы әсерлерге бағытталып өсуі.",
+            q11: "Фотосинтез үшін негізгі факторлар: жарық энергиясы, су (H₂O) және көмірқышқыл газы (CO₂).",
+            q12: "Вегетативтік көбею - бұл өсімдіктің вегетативтік бөліктері (тамыр, сабақ, жапырақ) арқылы көбейуі.",
+            q13: "Фитогормондар өсімдіктердің өсуін, дамуын, гүлдеуін, жеміс беруін реттейтін биологиялық белсенді заттар.",
+            q14: "Өсімдіктердің тамыр жүйесі топырақты желіндеп, оны эрозиядан (желінуден) қорғайды.",
+            q15: "Өсімдіктер экожүйеде бірнеше маңызды рөл атқарады: ауаны оттегімен байыту, жануарларға қорек болу, климатты реттеу.",
+            q16: "Ине жапырақтардың бетінің ауданы кіші, мөлшері қалың, бұл оларға суды үнемдеуге мүмкіндік береді, сондықтан олар құрғақшылыққа бейімделген.",
+            q17: "Тарамды тамыр жүйесі бір негізгі тамырдан, ал шашақты тамыр жүйесі бірнеше бірдей тамырлардан тұрады.",
+            q18: "Гүлдің аталық бөлігі тозаңды, ал аналық бөлігі тұқымдық бүршікті түзеді.",
+            q19: "Тұқымның өнуі - бұл тұқымнан жаңа өсімдіктің даму процесі.",
+            q20: "Устьица - жапырақ эпидермисіндегі екі күрделі жасушадан тұратын құрылым, ол газ алмасу мен транспирацияны реттейді."
+        };
+
+        // Сұрақ мәтіндері
+        const questionTexts = {
+            q1: "Өсімдіктер жарықта қоректену үшін қандай процесс жүргізеді?",
+            q2: "Өсімдіктің жер астындағы негізгі бөлігі қалай аталады?",
+            q3: "Жапырақ көмірқышқыл газын қай тесікшелер арқылы қабылдайды?",
+            q4: "Тозаңдануды көбінесе қандай жануарлар жүзеге асырады?",
+            q5: "Өсімдіктер өсуі үшін қажетті негізгі минералды заттарды қайдан алады?",
+            q6: "Фотосинтез процесінде өсімдіктер жарық энергиясын қандай энергия түріне айналдырады?",
+            q7: "Өсімдік сабағының басты функциясы қандай?",
+            q8: "Өсімдіктердегі транспорт жүйесі не деп аталады?",
+            q9: "Өсімдік жасушасының қабырғасы неден тұрады?",
+            q10: "Тропизм дегеніміз не?",
+            q11: "Фотосинтез үшін қажетті негізгі факторлар қандай?",
+            q12: "Өсімдіктердегі вегетативтік көбею әдістеріне қайсысы жатады?",
+            q13: "Өсімдік гормондарының (фитогормондар) негізгі функциясы қандай?",
+            q14: "Өсімдіктердің топырақты қорғаудағы рөлі қандай?",
+            q15: "Өсімдіктердің экожүйедегі маңызы қандай?",
+            q16: "Сурет A: Түрлі пішіндегі жапырақтар. Қай жапырақ түрі құрғақшылыққа бейімделген?",
+            q17: "Сурет B: Тамыр жүйелері. Бұл тамыр жүйелерінің атауларын жаз:",
+            q18: "Сурет C: Гүл диаграммасы. Гүлдің аталық және аналық бөліктерін нөмірлеу арқымы көрсетіңіз:",
+            q19: "Сурет D: Өсімдік бүршігінің өсу кезеңдері. Бұл процесс қалай аталады?",
+            q20: "Сурет E: Устьицаның жабық және ашық күйі. Бұл құрылымның атауы қандай?"
         };
 
         // Тестті тексеру функциясы
@@ -380,12 +993,37 @@
             
             let score = 0;
             const totalQuestions = Object.keys(correctAnswers).length;
+            let userAnswers = {};
+            let resultsHTML = '<h3>Әрбір сұрақ бойынша нәтижелер:</h3>';
             
             // Әрбір сұрақты тексеру
             for (let question in correctAnswers) {
                 const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
-                if (selectedOption && selectedOption.value === correctAnswers[question]) {
+                let userAnswer = selectedOption ? selectedOption.value : null;
+                userAnswers[question] = userAnswer;
+                
+                if (userAnswer === correctAnswers[question]) {
                     score++;
+                    resultsHTML += `
+                        <div class="result-question">
+                            <div class="question-result correct-answer">
+                                ${questionTexts[question]}
+                            </div>
+                            <div>Сіздің жауабыңыз: <strong>${getAnswerText(question, userAnswer)}</strong> - ДҰРЫС!</div>
+                            <div class="explanation">${explanations[question]}</div>
+                        </div>
+                    `;
+                } else {
+                    resultsHTML += `
+                        <div class="result-question">
+                            <div class="question-result wrong-answer">
+                                ${questionTexts[question]}
+                            </div>
+                            <div>Сіздің жауабыңыз: <strong>${getAnswerText(question, userAnswer)}</strong> - ҚАТЕ</div>
+                            <div>Дұрыс жауап: <strong>${getAnswerText(question, correctAnswers[question])}</strong></div>
+                            <div class="explanation">${explanations[question]}</div>
+                        </div>
+                    `;
                 }
             }
             
@@ -393,19 +1031,23 @@
             const resultDiv = document.getElementById('result');
             const scoreElement = document.getElementById('score');
             const messageElement = document.getElementById('message');
+            const resultDetails = document.getElementById('result-details');
             
             scoreElement.textContent = `${score}/${totalQuestions}`;
+            resultDetails.innerHTML = resultsHTML;
             
             // Хабарламаны анықтау
             let message = '';
-            if (score === totalQuestions) {
-                message = 'Керемет! Сіз барлық сұрақтарға дұрыс жауап бердіңіз!';
-            } else if (score >= totalQuestions * 0.7) {
+            let percentage = (score / totalQuestions) * 100;
+            
+            if (percentage >= 90) {
+                message = 'Керемет! Сіз өсімдіктердің өсуі мен дамуы тақырыбын жақсы білесіз!';
+            } else if (percentage >= 70) {
                 message = 'Жақсы! Сіз жеткілікті деңгейде білесіз.';
-            } else if (score >= totalQuestions * 0.5) {
+            } else if (percentage >= 50) {
                 message = 'Жаман емес! Бірақ қосымша оқу қажет.';
             } else {
-                message = 'Материалды қайталауға кеңес береміз.';
+                message = 'Материалды қайталауға кеңес береміз. Модульге оралып, материалды қайта оқып шығыңыз.';
             }
             
             messageElement.textContent = message;
@@ -414,6 +1056,17 @@
             // Нәтижеге скроллдау
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         });
+
+        // Жауап мәтінін алу функциясы
+        function getAnswerText(question, answer) {
+            const optionLabels = {
+                a: 'А',
+                b: 'Б', 
+                c: 'В',
+                d: 'Г'
+            };
+            return optionLabels[answer] || 'Жауап берілмеген';
+        }
 
         // Тестті қайта бастау функциясы
         function restartTest() {
