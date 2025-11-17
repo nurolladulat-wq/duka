@@ -107,6 +107,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            text-decoration: none;
+            text-align: center;
         }
         
         .btn-primary {
@@ -378,6 +380,10 @@
                 <a href="modules.html" class="btn btn-primary">
                     <i class="fas fa-play"></i> <span id="start-learning">Оқуды бастау</span>
                 </a>
+                <!-- ДОБАВЛЕНА КНОПКА АВТОРОВ -->
+                <a href="authors.html" class="btn btn-secondary" style="margin-top: 10px;">
+                    <i class="fas fa-users"></i> <span id="authors-btn">Авторлар</span>
+                </a>
                 <button class="logout-btn" id="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> <span id="logout-text">Шығу</span>
                 </button>
@@ -446,6 +452,7 @@
             switchToLogin: "Кіру",
             welcome: "Қош келдіңіз,",
             startLearning: "Оқуды бастау",
+            authorsBtn: "Авторлар", // ДОБАВЛЕНО
             logout: "Шығу",
             namePlaceholder: "Атыңыз",
             emailPlaceholder: "email@example.com",
@@ -478,6 +485,7 @@
             switchToLogin: "Вход",
             welcome: "Добро пожаловать,",
             startLearning: "Начать обучение",
+            authorsBtn: "Авторы", // ДОБАВЛЕНО
             logout: "Выйти",
             namePlaceholder: "Ваше имя",
             emailPlaceholder: "email@example.com",
@@ -555,6 +563,7 @@
             document.getElementById('switch-to-register').textContent = kzTexts.switchToRegister;
             document.getElementById('switch-to-login').textContent = kzTexts.switchToLogin;
             document.getElementById('start-learning').textContent = kzTexts.startLearning;
+            document.getElementById('authors-btn').textContent = kzTexts.authorsBtn; // ДОБАВЛЕНО
             document.getElementById('logout-text').textContent = kzTexts.logout;
             
             document.getElementById('register-name').placeholder = kzTexts.namePlaceholder;
@@ -586,6 +595,7 @@
             document.getElementById('switch-to-register').textContent = ruTexts.switchToRegister;
             document.getElementById('switch-to-login').textContent = ruTexts.switchToLogin;
             document.getElementById('start-learning').textContent = ruTexts.startLearning;
+            document.getElementById('authors-btn').textContent = ruTexts.authorsBtn; // ДОБАВЛЕНО
             document.getElementById('logout-text').textContent = ruTexts.logout;
             
             document.getElementById('register-name').placeholder = ruTexts.namePlaceholder;
