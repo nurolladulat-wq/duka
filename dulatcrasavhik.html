@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторы - Жасыл әлем</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            color: #33691e;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .authors-container {
+            padding: 40px 20px;
+        }
+        
+        .authors-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2e7d32;
+        }
+        
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .author-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .author-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .author-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #4caf50;
+            margin: 0 auto 15px;
+        }
+        
+        .author-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .author-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .settings-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .language-switcher {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 5px;
+            display: flex;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .language-btn {
+            padding: 5px 15px;
+            border: none;
+            background: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .language-btn.active {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .device-switcher {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .device-btn {
+            padding: 8px 12px;
+            border: none;
+            background: none;
+            border-radius: 16px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .device-btn.active {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .device-btn:hover {
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        /* Стили для мобильного вида */
+        body.mobile-view .container {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        
+        body.mobile-view .header {
+            padding: 20px 15px;
+        }
+        
+        body.mobile-view .logo {
+            font-size: 2rem;
+        }
+        
+        body.mobile-view .title {
+            font-size: 1.5rem;
+        }
+        
+        body.mobile-view .authors-container {
+            padding: 20px 15px;
+        }
+        
+        body.mobile-view .authors-title {
+            font-size: 1.5rem;
+        }
+        
+        body.mobile-view .authors-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        body.mobile-view .author-photo {
+            width: 120px;
+            height: 120px;
+        }
+        
+        body.mobile-view .settings-container {
+            top: 10px;
+            right: 10px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .authors-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .authors-container {
+                padding: 20px;
+            }
+            
+            body:not(.desktop-view) {
+                padding: 10px;
+            }
+            
+            body:not(.desktop-view) .container {
+                max-width: 100%;
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .settings-container {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <div class="language-switcher">
+            <button class="language-btn active" id="kz-btn">Қаз</button>
+            <button class="language-btn" id="ru-btn">Рус</button>
+        </div>
+        <div class="device-switcher">
+            <button class="device-btn" id="desktop-btn" title="Desktop view">
+                <i class="fas fa-desktop"></i>
+            </button>
+            <button class="device-btn active" id="mobile-btn" title="Mobile view">
+                <i class="fas fa-mobile-alt"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h1 class="title" id="title">Жасыл әлем</h1>
+            <p class="subtitle" id="subtitle">Өсімдіктер биологиясы</p>
+        </div>
+        
+        <div class="authors-container">
+            <h2 class="authors-title" id="authors-title">Авторлар</h2>
+            
+            <div class="authors-grid">
+                <div class="author-card">
+                    <img src="https://i.ibb.co.com/whB0zhxb/2025-11-17-125839.png" alt="Нұролла Дулат" class="author-photo">
+                    <h3 class="author-name">Нұролла Дулат</h3>
+                    <p class="author-role" id="author-role-1">Бас автор</p>
+                </div>
+                
+                <div class="author-card">
+                    <img src="https://i.ibb.co.com/1GrTLQGR/2025-11-17-125728.png" alt="Борис Айқын" class="author-photo">
+                    <h3 class="author-name">Борис Айқын</h3>
+                    <p class="author-role" id="author-role-2">Ботаника маманы</p>
+                </div>
+                
+                <div class="author-card">
+                    <img src="https://i.ibb.co.com/XfQdYx5H/0660def2-da7b-40e9-a005-f7547009104c.jpg" alt="Майданов Ерасыл" class="author-photo">
+                    <h3 class="author-name">Майданов Ерасыл</h3>
+                    <p class="author-role" id="author-role-3">Биология пәні мұғалімі</p>
+                </div>
+                
+                <div class="author-card">
+                    <img src="https://i.ibb.co.com/pBzKW3XQ/34a71df4-01f7-4e29-b7bd-554c670d9aee.jpg" alt="Аят Абтыхали" class="author-photo">
+                    <h3 class="author-name">Аят Абтыхали</h3>
+                    <p class="author-role" id="author-role-4">Эколог</p>
+                </div>
+                
+                <div class="author-card">
+                    <img src="https://i.ibb.co.com/z3NjqJN/7afef430-6236-48a6-b493-40da09a96cf4.jpg" alt="Насипкалиев Алихан" class="author-photo">
+                    <h3 class="author-name">Насипкалиев Алихан</h3>
+                    <p class="author-role" id="author-role-5">Фитопатолог</p>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-btn" id="back-btn">
+                <i class="fas fa-arrow-left"></i> <span id="back-text">Басты бетке оралу</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Тексты на казахском
+        const kzTexts = {
+            title: "Жасыл әлем",
+            subtitle: "Өсімдіктер биологиясы",
+            authorsTitle: "Авторлар",
+            backText: "Басты бетке оралу",
+            authorRole1: "Бас автор",
+            authorRole2: "Ботаника маманы",
+            authorRole3: "Биология пәні мұғалімі",
+            authorRole4: "Эколог",
+            authorRole5: "Фитопатолог",
+            desktopView: "Компьютер көрінісі",
+            mobileView: "Телефон көрінісі"
+        };
+        
+        // Тексты на русском
+        const ruTexts = {
+            title: "Зеленый мир",
+            subtitle: "Биология растений",
+            authorsTitle: "Авторы",
+            backText: "Вернуться на главную",
+            authorRole1: "Главный автор",
+            authorRole2: "Специалист по ботанике",
+            authorRole3: "Учитель биологии",
+            authorRole4: "Эколог",
+            authorRole5: "Фито патолог",
+            desktopView: "Вид для компьютера",
+            mobileView: "Вид для телефона"
+        };
+        
+        // Система переключения между desktop/mobile view
+        function setupDeviceSwitcher() {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            
+            // Загрузить сохраненные настройки
+            const savedView = localStorage.getItem('preferredView') || 'auto';
+            setView(savedView);
+            
+            // Обработчики событий
+            desktopBtn.addEventListener('click', () => setView('desktop'));
+            mobileBtn.addEventListener('click', () => setView('mobile'));
+        }
+        
+        function setView(viewType) {
+            const desktopBtn = document.getElementById('desktop-btn');
+            const mobileBtn = document.getElementById('mobile-btn');
+            const body = document.body;
+            
+            // Сбросить активные классы
+            desktopBtn.classList.remove('active');
+            mobileBtn.classList.remove('active');
+            body.classList.remove('desktop-view', 'mobile-view');
+            
+            // Установить выбранный вид
+            if (viewType === 'mobile') {
+                mobileBtn.classList.add('active');
+                body.classList.add('mobile-view');
+            } else if (viewType === 'desktop') {
+                desktopBtn.classList.add('active');
+                body.classList.add('desktop-view');
+            }
+            
+            // Сохранить настройки
+            localStorage.setItem('preferredView', viewType);
+            
+            // Обновить title кнопок
+            const lang = document.documentElement.lang;
+            desktopBtn.title = lang === 'kk' ? kzTexts.desktopView : ruTexts.desktopView;
+            mobileBtn.title = lang === 'kk' ? kzTexts.mobileView : ruTexts.mobileView;
+        }
+        
+        // Установка казахского языка по умолчанию
+        function setKazakhLanguage() {
+            document.documentElement.lang = 'kk';
+            document.getElementById('ru-btn').classList.remove('active');
+            document.getElementById('kz-btn').classList.add('active');
+            
+            document.getElementById('title').textContent = kzTexts.title;
+            document.getElementById('subtitle').textContent = kzTexts.subtitle;
+            document.getElementById('authors-title').textContent = kzTexts.authorsTitle;
+            document.getElementById('back-text').textContent = kzTexts.backText;
+            document.getElementById('author-role-1').textContent = kzTexts.authorRole1;
+            document.getElementById('author-role-2').textContent = kzTexts.authorRole2;
+            document.getElementById('author-role-3').textContent = kzTexts.authorRole3;
+            document.getElementById('author-role-4').textContent = kzTexts.authorRole4;
+            document.getElementById('author-role-5').textContent = kzTexts.authorRole5;
+            
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = kzTexts.desktopView;
+            document.getElementById('mobile-btn').title = kzTexts.mobileView;
+        }
+        
+        // Установка русского языка
+        function setRussianLanguage() {
+            document.documentElement.lang = 'ru';
+            document.getElementById('kz-btn').classList.remove('active');
+            document.getElementById('ru-btn').classList.add('active');
+            
+            document.getElementById('title').textContent = ruTexts.title;
+            document.getElementById('subtitle').textContent = ruTexts.subtitle;
+            document.getElementById('authors-title').textContent = ruTexts.authorsTitle;
+            document.getElementById('back-text').textContent = ruTexts.backText;
+            document.getElementById('author-role-1').textContent = ruTexts.authorRole1;
+            document.getElementById('author-role-2').textContent = ruTexts.authorRole2;
+            document.getElementById('author-role-3').textContent = ruTexts.authorRole3;
+            document.getElementById('author-role-4').textContent = ruTexts.authorRole4;
+            document.getElementById('author-role-5').textContent = ruTexts.authorRole5;
+            
+            // Обновить title кнопок устройств
+            document.getElementById('desktop-btn').title = ruTexts.desktopView;
+            document.getElementById('mobile-btn').title = ruTexts.mobileView;
+        }
+        
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            setKazakhLanguage();
+            
+            // Настройка переключателя устройств
+            setupDeviceSwitcher();
+            
+            // Обработчики событий
+            document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
+            document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
+        });
+    </script>
+</body>
+</html>
