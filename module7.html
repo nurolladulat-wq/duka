@@ -2,8 +2,8 @@
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Модуль 7 - Өсімдіктер және экология</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Модуль 7 - Өсімдіктердің қозғалыстары</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -17,15 +17,15 @@
             background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
             color: #33691e;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
         
         .container {
             max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
@@ -33,13 +33,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -48,28 +48,62 @@
         }
         
         .logo i {
-            margin-right: 10px;
+            margin-right: 8px;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .language-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 4px;
+            border-radius: 18px;
+            padding: 3px;
         }
         
         .language-btn {
-            padding: 6px 16px;
+            padding: 5px 14px;
             border: none;
             background: none;
-            border-radius: 16px;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: 500;
             transition: all 0.3s ease;
             color: white;
+            font-size: 0.9rem;
         }
         
         .language-btn.active {
+            background: white;
+            color: #2e7d32;
+        }
+        
+        .media-controls {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            padding: 3px;
+        }
+        
+        .media-btn {
+            padding: 6px 14px;
+            border: none;
+            background: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .media-btn.active {
             background: white;
             color: #2e7d32;
         }
@@ -78,17 +112,18 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .back-btn i {
-            margin-right: 8px;
+            margin-right: 6px;
         }
         
         .back-btn:hover {
@@ -97,92 +132,94 @@
         }
         
         .module-content {
-            padding: 40px;
+            padding: 30px;
         }
         
         .module-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .module-title {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #2e7d32;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .module-subtitle {
             color: #689f38;
-            font-size: 1.2rem;
+            font-size: 1rem;
             max-width: 700px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         
         .content-section {
-            margin-bottom: 40px;
-            padding: 25px;
+            margin-bottom: 30px;
+            padding: 20px;
             background: #f9fbf8;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
         
         .section-title {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #558b2f;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #c5e1a5;
             display: flex;
             align-items: center;
         }
         
         .section-title i {
-            margin-right: 12px;
+            margin-right: 10px;
             color: #4caf50;
         }
         
         .section-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 1.6;
+            font-size: 1rem;
             color: #333;
         }
         
         .section-content p {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             text-align: justify;
         }
         
         .important-note {
             background: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 5px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
         }
         
         .important-note h4 {
             color: #2e7d32;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
         }
         
         .important-note h4 i {
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             overflow: hidden;
+            font-size: 0.9rem;
         }
         
         .comparison-table th, .comparison-table td {
-            padding: 15px;
+            padding: 12px;
             text-align: left;
             border: 1px solid #c5e1a5;
         }
@@ -197,95 +234,183 @@
             background: #f1f8e9;
         }
         
-        .image-container {
+        .process-diagram {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .process-diagram h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .process-steps {
             display: flex;
             justify-content: space-around;
-            margin: 25px 0;
+            align-items: center;
             flex-wrap: wrap;
         }
         
-        .image-box {
+        .process-step {
             text-align: center;
-            margin: 15px;
+            margin: 10px;
             flex: 1;
-            min-width: 200px;
+            min-width: 150px;
         }
         
-        .image-placeholder {
-            width: 150px;
-            height: 150px;
-            background: #e8f5e9;
-            border-radius: 10px;
-            margin: 0 auto;
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #4caf50;
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #4caf50;
-            font-size: 3rem;
+            margin: 0 auto 10px;
+            font-weight: bold;
         }
         
-        .image-caption {
-            margin-top: 10px;
-            font-style: italic;
+        .step-description {
+            font-size: 0.9rem;
             color: #558b2f;
+        }
+        
+        .step-arrow {
+            font-size: 1.5rem;
+            color: #4caf50;
+            margin: 0 10px;
+        }
+        
+        /* Стили для медиа-контента */
+        .media-content {
+            display: none;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .media-content.active {
+            display: block;
+        }
+        
+        .presentation-container, .video-container {
+            background: #f1f8e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .presentation-frame, .video-frame {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 6px;
+            background: white;
+        }
+        
+        .media-title {
+            font-size: 1.2rem;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* Стили для кнопки тестирования */
+        .test-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
+        }
+        
+        .test-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .test-description {
+            color: #fff3e0;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .test-btn {
+            background: white;
+            color: #f57c00;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .test-btn i {
+            margin-right: 8px;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
         }
         
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
         .nav-btn {
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
             text-decoration: none;
+            font-size: 0.9rem;
         }
         
         .nav-btn i {
-            margin: 0 8px;
+            margin: 0 6px;
         }
         
         .nav-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-        }
-        
-        .test-btn {
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 20px auto;
-            font-size: 1.2rem;
-        }
-        
-        .test-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
         }
         
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
         .author {
@@ -294,34 +419,202 @@
             text-decoration: underline;
         }
         
+        /* Мобильная версия - улучшенная адаптивность */
         @media (max-width: 768px) {
-            .module-content {
-                padding: 20px;
+            body {
+                padding: 10px;
             }
             
-            .module-title {
-                font-size: 1.8rem;
+            .container {
+                border-radius: 10px;
             }
             
             header {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
                 text-align: center;
+                padding: 12px;
+            }
+            
+            .header-controls {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+            
+            .media-controls, .language-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .module-content {
+                padding: 20px 15px;
+            }
+            
+            .module-title {
+                font-size: 1.5rem;
+            }
+            
+            .module-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .content-section {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .section-content {
+                font-size: 0.9rem;
+            }
+            
+            .important-note {
+                padding: 12px;
+            }
+            
+            .important-note h4 {
+                font-size: 1rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.8rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 8px 10px;
+            }
+            
+            .presentation-frame, .video-frame {
+                height: 250px;
+            }
+            
+            .media-title {
+                font-size: 1.1rem;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .test-section {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .test-title {
+                font-size: 1.3rem;
+            }
+            
+            .test-description {
+                font-size: 0.9rem;
+            }
+            
+            .test-btn {
+                padding: 10px 25px;
+                font-size: 1rem;
             }
             
             .navigation-buttons {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
             }
             
             .nav-btn {
                 width: 100%;
                 justify-content: center;
+                padding: 10px 15px;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .step-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+        
+        /* Очень маленькие экраны (до 480px) */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+            
+            .container {
+                border-radius: 8px;
+            }
+            
+            .module-content {
+                padding: 15px 10px;
+            }
+            
+            .module-title {
+                font-size: 1.3rem;
+            }
+            
+            .module-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .content-section {
+                padding: 12px;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+            }
+            
+            .section-content {
+                font-size: 0.85rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 6px 8px;
+            }
+            
+            .presentation-frame, .video-frame {
+                height: 200px;
+            }
+            
+            .media-title {
+                font-size: 1rem;
+            }
+            
+            .test-section {
+                padding: 15px;
+            }
+            
+            .test-title {
+                font-size: 1.1rem;
+            }
+            
+            .test-description {
+                font-size: 0.85rem;
             }
             
             .test-btn {
-                width: 100%;
-                justify-content: center;
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+            
+            footer {
+                padding: 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -333,9 +626,23 @@
                 <i class="fas fa-leaf"></i> <span id="logo-text">Жасыл әлем</span>
             </a>
             
-            <div class="language-switcher">
-                <button class="language-btn" id="ru-btn">Рус</button>
-                <button class="language-btn active" id="kz-btn">Қаз</button>
+            <div class="header-controls">
+                <div class="media-controls">
+                    <button class="media-btn" id="text-btn">
+                        <i class="fas fa-book"></i> <span id="text-btn-text">Мәтін</span>
+                    </button>
+                    <button class="media-btn" id="presentation-btn">
+                        <i class="fas fa-desktop"></i> <span id="presentation-btn-text">Презентация</span>
+                    </button>
+                    <button class="media-btn" id="video-btn">
+                        <i class="fas fa-play-circle"></i> <span id="video-btn-text">Видео</span>
+                    </button>
+                </div>
+                
+                <div class="language-switcher">
+                    <button class="language-btn" id="ru-btn">Рус</button>
+                    <button class="language-btn active" id="kz-btn">Қаз</button>
+                </div>
             </div>
             
             <a href="modules.html" class="back-btn">
@@ -345,113 +652,229 @@
         
         <div class="module-content">
             <div class="module-header">
-                <h1 class="module-title" id="module-title">Модуль 7: Өсімдіктер және экология</h1>
-                <p class="module-subtitle" id="module-subtitle">Экожүйелердегі өсімдіктердің рөлі, қорғау және адам өміріндегі маңызы</p>
+                <h1 class="module-title" id="module-title">Модуль 7: Өсімдіктердің қозғалыстары</h1>
+                <p class="module-subtitle" id="module-subtitle">Тропизм, настия, фототропизм, геотропизм және химиотропизм</p>
             </div>
             
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-globe-americas"></i> <span id="section1-title">Экожүйелердегі өсімдіктер</span></h2>
-                <div class="section-content">
-                    <p id="section1-p1">Өсімдіктер экожүйелердің негізін құрайды. Олар өндірушілер ретінде Күн энергиясын химиялық энергияға айналдырып, басқа организмдерге қорек көзі болады. Өсімдіктер оттегіні бөліп шығарып, атмосфераның құрамын реттейді.</p>
-                    
-                    <div class="important-note">
-                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Өсімдіктердің экологиялық маңызы</span></h4>
-                        <p id="important-note1-text">Өсімдіктер топырақты бекітіп, эрозиядан қорғайды, ауаны тазартады, су айналымына қатысады және биоәртүрлілікті қамтамасыз етеді. Оларсыз жер бетіндегі өмір мүмкін болмас еді.</p>
+            <!-- Текстовый контент (по умолчанию активен) -->
+            <div class="text-content media-content active">
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-sun"></i> <span id="section1-title">Тропизм - бағытталған қозғалыстар</span></h2>
+                    <div class="section-content">
+                        <p id="section1-p1">Тропизм - бұл сыртқы ынталандырушылардың әсерінен өсімдіктердің бағытталған өсу қозғалыстары. Бұл қозғалыстар өсімдіктің органының өсу бағытымен сипатталады.</p>
+                        
+                        <div class="important-note">
+                            <h4><i class="fas fa-lightbulb"></i> <span id="important-note1">Тропизм түрлері</span></h4>
+                            <p id="important-note1-text">Тропизм оң және теріс болып бөлінеді. Оң тропизм - ынталандырушыға қарай өсу, теріс тропизм - ынталандырушыдан қарама-қарсы бағытта өсу.</p>
+                        </div>
+                        
+                        <div class="process-diagram">
+                            <h4 id="process-title1">Тропизм процесі</h4>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-description" id="step1-desc">Ынталандырушының әсері</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-description" id="step2-desc">Өсім гормондарының таралуы</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-description" id="step3-desc">Жасушалардың асимметриялық өсуі</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-description" id="step4-desc">Бағытталған иілу</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-wind"></i> <span id="section2-title">Настия - бағытсыз қозғалыстар</span></h2>
+                    <div class="section-content">
+                        <p id="section2-p1">Настия - бұл сыртқы ынталандырушылардың әсерінен болатын өсімдіктердің бағытсыз қозғалыстары. Бұл қозғалыстар өсімдік органының өсу бағытына тәуелсіз болады.</p>
+                        
+                        <div class="important-note">
+                            <h4><i class="fas fa-lightbulb"></i> <span id="important-note2">Настия түрлері</span></h4>
+                            <p id="important-note2-text">Фотонастия - жарық әсерінен, термонастия - температура өзгерісінен, никтинастия - түндегі жапырақтардың бүгілуі.</p>
+                        </div>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th id="table-header1">Қозғалыс түрі</th>
+                                    <th id="table-header2">Ынталандырушы</th>
+                                    <th id="table-header3">Мысал</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="table1-cell1">Тропизм</td>
+                                    <td id="table1-cell2">Бағытталған ынталандырушы</td>
+                                    <td id="table1-cell3">Тамырдың жерге қарай өсуі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-cell1">Настия</td>
+                                    <td id="table2-cell2">Бағытсыз ынталандырушы</td>
+                                    <td id="table2-cell3">Түнде жапырақтардың бүгілуі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table3-cell1">Фототропизм</td>
+                                    <td id="table3-cell2">Жарық</td>
+                                    <td id="table3-cell3">Сабақтың жарыққа қарай иілуі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table4-cell1">Геотропизм</td>
+                                    <td id="table4-cell2">Ауырлық күші</td>
+                                    <td id="table4-cell3">Тамырдың жерге қарай өсуі</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-arrows-alt-h"></i> <span id="section3-title">Фототропизм және геотропизм</span></h2>
+                    <div class="section-content">
+                        <p id="section3-p1">Фототропизм - жарық әсерінен болатын өсімдіктердің бағытталған қозғалыстары. Геотропизм - ауырлық күшінің әсерінен болатын өсімдіктердің бағытталған қозғалыстары.</p>
+                        
+                        <div class="important-note">
+                            <h4><i class="fas fa-lightbulb"></i> <span id="important-note3">Фототропизм механизмі</span></h4>
+                            <p id="important-note3-text">Жарық әсерінен ауксин гормоны жарық түспейтін жаққа жиналады, бұл жасушалардың асимметриялық өсуіне әкеледі және өсімдік жарыққа қарай иіледі.</p>
+                        </div>
+                        
+                        <div class="process-diagram">
+                            <h4 id="process-title2">Фототропизм процесі</h4>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-description" id="step5-desc">Бір жақтан жарық түсуі</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-description" id="step6-desc">Ауксинның көлеңкелі жаққа жиналуы</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-description" id="step7-desc">Көлеңкелі жақтағы жасушалардың ұзара өсуі</div>
+                                </div>
+                                <div class="step-arrow">→</div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-description" id="step8-desc">Өсімдіктің жарыққа қарай иілуі</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2 class="section-title"><i class="fas fa-flask"></i> <span id="section4-title">Химиотропизм және гидротропизм</span></h2>
+                    <div class="section-content">
+                        <p id="section4-p1">Химиотропизм - химиялық заттардың әсерінен болатын өсімдіктердің бағытталған қозғалыстары. Гидротропизм - ылғалдың әсерінен болатын өсімдіктердің бағытталған қозғалыстары.</p>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th id="table2-header1">Тропизм түрі</th>
+                                    <th id="table2-header2">Ынталандырушы</th>
+                                    <th id="table2-header3">Өсімдік реакциясы</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="table2-1-cell1">Фототропизм</td>
+                                    <td id="table2-1-cell2">Жарық</td>
+                                    <td id="table2-1-cell3">Сабақ жарыққа, тамыр жарыққа қарсы иіледі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-2-cell1">Геотропизм</td>
+                                    <td id="table2-2-cell2">Ауырлық күші</td>
+                                    <td id="table2-2-cell3">Тамыр жерге, сабақ жерге қарсы өседі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-3-cell1">Химиотропизм</td>
+                                    <td id="table2-3-cell2">Химиялық заттар</td>
+                                    <td id="table2-3-cell3">Тамыр қоректік заттарға қарай өседі</td>
+                                </tr>
+                                <tr>
+                                    <td id="table2-4-cell1">Гидротропизм</td>
+                                    <td id="table2-4-cell2">Су</td>
+                                    <td id="table2-4-cell3">Тамыр ылғалға қарай өседі</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="important-note">
+                            <h4><i class="fas fa-lightbulb"></i> <span id="important-note4">Тропизмдердің экологиялық маңызы</span></h4>
+                            <p id="important-note4-text">Тропизмдер өсімдіктерге қолайлы өмір сүру жағдайларын табуға көмектеседі: жарықты, суды, минералды заттарды табу және оңтайлы орналасу.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Секция с тестом -->
+                <div class="test-section">
+                    <h3 class="test-title">
+                        <i class="fas fa-tasks"></i> 
+                        <span id="test-title">Біліміңізді тексеріңіз!</span>
+                    </h3>
+                    <p class="test-description" id="test-description">
+                        Осы модуль бойынша біліміңізді тексеру үшін тестілеуге қатысыңыз. Сіз 10 сұраққа жауап беріп, өзіңіздің білім деңгейіңізді бағалай аласыз.
+                    </p>
+                    <a href="https://fr.educaplay.com/ressources-pedagogiques/22616147-learning_resource.html" class="test-btn" id="test-btn" target="_blank">
+                        <i class="fas fa-play"></i> <span id="test-btn-text">Тестілеуді бастау</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Контент презентации -->
+            <div class="presentation-content media-content">
+                <div class="presentation-container">
+                    <h3 class="media-title">
+                        <i class="fas fa-desktop"></i> 
+                        <span id="presentation-title">Өсімдіктердің қозғалыстары презентациясы</span>
+                    </h3>
+                    <iframe class="presentation-frame" id="presentation-frame" 
+                            src="https://docs.google.com/presentation/d/1cwKjju5P3u_SAfoJInfv2lMGl_1k90yqL-0bhlyCCBo/embed?start=false&loop=false&delayms=3000" 
+                            frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
+                    </iframe>
+                    <div style="margin-top: 15px;">
+                        <a href="https://docs.google.com/presentation/d/1cwKjju5P3u_SAfoJInfv2lMGl_1k90yqL-0bhlyCCBo/edit?usp=sharing" target="_blank" style="color: #4caf50; text-decoration: none; font-weight: 500;">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span id="presentation-direct-link">Егер презентация жүктелмесе, толық экран режимінде қарау үшін осы жерді басыңыз</span>
+                        </a>
                     </div>
                 </div>
             </div>
             
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-shield-alt"></i> <span id="section2-title">Өсімдіктерді қорғау</span></h2>
-                <div class="section-content">
-                    <p id="section2-p1">Қазіргі уақытта көптеген өсімдік түрлері жойылу қаупі төнген. Антропогендік әсерлер (ормандарды күю, қала құрылысы, ластану) өсімдіктер дүниесіне зиян келтіруде.</p>
-                    
-                    <ul id="section2-list">
-                        <li>Қызыл кітапқа енгізілген сирек кездесетін түрлерді қорғау</li>
-                        <li>Қорықтар мен қорықтарда табиғи ортаны сақтау</li>
-                        <li>Экологиялық таза технологияларды енгізу</li>
-                        <li>Халықты экологиялық тәрбиелеу</li>
-                    </ul>
-                    
-                    <div class="image-container">
-                        <div class="image-box">
-                            <div class="image-placeholder">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="image-caption" id="image1-caption">Қызыл кітап</div>
-                        </div>
-                        <div class="image-box">
-                            <div class="image-placeholder">
-                                <i class="fas fa-tree"></i>
-                            </div>
-                            <div class="image-caption" id="image2-caption">Қорық аймақ</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-seedling"></i> <span id="section3-title">Мәдени өсімдіктер</span></h2>
-                <div class="section-content">
-                    <p id="section3-p1">Адамзат тарихы бойынша адамдар өсімдіктерді өз қажеттіліктері үшін өсіріп келген. Мәдени өсімдіктер азық-түлік, дәрі-дәрмек, тоқыма материалдары және сәулеттік мақсаттар үшін пайдаланылады.</p>
-                    
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th id="table-header1">Мәдени өсімдіктер</th>
-                                <th id="table-header2">Пайдалану мақсаты</th>
-                                <th id="table-header3">Маңызы</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="table1-cell1">Астық дақылдары</td>
-                                <td id="table1-cell2">Азық-түлік өндіру</td>
-                                <td id="table1-cell3">Адамзатты тамақтандырудың негізі</td>
-                            </tr>
-                            <tr>
-                                <td id="table2-cell1">Көкөністер</td>
-                                <td id="table2-cell2">Дәрумендер көзі</td>
-                                <td id="table2-cell3">Денсаулықты сақтауға көмектеседі</td>
-                            </tr>
-                            <tr>
-                                <td id="table3-cell1">Дәрілік өсімдіктер</td>
-                                <td id="table3-cell2">Медицина</td>
-                                <td id="table3-cell3">Ауруды емдеуге көмектеседі</td>
-                            </tr>
-                            <tr>
-                                <td id="table4-cell1">Сәндік өсімдіктер</td>
-                                <td id="table4-cell2">Эстетика</td>
-                                <td id="table4-cell3">Көркемдік қанағаттану береді</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <div class="content-section">
-                <h2 class="section-title"><i class="fas fa-recycle"></i> <span id="section4-title">Төзімділік және болашақ</span></h2>
-                <div class="section-content">
-                    <p id="section4-p1">Болашақта өсімдіктерді қорғау және оларды төзімді ету мәселелері аса маңызды болады. Климаттың өзгеруі, топырақтың нашарлауы және су ресурстарының шектеулілігі ауылшаруашылығына әсер етеді.</p>
-                    
-                    <div class="important-note">
-                        <h4><i class="fas fa-lightbulb"></i> <span id="important-note2">Болашақтағы міндеттер</span></h4>
-                        <p id="important-note2-text">Генетикалық инженерия, суызға төзімді дақылдарды шығару, органикалық ауылшаруашылық әдістерін дамыту және өсімдіктер әлемін сақтау - бұл біздің болашақ үшін маңызды міндеттер.</p>
-                    </div>
-                    
-                    <div class="image-container">
-                        <div class="image-box">
-                            <div class="image-placeholder">
-                                <i class="fas fa-dna"></i>
-                            </div>
-                            <div class="image-caption" id="image3-caption">Генетикалық инженерия</div>
-                        </div>
-                        <div class="image-box">
-                            <div class="image-placeholder">
-                                <i class="fas fa-tint-slash"></i>
-                            </div>
-                            <div class="image-caption" id="image4-caption">Суызға төзімді дақылдар</div>
-                        </div>
+            <!-- Видео контент -->
+            <div class="video-content media-content">
+                <div class="video-container">
+                    <h3 class="media-title">
+                        <i class="fas fa-play-circle"></i> 
+                        <span id="video-title">Өсімдіктердің қозғалыстары бойынша видео сабақ</span>
+                    </h3>
+                    <iframe class="video-frame" id="video-frame" 
+                            src="https://www.youtube.com/embed/Q5M8w-rfxWM" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                    <p id="video-description" style="margin-top: 15px; color: #666; font-style: italic;">
+                        Бұл бейне сабақта өсімдіктердің қозғалыс түрлері: тропизм, настия, фототропизм, геотропизм, химиотропизм және гидротропизм процестері қарастырылады.
+                    </p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://youtu.be/Q5M8w-rfxWM" target="_blank" style="color: #4caf50; text-decoration: none; font-weight: 500;">
+                            <i class="fas fa-external-link-alt"></i> 
+                            <span id="video-direct-link">Егер видео жүктелмесе, YouTube-та қарау үшін осы жерді басыңыз</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -460,14 +883,8 @@
                 <a href="module6.html" class="nav-btn">
                     <i class="fas fa-arrow-left"></i> <span id="prev-btn">Алдыңғы модуль</span>
                 </a>
-                <a href="index.html" class="nav-btn">
-                    <i class="fas fa-home"></i> <span id="home-btn">Басты бет</span>
-                </a>
-            </div>
-            
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="test.html" class="test-btn">
-                    <i class="fas fa-graduation-cap"></i> <span id="test-btn">Тестті бастау</span>
+                <a href="module8.html" class="nav-btn">
+                    <span id="next-btn">Келесі модуль</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -482,84 +899,134 @@
         const kzTexts = {
             logo: "Жасыл әлем",
             back: "Модульдер тізімі",
-            title: "Модуль 7: Өсімдіктер және экология",
-            subtitle: "Экожүйелердегі өсімдіктердің рөлі, қорғау және адам өміріндегі маңызы",
-            section1: "Экожүйелердегі өсімдіктер",
-            section1p1: "Өсімдіктер экожүйелердің негізін құрайды. Олар өндірушілер ретінде Күн энергиясын химиялық энергияға айналдырып, басқа организмдерге қорек көзі болады. Өсімдіктер оттегіні бөліп шығарып, атмосфераның құрамын реттейді.",
-            note1: "Өсімдіктердің экологиялық маңызы",
-            note1text: "Өсімдіклер топырақты бекітіп, эрозиядан қорғайды, ауаны тазартады, су айналымына қатысады және биоәртүрлілікті қамтамасыз етеді. Оларсыз жер бетіндегі өмір мүмкін болмас еді.",
-            section2: "Өсімдіктерді қорғау",
-            section2p1: "Қазіргі уақытта көптеген өсімдік түрлері жойылу қаупі төнген. Антропогендік әсерлер (ормандарды күю, қала құрылысы, ластану) өсімдіктер дүниесіне зиян келтіруде.",
-            section2list: [
-                "Қызыл кітапқа енгізілген сирек кездесетін түрлерді қорғау",
-                "Қорықтар мен қорықтарда табиғи ортаны сақтау",
-                "Экологиялық таза технологияларды енгізу",
-                "Халықты экологиялық тәрбиелеу"
-            ],
-            image1: "Қызыл кітап",
-            image2: "Қорық аймақ",
-            section3: "Мәдени өсімдіктер",
-            section3p1: "Адамзат тарихы бойынша адамдар өсімдіктерді өз қажеттіліктері үшін өсіріп келген. Мәдени өсімдіктер азық-түлік, дәрі-дәрмек, тоқыма материалдары және сәулеттік мақсаттар үшін пайдаланылады.",
-            table1h1: "Мәдени өсімдіктер",
-            table1h2: "Пайдалану мақсаты",
-            table1h3: "Маңызы",
+            title: "Модуль 7: Өсімдіктердің қозғалыстары",
+            subtitle: "Тропизм, настия, фототропизм, геотропизм және химиотропизм",
+            section1: "Тропизм - бағытталған қозғалыстар",
+            section1p1: "Тропизм - бұл сыртқы ынталандырушылардың әсерінен өсімдіктердің бағытталған өсу қозғалыстары. Бұл қозғалыстар өсімдіктің органының өсу бағытымен сипатталады.",
+            note1: "Тропизм түрлері",
+            note1text: "Тропизм оң және теріс болып бөлінеді. Оң тропизм - ынталандырушыға қарай өсу, теріс тропизм - ынталандырушыдан қарама-қарсы бағытта өсу.",
+            processTitle1: "Тропизм процесі",
+            step1: "Ынталандырушының әсері",
+            step2: "Өсім гормондарының таралуы",
+            step3: "Жасушалардың асимметриялық өсуі",
+            step4: "Бағытталған иілу",
+            section2: "Настия - бағытсыз қозғалыстар",
+            section2p1: "Настия - бұл сыртқы ынталандырушылардың әсерінен болатын өсімдіктердің бағытсыз қозғалыстары. Бұл қозғалыстар өсімдік органының өсу бағытына тәуелсіз болады.",
+            note2: "Настия түрлері",
+            note2text: "Фотонастия - жарық әсерінен, термонастия - температура өзгерісінен, никтинастия - түндегі жапырақтардың бүгілуі.",
+            table1h1: "Қозғалыс түрі",
+            table1h2: "Ынталандырушы",
+            table1h3: "Мысал",
             table1: [
-                ["Астық дақылдары", "Азық-түлік өндіру", "Адамзатты тамақтандырудың негізі"],
-                ["Көкөністер", "Дәрумендер көзі", "Денсаулықты сақтауға көмектеседі"],
-                ["Дәрілік өсімдіктер", "Медицина", "Ауруды емдеуге көмектеседі"],
-                ["Сәндік өсімдіктер", "Эстетика", "Көркемдік қанағаттану береді"]
+                ["Тропизм", "Бағытталған ынталандырушы", "Тамырдың жерге қарай өсуі"],
+                ["Настия", "Бағытсыз ынталандырушы", "Түнде жапырақтардың бүгілуі"],
+                ["Фототропизм", "Жарық", "Сабақтың жарыққа қарай иілуі"],
+                ["Геотропизм", "Ауырлық күші", "Тамырдың жерге қарай өсуі"]
             ],
-            section4: "Төзімділік және болашақ",
-            section4p1: "Болашақта өсімдіктерді қорғау және оларды төзімді ету мәселелері аса маңызды болады. Климаттың өзгеруі, топырақтың нашарлауы және су ресурстарының шектеулілігі ауылшаруашылығына әсер етеді.",
-            note2: "Болашақтағы міндеттер",
-            note2text: "Генетикалық инженерия, суызға төзімді дақылдарды шығару, органикалық ауылшаруашылық әдістерін дамыту және өсімдіктер әлемін сақтау - бұл біздің болашақ үшін маңызды міндеттер.",
-            image3: "Генетикалық инженерия",
-            image4: "Суызға төзімді дақылдар",
+            section3: "Фототропизм және геотропизм",
+            section3p1: "Фототропизм - жарық әсерінен болатын өсімдіктердің бағытталған қозғалыстары. Геотропизм - ауырлық күшінің әсерінен болатын өсімдіктердің бағытталған қозғалыстары.",
+            note3: "Фототропизм механизмі",
+            note3text: "Жарық әсерінен ауксин гормоны жарық түспейтін жаққа жиналады, бұл жасушалардың асимметриялық өсуіне әкеледі және өсімдік жарыққа қарай иіледі.",
+            processTitle2: "Фототропизм процесі",
+            step5: "Бір жақтан жарық түсуі",
+            step6: "Ауксинның көлеңкелі жаққа жиналуы",
+            step7: "Көлеңкелі жақтағы жасушалардың ұзара өсуі",
+            step8: "Өсімдіктің жарыққа қарай иілуі",
+            section4: "Химиотропизм және гидротропизм",
+            section4p1: "Химиотропизм - химиялық заттардың әсерінен болатын өсімдіктердің бағытталған қозғалыстары. Гидротропизм - ылғалдың әсерінен болатын өсімдіктердің бағытталған қозғалыстары.",
+            table2h1: "Тропизм түрі",
+            table2h2: "Ынталандырушы",
+            table2h3: "Өсімдік реакциясы",
+            table2: [
+                ["Фототропизм", "Жарық", "Сабақ жарыққа, тамыр жарыққа қарсы иіледі"],
+                ["Геотропизм", "Ауырлық күші", "Тамыр жерге, сабақ жерге қарсы өседі"],
+                ["Химиотропизм", "Химиялық заттар", "Тамыр қоректік заттарға қарай өседі"],
+                ["Гидротропизм", "Су", "Тамыр ылғалға қарай өседі"]
+            ],
+            note4: "Тропизмдердің экологиялық маңызы",
+            note4text: "Тропизмдер өсімдіктерге қолайлы өмір сүру жағдайларын табуға көмектеседі: жарықты, суды, минералды заттарды табу және оңтайлы орналасу.",
             prevBtn: "Алдыңғы модуль",
-            homeBtn: "Басты бет",
-            testBtn: "Тестті бастау"
+            nextBtn: "Келесі модуль",
+            textBtn: "Мәтін",
+            presentationBtn: "Презентация",
+            videoBtn: "Видео",
+            presentationTitle: "Өсімдіктердің қозғалыстары презентациясы",
+            videoTitle: "Өсімдіктердің қозғалыстары бойынша видео сабақ",
+            videoDescription: "Бұл бейне сабақта өсімдіктердің қозғалыс түрлері: тропизм, настия, фототропизм, геотропизм, химиотропизм және гидротропизм процестері қарастырылады.",
+            videoDirectLink: "Егер видео жүктелмесе, YouTube-та қарау үшін осы жерді басыңыз",
+            presentationDirectLink: "Егер презентация жүктелмесе, толық экран режимінде қарау үшін осы жерді басыңыз",
+            // Тексты для теста
+            testTitle: "Біліміңізді тексеріңіз!",
+            testDescription: "Осы модуль бойынша біліміңізді тексеру үшін тестілеуге қатысыңыз. Сіз 10 сұраққа жауап беріп, өзіңіздің білім деңгейіңізді бағалай аласыз.",
+            testBtnText: "Тестілеуді бастау",
+            testLink: "https://fr.educaplay.com/ressources-pedagogiques/22616147-learning_resource.html"
         };
         
         // Тексты на русском
         const ruTexts = {
             logo: "Зеленый мир",
             back: "Список модулей",
-            title: "Модуль 7: Растения и экология",
-            subtitle: "Роль растений в экосистемах, охрана и значение в жизни человека",
-            section1: "Растения в экосистемах",
-            section1p1: "Растения составляют основу экосистем. Как производители, они преобразуют солнечную энергию в химическую энергию, становясь источником пищи для других организмов. Растения выделяют кислород и регулируют состав атмосферы.",
-            note1: "Экологическое значение растений",
-            note1text: "Растения укрепляют почву, защищают от эрозии, очищают воздух, участвуют в круговороте воды и обеспечивают биоразнообразие. Без них жизнь на Земле была бы невозможна.",
-            section2: "Охрана растений",
-            section2p1: "В настоящее время многим видам растений угрожает исчезновение. Антропогенные воздействия (вырубка лесов, городское строительство, загрязнение) наносят вред растительному миру.",
-            section2list: [
-                "Защита редких видов, занесенных в Красную книгу",
-                "Сохранение природной среды в заповедниках и заказниках",
-                "Внедрение экологически чистых технологий",
-                "Экологическое воспитание населения"
-            ],
-            image1: "Красная книга",
-            image2: "Заповедная зона",
-            section3: "Культурные растения",
-            section3p1: "На протяжении истории человечества люди выращивали растения для своих нужд. Культурные растения используются для питания, медицины, текстильных материалов и декоративных целей.",
-            table1h1: "Культурные растения",
-            table1h2: "Цель использования",
-            table1h3: "Значение",
+            title: "Модуль 7: Движения растений",
+            subtitle: "Тропизм, настия, фототропизм, геотропизм и хемотропизм",
+            section1: "Тропизм - направленные движения",
+            section1p1: "Тропизм - это направленные ростовые движения растений под влиянием внешних раздражителей. Эти движения характеризуются направлением роста органа растения.",
+            note1: "Виды тропизма",
+            note1text: "Тропизм делится на положительный и отрицательный. Положительный тропизм - рост к раздражителю, отрицательный тропизм - рост в противоположном от раздражителя направлении.",
+            processTitle1: "Процесс тропизма",
+            step1: "Воздействие раздражителя",
+            step2: "Распределение гормонов роста",
+            step3: "Асимметричный рост клеток",
+            step4: "Направленное изгибание",
+            section2: "Настия - ненаправленные движения",
+            section2p1: "Настия - это ненаправленные движения растений под влиянием внешних раздражителей. Эти движения не зависят от направления роста органа растения.",
+            note2: "Виды настии",
+            note2text: "Фотонастия - под влиянием света, термонастия - от изменения температуры, никтинастия - складывание листьев ночью.",
+            table1h1: "Тип движения",
+            table1h2: "Раздражитель",
+            table1h3: "Пример",
             table1: [
-                ["Зерновые культуры", "Производство продуктов питания", "Основа питания человечества"],
-                ["Овощи", "Источник витаминов", "Помогают сохранить здоровье"],
-                ["Лекарственные растения", "Медицина", "Помогают лечить болезни"],
-                ["Декоративные растения", "Эстетика", "Дают эстетическое удовлетворение"]
+                ["Тропизм", "Направленный раздражитель", "Рост корня к земле"],
+                ["Настия", "Ненаправленный раздражитель", "Складывание листьев ночью"],
+                ["Фототропизм", "Свет", "Изгибание стебля к свету"],
+                ["Геотропизм", "Сила тяжести", "Рост корня к земле"]
             ],
-            section4: "Устойчивость и будущее",
-            section4p1: "В будущем вопросы защиты растений и повышения их устойчивости станут особенно важными. Изменение климата, ухудшение качества почвы и ограниченность водных ресурсов влияют на сельское хозяйство.",
-            note2: "Задачи на будущее",
-            note2text: "Генная инженерия, создание засухоустойчивых культур, развитие методов органического земледелия и сохранение растительного мира - это важные задачи для нашего будущего.",
-            image3: "Генная инженерия",
-            image4: "Засухоустойчивые культуры",
+            section3: "Фототропизм и геотропизм",
+            section3p1: "Фототропизм - направленные движения растений под влиянием света. Геотропизм - направленные движения растений под влиянием силы тяжести.",
+            note3: "Механизм фототропизма",
+            note3text: "Под влиянием света гормон ауксин накапливается на теневой стороне, что приводит к асимметричному росту клеток и изгибанию растения к свету.",
+            processTitle2: "Процесс фототропизма",
+            step5: "Одностороннее освещение",
+            step6: "Накопление ауксина на теневой стороне",
+            step7: "Удлинение клеток на теневой стороне",
+            step8: "Изгибание растения к свету",
+            section4: "Хемотропизм и гидротропизм",
+            section4p1: "Хемотропизм - направленные движения растений под влиянием химических веществ. Гидротропизм - направленные движения растений под влиянием влаги.",
+            table2h1: "Вид тропизма",
+            table2h2: "Раздражитель",
+            table2h3: "Реакция растения",
+            table2: [
+                ["Фототропизм", "Свет", "Стебель изгибается к свету, корень - от света"],
+                ["Геотропизм", "Сила тяжести", "Корень растет к земле, стебель - от земли"],
+                ["Хемотропизм", "Химические вещества", "Корень растет к питательным веществам"],
+                ["Гидротропизм", "Вода", "Корень растет к влаге"]
+            ],
+            note4: "Экологическое значение тропизмов",
+            note4text: "Тропизмы помогают растениям находить благоприятные условия для жизни: находить свет, воду, минеральные вещества и оптимально располагаться.",
             prevBtn: "Предыдущий модуль",
-            homeBtn: "Главная страница",
-            testBtn: "Начать тест"
+            nextBtn: "Следующий модуль",
+            textBtn: "Текст",
+            presentationBtn: "Презентация",
+            videoBtn: "Видео",
+            presentationTitle: "Презентация по движениям растений",
+            videoTitle: "Видеоурок по движениям растений",
+            videoDescription: "В этом видеоуроке рассматриваются типы движений растений: тропизм, настия, фототропизм, геотропизм, хемотропизм и гидротропизм.",
+            videoDirectLink: "Если видео не загружается, нажмите здесь для просмотра на YouTube",
+            presentationDirectLink: "Если презентация не загружается, нажмите здесь для просмотра в полноэкранном режиме",
+            // Тексты для теста
+            testTitle: "Проверь себя!",
+            testDescription: "Пройдите тестирование, чтобы проверить свои знания по этому модулю. Вы ответите на 10 вопросов и сможете оценить свой уровень знаний.",
+            testBtnText: "Начать тестирование",
+            testLink: "https://fr.educaplay.com/ressources-pedagogiques/22616147-learning_resource.html"
         };
         
         // Установка казахского языка по умолчанию
@@ -578,21 +1045,16 @@
             document.getElementById('important-note1').textContent = kzTexts.note1;
             document.getElementById('important-note1-text').textContent = kzTexts.note1text;
             
+            document.getElementById('process-title1').textContent = kzTexts.processTitle1;
+            document.getElementById('step1-desc').textContent = kzTexts.step1;
+            document.getElementById('step2-desc').textContent = kzTexts.step2;
+            document.getElementById('step3-desc').textContent = kzTexts.step3;
+            document.getElementById('step4-desc').textContent = kzTexts.step4;
+            
             document.getElementById('section2-title').textContent = kzTexts.section2;
             document.getElementById('section2-p1').textContent = kzTexts.section2p1;
-            
-            const listItems = document.querySelectorAll('#section2-list li');
-            kzTexts.section2list.forEach((text, index) => {
-                if (listItems[index]) {
-                    listItems[index].textContent = text;
-                }
-            });
-            
-            document.getElementById('image1-caption').textContent = kzTexts.image1;
-            document.getElementById('image2-caption').textContent = kzTexts.image2;
-            
-            document.getElementById('section3-title').textContent = kzTexts.section3;
-            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            document.getElementById('important-note2').textContent = kzTexts.note2;
+            document.getElementById('important-note2-text').textContent = kzTexts.note2text;
             
             document.getElementById('table-header1').textContent = kzTexts.table1h1;
             document.getElementById('table-header2').textContent = kzTexts.table1h2;
@@ -611,18 +1073,60 @@
                 });
             });
             
+            document.getElementById('section3-title').textContent = kzTexts.section3;
+            document.getElementById('section3-p1').textContent = kzTexts.section3p1;
+            document.getElementById('important-note3').textContent = kzTexts.note3;
+            document.getElementById('important-note3-text').textContent = kzTexts.note3text;
+            
+            document.getElementById('process-title2').textContent = kzTexts.processTitle2;
+            document.getElementById('step5-desc').textContent = kzTexts.step5;
+            document.getElementById('step6-desc').textContent = kzTexts.step6;
+            document.getElementById('step7-desc').textContent = kzTexts.step7;
+            document.getElementById('step8-desc').textContent = kzTexts.step8;
+            
             document.getElementById('section4-title').textContent = kzTexts.section4;
             document.getElementById('section4-p1').textContent = kzTexts.section4p1;
             
-            document.getElementById('important-note2').textContent = kzTexts.note2;
-            document.getElementById('important-note2-text').textContent = kzTexts.note2text;
+            document.getElementById('table2-header1').textContent = kzTexts.table2h1;
+            document.getElementById('table2-header2').textContent = kzTexts.table2h2;
+            document.getElementById('table2-header3').textContent = kzTexts.table2h3;
             
-            document.getElementById('image3-caption').textContent = kzTexts.image3;
-            document.getElementById('image4-caption').textContent = kzTexts.image4;
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            kzTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('important-note4').textContent = kzTexts.note4;
+            document.getElementById('important-note4-text').textContent = kzTexts.note4text;
             
             document.getElementById('prev-btn').textContent = kzTexts.prevBtn;
-            document.getElementById('home-btn').textContent = kzTexts.homeBtn;
-            document.getElementById('test-btn').textContent = kzTexts.testBtn;
+            document.getElementById('next-btn').textContent = kzTexts.nextBtn;
+            
+            // Обновление текста кнопок медиа
+            document.getElementById('text-btn-text').textContent = kzTexts.textBtn;
+            document.getElementById('presentation-btn-text').textContent = kzTexts.presentationBtn;
+            document.getElementById('video-btn-text').textContent = kzTexts.videoBtn;
+            
+            // Обновление медиа-контента
+            document.getElementById('presentation-title').textContent = kzTexts.presentationTitle;
+            document.getElementById('video-title').textContent = kzTexts.videoTitle;
+            document.getElementById('video-description').textContent = kzTexts.videoDescription;
+            document.getElementById('video-direct-link').textContent = kzTexts.videoDirectLink;
+            document.getElementById('presentation-direct-link').textContent = kzTexts.presentationDirectLink;
+            
+            // Обновление тестовой секции
+            document.getElementById('test-title').textContent = kzTexts.testTitle;
+            document.getElementById('test-description').textContent = kzTexts.testDescription;
+            document.getElementById('test-btn-text').textContent = kzTexts.testBtnText;
+            document.getElementById('test-btn').href = kzTexts.testLink;
         }
         
         // Установка русского языка
@@ -641,21 +1145,16 @@
             document.getElementById('important-note1').textContent = ruTexts.note1;
             document.getElementById('important-note1-text').textContent = ruTexts.note1text;
             
+            document.getElementById('process-title1').textContent = ruTexts.processTitle1;
+            document.getElementById('step1-desc').textContent = ruTexts.step1;
+            document.getElementById('step2-desc').textContent = ruTexts.step2;
+            document.getElementById('step3-desc').textContent = ruTexts.step3;
+            document.getElementById('step4-desc').textContent = ruTexts.step4;
+            
             document.getElementById('section2-title').textContent = ruTexts.section2;
             document.getElementById('section2-p1').textContent = ruTexts.section2p1;
-            
-            const listItems = document.querySelectorAll('#section2-list li');
-            ruTexts.section2list.forEach((text, index) => {
-                if (listItems[index]) {
-                    listItems[index].textContent = text;
-                }
-            });
-            
-            document.getElementById('image1-caption').textContent = ruTexts.image1;
-            document.getElementById('image2-caption').textContent = ruTexts.image2;
-            
-            document.getElementById('section3-title').textContent = ruTexts.section3;
-            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            document.getElementById('important-note2').textContent = ruTexts.note2;
+            document.getElementById('important-note2-text').textContent = ruTexts.note2text;
             
             document.getElementById('table-header1').textContent = ruTexts.table1h1;
             document.getElementById('table-header2').textContent = ruTexts.table1h2;
@@ -674,27 +1173,112 @@
                 });
             });
             
+            document.getElementById('section3-title').textContent = ruTexts.section3;
+            document.getElementById('section3-p1').textContent = ruTexts.section3p1;
+            document.getElementById('important-note3').textContent = ruTexts.note3;
+            document.getElementById('important-note3-text').textContent = ruTexts.note3text;
+            
+            document.getElementById('process-title2').textContent = ruTexts.processTitle2;
+            document.getElementById('step5-desc').textContent = ruTexts.step5;
+            document.getElementById('step6-desc').textContent = ruTexts.step6;
+            document.getElementById('step7-desc').textContent = ruTexts.step7;
+            document.getElementById('step8-desc').textContent = ruTexts.step8;
+            
             document.getElementById('section4-title').textContent = ruTexts.section4;
             document.getElementById('section4-p1').textContent = ruTexts.section4p1;
             
-            document.getElementById('important-note2').textContent = ruTexts.note2;
-            document.getElementById('important-note2-text').textContent = ruTexts.note2text;
+            document.getElementById('table2-header1').textContent = ruTexts.table2h1;
+            document.getElementById('table2-header2').textContent = ruTexts.table2h2;
+            document.getElementById('table2-header3').textContent = ruTexts.table2h3;
             
-            document.getElementById('image3-caption').textContent = ruTexts.image3;
-            document.getElementById('image4-caption').textContent = ruTexts.image4;
+            const table2Cells = [
+                ['table2-1-cell1', 'table2-1-cell2', 'table2-1-cell3'],
+                ['table2-2-cell1', 'table2-2-cell2', 'table2-2-cell3'],
+                ['table2-3-cell1', 'table2-3-cell2', 'table2-3-cell3'],
+                ['table2-4-cell1', 'table2-4-cell2', 'table2-4-cell3']
+            ];
+            
+            ruTexts.table2.forEach((row, rowIndex) => {
+                row.forEach((cellText, cellIndex) => {
+                    document.getElementById(table2Cells[rowIndex][cellIndex]).textContent = cellText;
+                });
+            });
+            
+            document.getElementById('important-note4').textContent = ruTexts.note4;
+            document.getElementById('important-note4-text').textContent = ruTexts.note4text;
             
             document.getElementById('prev-btn').textContent = ruTexts.prevBtn;
-            document.getElementById('home-btn').textContent = ruTexts.homeBtn;
-            document.getElementById('test-btn').textContent = ruTexts.testBtn;
+            document.getElementById('next-btn').textContent = ruTexts.nextBtn;
+            
+            // Обновление текста кнопок медиа
+            document.getElementById('text-btn-text').textContent = ruTexts.textBtn;
+            document.getElementById('presentation-btn-text').textContent = ruTexts.presentationBtn;
+            document.getElementById('video-btn-text').textContent = ruTexts.videoBtn;
+            
+            // Обновление медиа-контента
+            document.getElementById('presentation-title').textContent = ruTexts.presentationTitle;
+            document.getElementById('video-title').textContent = ruTexts.videoTitle;
+            document.getElementById('video-description').textContent = ruTexts.videoDescription;
+            document.getElementById('video-direct-link').textContent = ruTexts.videoDirectLink;
+            document.getElementById('presentation-direct-link').textContent = ruTexts.presentationDirectLink;
+            
+            // Обновление тестовой секции
+            document.getElementById('test-title').textContent = ruTexts.testTitle;
+            document.getElementById('test-description').textContent = ruTexts.testDescription;
+            document.getElementById('test-btn-text').textContent = ruTexts.testBtnText;
+            document.getElementById('test-btn').href = ruTexts.testLink;
+        }
+        
+        // Функции для переключения между режимами отображения
+        function showTextContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.text-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('text-btn').classList.add('active');
+        }
+        
+        function showPresentationContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.presentation-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('presentation-btn').classList.add('active');
+        }
+        
+        function showVideoContent() {
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector('.video-content').classList.add('active');
+            
+            document.querySelectorAll('.media-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('video-btn').classList.add('active');
         }
         
         // Обработчики кнопок переключения языка
         document.getElementById('ru-btn').addEventListener('click', setRussianLanguage);
         document.getElementById('kz-btn').addEventListener('click', setKazakhLanguage);
         
+        // Обработчики кнопок переключения режимов
+        document.getElementById('text-btn').addEventListener('click', showTextContent);
+        document.getElementById('presentation-btn').addEventListener('click', showPresentationContent);
+        document.getElementById('video-btn').addEventListener('click', showVideoContent);
+        
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             setKazakhLanguage();
+            showTextContent(); // По умолчанию показываем текстовый контент
         });
     </script>
 </body>
